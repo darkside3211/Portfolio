@@ -1,17 +1,286 @@
 ---
-
+// src/pages/index.astro
+import "../styles/global.css";
 ---
 
-<html lang="en">
+<!doctype html>
+<html lang="en" class="scroll-smooth">
 	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Gerard Baldo | System-First Engineer</title>
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body
+		class="bg-neutral-950 text-neutral-100 font-sans selection:bg-neutral-800 antialiased"
+	>
+		<div class="flex min-h-screen">
+			<aside
+				class="fixed top-0 left-0 h-screen w-64 border-r border-neutral-800 bg-neutral-950 p-6 flex flex-col justify-between z-50"
+			>
+				<div class="flex flex-col gap-8">
+					<div class="flex flex-col gap-3">
+						<div
+							class="h-14 w-14 rounded-lg bg-neutral-900 border border-neutral-800 flex items-center justify-center text-lg font-bold tracking-tight text-neutral-300"
+						>
+							GB
+						</div>
+						<div>
+							<h2
+								class="font-semibold text-neutral-200 tracking-tight"
+							>
+								Gerard Baldo
+							</h2>
+							<p class="text-xs text-neutral-500 font-mono">
+								System-First Engineer
+							</p>
+						</div>
+					</div>
+
+					<nav class="flex flex-col gap-2 text-sm">
+						<a
+							href="#manifesto"
+							class="text-neutral-400 hover:text-neutral-100 transition-colors py-1.5 font-medium font-mono text-xs tracking-wider"
+							>// 01. MANIFESTO</a
+						>
+						<a
+							href="#capabilities"
+							class="text-neutral-400 hover:text-neutral-100 transition-colors py-1.5 font-medium font-mono text-xs tracking-wider"
+							>// 02. CAPABILITIES</a
+						>
+						<a
+							href="#projects"
+							class="text-neutral-400 hover:text-neutral-100 transition-colors py-1.5 font-medium font-mono text-xs tracking-wider"
+							>// 03. PROJECTS_AREA</a
+						>
+					</nav>
+				</div>
+
+				<div
+					class="text-[10px] text-neutral-500 font-mono flex items-center gap-2 tracking-tight"
+				>
+					<span
+						class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"
+					></span>
+					<span>ENVIRONMENT: ACTIVE</span>
+				</div>
+			</aside>
+
+			<main
+				class="ml-64 flex-1 px-8 md:px-16 py-16 max-w-4xl flex flex-col gap-12"
+			>
+				<section
+					id="manifesto"
+					class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-8 backdrop-blur-sm scroll-mt-16"
+				>
+					<span
+						class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest"
+						>// Core Philosophy</span
+					>
+					<h1
+						class="text-2xl font-bold mt-2 mb-4 tracking-tight text-neutral-100"
+					>
+						System Over Syntax
+					</h1>
+					<p
+						class="text-neutral-400 leading-relaxed text-sm md:text-base"
+					>
+						Frameworks and language syntaxes are variables;
+						fundamental software architecture and data integrity are
+						the constants. I don't build my value on memorizing
+						documentation that can be looked up in five seconds. I
+						build it on structural execution—understanding how data
+						flows across a stack, diagnosing root-cause system
+						failures under pressure, and rapidly mapping new
+						environments to deliver secure, functional software.
+					</p>
+				</section>
+
+				<section
+					id="capabilities"
+					class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-8 backdrop-blur-sm scroll-mt-16"
+				>
+					<span
+						class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest"
+						>// Operational Bounds</span
+					>
+					<h2
+						class="text-xl font-bold mt-2 mb-4 tracking-tight text-neutral-200"
+					>
+						Cognitive Framework & Toolkit
+					</h2>
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+						<div
+							class="border border-neutral-800/60 bg-neutral-950/40 rounded-lg p-4"
+						>
+							<h3
+								class="font-semibold text-neutral-300 mb-2 font-mono text-xs uppercase tracking-wider text-neutral-400"
+							>
+								Implementation Stack
+							</h3>
+							<p class="text-neutral-400 leading-relaxed text-xs">
+								Vue.js interface orchestration, PHP Laravel
+								backend pipelines, and system-agnostic
+								structural programming logic.
+							</p>
+						</div>
+						<div
+							class="border border-neutral-800/60 bg-neutral-950/40 rounded-lg p-4"
+						>
+							<h3
+								class="font-semibold text-neutral-300 mb-2 font-mono text-xs uppercase tracking-wider text-neutral-400"
+							>
+								Validation Guardrails
+							</h3>
+							<p class="text-neutral-400 leading-relaxed text-xs">
+								Playwright, Selenium, and Cypress automated
+								testing suites alongside rigorous Postman API
+								integration probing.
+							</p>
+						</div>
+					</div>
+				</section>
+
+				<section id="projects" class="flex flex-col gap-4 scroll-mt-16">
+					<span
+						class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest"
+						>// The Evidence</span
+					>
+					<h2
+						class="text-xl font-bold tracking-tight mb-2 text-neutral-200"
+					>
+						Projects Area
+					</h2>
+
+					<details
+						name="portfolio-projects"
+						class="group border border-neutral-800 bg-neutral-900/10 rounded-xl overflow-hidden transition-all duration-300 open:bg-neutral-900/40 open:border-neutral-700"
+					>
+						<summary
+							class="flex justify-between items-center p-6 cursor-pointer list-none select-none hover:bg-neutral-900/30 transition-colors"
+						>
+							<div
+								class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4"
+							>
+								<h3
+									class="font-bold text-neutral-300 tracking-tight group-open:text-neutral-100"
+								>
+									DSWD Cross-Stack Optimization
+								</h3>
+								<div class="flex gap-1.5">
+									<span
+										class="px-2 py-0.5 text-[10px] font-mono rounded bg-neutral-800 text-neutral-400 border border-neutral-700"
+										>Laravel</span
+									>
+									<span
+										class="px-2 py-0.5 text-[10px] font-mono rounded bg-neutral-800 text-neutral-400 border border-neutral-700"
+										>Vue.js</span
+									>
+								</div>
+							</div>
+							<span
+								class="text-neutral-500 group-open:rotate-180 transition-transform duration-300 text-xs font-mono"
+								>▼</span
+							>
+						</summary>
+
+						<div
+							class="p-6 border-t border-neutral-800 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-neutral-950/20"
+						>
+							<div
+								class="lg:col-span-7 flex flex-col gap-4 text-xs md:text-sm text-neutral-400 leading-relaxed"
+							>
+								<p>
+									<strong class="text-neutral-300"
+										>The Context:</strong
+									> Debugging validation bottlenecks for an active
+									government web application framework in production.
+								</p>
+								<p>
+									<strong class="text-neutral-300"
+										>The Discovery:</strong
+									> Traced a failure cascade where valid client
+									payloads were systematically dropping out due
+									to improper backend data sanitization and strict
+									validation mismatches.
+								</p>
+								<p>
+									<strong class="text-neutral-300"
+										>The Solution:</strong
+									> Restructured inputs safely across interface
+									boundaries and ran target validation requests
+									to ensure data integrity.
+								</p>
+							</div>
+							<div
+								class="lg:col-span-5 bg-neutral-950 border border-neutral-800 rounded-lg h-40 flex items-center justify-center p-4"
+							>
+								<span
+									class="text-[10px] font-mono text-neutral-600 tracking-tight"
+									>[ Live Metrics Sandbox ]</span
+								>
+							</div>
+						</div>
+					</details>
+
+					<details
+						name="portfolio-projects"
+						class="group border border-neutral-800 bg-neutral-900/10 rounded-xl overflow-hidden transition-all duration-300 open:bg-neutral-900/40 open:border-neutral-700"
+					>
+						<summary
+							class="flex justify-between items-center p-6 cursor-pointer list-none select-none hover:bg-neutral-900/30 transition-colors"
+						>
+							<div
+								class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4"
+							>
+								<h3
+									class="font-bold text-neutral-300 tracking-tight group-open:text-neutral-100"
+								>
+									Spatial Map Geo-Tagging Engine
+								</h3>
+								<div class="flex gap-1.5">
+									<span
+										class="px-2 py-0.5 text-[10px] font-mono rounded bg-neutral-800 text-neutral-400 border border-neutral-700"
+										>Leaflet.js</span
+									>
+									<span
+										class="px-2 py-0.5 text-[10px] font-mono rounded bg-neutral-800 text-neutral-400 border border-neutral-700"
+										>JSON API</span
+									>
+								</div>
+							</div>
+							<span
+								class="text-neutral-500 group-open:rotate-180 transition-transform duration-300 text-xs font-mono"
+								>▼</span
+							>
+						</summary>
+
+						<div
+							class="p-6 border-t border-neutral-800 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-neutral-950/20"
+						>
+							<div
+								class="lg:col-span-7 flex flex-col gap-4 text-xs md:text-sm text-neutral-400 leading-relaxed"
+							>
+								<p>
+									<strong class="text-neutral-300"
+										>The Architecture:</strong
+									> High-efficiency coordinate mapping pipeline
+									that parses localized data models on the fly into
+									responsive client pins without external provider
+									dependencies.
+								</p>
+							</div>
+							<div
+								class="lg:col-span-5 bg-neutral-950 border border-neutral-800 rounded-lg h-40 flex items-center justify-center p-4"
+							>
+								<span
+									class="text-[10px] font-mono text-neutral-600 tracking-tight"
+									>[ Map Canvas Target ]</span
+								>
+							</div>
+						</div>
+					</details>
+				</section>
+			</main>
+		</div>
 	</body>
 </html>
