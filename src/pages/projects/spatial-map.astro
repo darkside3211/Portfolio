@@ -1,0 +1,209 @@
+---
+// src/pages/projects/spatial-map.astro
+import "../../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Gerard Baldo | Spatial Map Case Study</title>
+		<script is:inline>
+			(function() {
+				const savedTheme = localStorage.getItem('theme');
+				if (savedTheme === 'light') {
+					document.documentElement.classList.add('light');
+				} else {
+					document.documentElement.classList.remove('light');
+				}
+			})();
+		</script>
+	</head>
+	<body
+		class="bg-neutral-950 text-neutral-100 font-sans selection:bg-neutral-800 antialiased"
+	>
+		<div class="flex min-h-screen">
+			<aside
+				class="fixed top-0 left-0 h-screen w-64 border-r border-neutral-800 bg-neutral-950 p-6 flex flex-col justify-between z-50"
+			>
+				<div class="flex flex-col gap-8">
+					<div class="flex flex-col gap-3">
+						<div
+							class="h-14 w-14 rounded-lg bg-neutral-900 border border-neutral-800 flex items-center justify-center text-lg font-bold tracking-tight text-neutral-300"
+						>
+							GB
+						</div>
+						<div>
+							<h2
+								class="font-semibold text-neutral-200 tracking-tight"
+							>
+								Gerard Baldo
+							</h2>
+							<p class="text-xs text-neutral-500 font-mono">
+								System-First Engineer
+							</p>
+						</div>
+					</div>
+
+					<nav class="flex flex-col gap-2 text-sm">
+						<a
+							href="/"
+							class="text-neutral-400 hover:text-neutral-100 transition-colors py-1.5 font-medium font-mono text-xs tracking-wider"
+							>➔ RETURN_HOME</a
+						>
+					</nav>
+				</div>
+
+				<div class="flex flex-col gap-4">
+					<button
+						id="theme-toggle"
+						class="flex items-center justify-between w-full border border-neutral-800 hover:border-neutral-700 bg-neutral-900/10 hover:bg-neutral-900/30 text-neutral-400 hover:text-neutral-200 transition-all rounded px-3 py-2 text-xs font-mono select-none cursor-pointer"
+					>
+						<span>THEME: DEFAULT (DARK)</span>
+						<span id="theme-icon">☼</span>
+					</button>
+
+					<div
+						class="text-[10px] text-neutral-500 font-mono flex items-center gap-2 tracking-tight"
+					>
+						<span
+							class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"
+						></span>
+						<span>ENVIRONMENT: ACTIVE</span>
+					</div>
+				</div>
+			</aside>
+
+			<main
+				class="ml-64 flex-1 px-8 md:px-16 py-16 max-w-4xl flex flex-col gap-8"
+			>
+				<a href="/" class="text-xs font-mono text-neutral-500 hover:text-neutral-300 transition-colors self-start">
+					// BACK_TO_DASHBOARD
+				</a>
+
+				<section class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-8 backdrop-blur-sm">
+					<span class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">// Case Study</span>
+					<h1 class="text-3xl font-bold mt-2 mb-4 tracking-tight text-neutral-100">
+						Spatial Map Geo-Tagging Engine
+					</h1>
+					<p class="text-neutral-400 leading-relaxed text-sm md:text-base">
+						An in-depth review of the spatial coordinate tracking and local state engine designed to optimize beneficiary location tagging for government social welfare distributions.
+					</p>
+
+					<div class="flex flex-wrap gap-2 mt-6">
+						<span class="px-2 py-1 text-xs font-mono rounded bg-neutral-900 text-neutral-400 border border-neutral-800">Leaflet.js</span>
+						<span class="px-2 py-1 text-xs font-mono rounded bg-neutral-900 text-neutral-400 border border-neutral-800">Vanilla JS</span>
+						<span class="px-2 py-1 text-xs font-mono rounded bg-neutral-900 text-neutral-400 border border-neutral-800">CSS Custom Variables</span>
+						<span class="px-2 py-1 text-xs font-mono rounded bg-neutral-900 text-neutral-400 border border-neutral-800">DSWD Pag Abot</span>
+					</div>
+				</section>
+
+				<section class="border border-neutral-800 bg-neutral-900/10 rounded-xl p-8 flex flex-col gap-6">
+					<div>
+						<h2 class="text-lg font-bold text-neutral-200 mb-3 tracking-tight">// WHY THIS WAS MADE</h2>
+						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
+							The Pag Abot Program is a national government campaign designed to reach out to individuals and families in street situations, providing them with shelter assistance, medical attention, and resettlement packages. 
+						</p>
+						<p class="text-neutral-400 text-sm leading-relaxed">
+							In field operations, address-based logging fails. Beneficiaries are often situated under bridges, on street corners, or near informal landmarks with no structured mailing addresses. To run audited, high-integrity logistics pipelines and coordinate distribution routes, social workers require an interface to pin exact GPS vectors directly on a cartographic UI.
+						</p>
+					</div>
+
+					<hr class="border-neutral-800/80" />
+
+					<div>
+						<h2 class="text-lg font-bold text-neutral-200 mb-3 tracking-tight">// HOW IT WAS MADE</h2>
+						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
+							The engine combines three layers: a lightweight DOM controller, a client-side vector listener, and a custom state registry to minimize external database read/write cycles during input staging.
+						</p>
+						
+						<h3 class="text-xs font-mono text-neutral-300 uppercase tracking-wider mb-2 mt-4">1. Solving the Leaflet Layout Trap</h3>
+						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
+							A classic failure mode in Leaflet maps occurs when initialization happens inside a collapsed container (such as a `<details>` element). Because the container starts with hidden dimensions (`display: none` equivalents), Leaflet's internal engine fails to calculate pixel widths and heights, resulting in broken, missing, or misaligned map tiles when the container is finally opened.
+						</p>
+						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
+							We resolved this defensively by subscribing to the card's `'toggle'` event. The Leaflet map engine is constructed and loaded <strong>only</strong> when the accordion opens and the DOM elements have calculated their physical height:
+						</p>
+
+						<div class="bg-neutral-950 border border-neutral-800 rounded-lg p-4 font-mono text-xs text-neutral-300 overflow-x-auto leading-relaxed mb-6">
+							<span class="text-neutral-500">// Initialize only when accordion is expanded</span><br />
+							card.addEventListener(<span class="text-emerald-400">'toggle'</span>, () =&gt; &#123;<br />
+							&nbsp;&nbsp;<span class="text-amber-400">if</span> (card.open && !mapInitialized) &#123;<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;initializeMapEngine();<br />
+							&nbsp;&nbsp;&#125;<br />
+							&#125;);
+						</div>
+
+						<h3 class="text-xs font-mono text-neutral-300 uppercase tracking-wider mb-2">2. Dynamic Vector Binding</h3>
+						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
+							Once loaded, the engine establishes a bidirectional coordinate pipeline. Map clicks feed into Leaflet's spatial event system, capturing latitude/longitude vectors and casting them immediately into formatted inputs. Conversely, users can manually edit input coordinates, triggering automatic map panning and marker relocation.
+						</p>
+
+						<h3 class="text-xs font-mono text-neutral-300 uppercase tracking-wider mb-2">3. State Preservation Registry</h3>
+						<p class="text-neutral-400 text-sm leading-relaxed">
+							To allow social workers to compare distribution spots or stage multiple locations before final database submission, we introduced a local registry cache. Users can commit locations to memory, generating clickable nodes in the registry list. Clicking a node recalls its coordinates and instantly relocates the map view without reloading the page.
+						</p>
+					</div>
+				</section>
+
+				<section class="border border-neutral-800 bg-neutral-900/10 rounded-xl p-8 flex flex-col gap-6">
+					<h2 class="text-lg font-bold text-neutral-200 tracking-tight">// SYSTEM DATA FLOW</h2>
+					
+					<div class="bg-neutral-950 border border-neutral-800 rounded-lg p-6 font-mono text-xs text-neutral-400 leading-relaxed overflow-x-auto">
+<pre class="leading-normal">
+[User Map Interaction (Click/Drag)]
+               │
+               ▼
+ [Leaflet Vector Coordinate Stream]
+               │
+               ▼
+  [Inputs Updated & Validated (6 decimals)]
+               │
+     ┌─────────┴─────────┐
+     ▼                   ▼
+[COMMIT_PIN]       [Manual Input]
+     │                   │
+     ▼                   ▼
+[Saved Registry]    [Map Panned]
+     │
+     ▼
+[Click to Recall Location]
+</pre>
+					</div>
+				</section>
+			</main>
+		</div>
+
+		<script is:inline>
+			window.addEventListener('DOMContentLoaded', () => {
+				// Theme Toggle Logic
+				const themeToggleBtn = document.getElementById('theme-toggle');
+				const themeIcon = document.getElementById('theme-icon');
+				const themeText = themeToggleBtn.querySelector('span');
+
+				function updateThemeUI(isLight) {
+					if (isLight) {
+						document.documentElement.classList.add('light');
+						if (themeText) themeText.textContent = 'THEME: BEIGE_MODE';
+						if (themeIcon) themeIcon.textContent = '☾';
+					} else {
+						document.documentElement.classList.remove('light');
+						if (themeText) themeText.textContent = 'THEME: DEFAULT (DARK)';
+						if (themeIcon) themeIcon.textContent = '☼';
+					}
+				}
+
+				// Initialize UI state
+				const isCurrentlyLight = document.documentElement.classList.contains('light');
+				updateThemeUI(isCurrentlyLight);
+
+				themeToggleBtn.addEventListener('click', () => {
+					const isLight = document.documentElement.classList.toggle('light');
+					localStorage.setItem('theme', isLight ? 'light' : 'dark');
+					updateThemeUI(isLight);
+				});
+			});
+		</script>
+	</body>
+</html>
