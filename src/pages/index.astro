@@ -360,135 +360,94 @@ import "../styles/global.css";
 							Projects Area
 						</h2>
 
-						<details
-							name="portfolio-projects"
-							class="group border border-neutral-800 bg-neutral-900/10 rounded-xl overflow-hidden transition-all duration-300 open:bg-neutral-900/40 open:border-neutral-700 rigid-card system-card"
-						>
-							<summary
-								class="flex justify-between items-center p-6 cursor-pointer list-none select-none hover:bg-neutral-900/30 transition-colors"
-							>
-								<div
-									class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4"
-								>
-									<h3
-										class="font-bold text-neutral-300 tracking-tight group-open:text-neutral-100"
-									>
-										DSWD Cross-Stack Optimization
-									</h3>
-									<div class="flex gap-1.5">
-										<span
-											class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-mono rounded bg-neutral-800 text-neutral-400 border border-neutral-700"
-										>
-											<svg
-												xmlns="http://www.w3.org/2000/svg"
-												width="11"
-												height="11"
-												viewBox="0 0 24 24"
-												fill="none"
-												stroke="currentColor"
-												stroke-width="2.5"
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												class="text-red-500/90"
-												><path
-													d="m12 3-1.912 5.886h6.224z"
-												></path><path
-													d="m12 21 1.912-5.886H7.676z"
-												></path><path
-													d="m3 12 5.886 1.912V7.676z"
-												></path><path
-													d="m21 12-5.886-1.912v6.224z"
-												></path></svg
-											>
-											Laravel
+						<!-- Capstone Project Card: Spatial E-Commerce Engine -->
+						<div class="border border-neutral-800 bg-neutral-900/10 rounded-xl p-6 system-card project-card rigid-card">
+							
+							<!-- Project Header Array -->
+							<div class="flex items-center justify-between mb-6 border-b border-neutral-800/60 pb-4">
+								<div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+									<h3 class="font-bold text-neutral-300 tracking-tight font-mono">// SPATIAL_ECOMMERCE_ENGINE</h3>
+									<div class="flex gap-1.5 font-mono text-[10px]">
+										<span class="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-mono rounded bg-neutral-800 text-neutral-400 border border-neutral-700">
+											<span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>Vue.js
 										</span>
-										<span
-											class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-mono rounded bg-neutral-800 text-neutral-400 border border-neutral-700"
-										>
-											<svg
-												xmlns="http://www.w3.org/2000/svg"
-												width="11"
-												height="11"
-												viewBox="0 0 24 24"
-												fill="none"
-												stroke="currentColor"
-												stroke-width="2.5"
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												class="text-emerald-500/90"
-												><path d="m2 3 10 18L22 3"
-												></path><path
-													d="m6.5 3 5.5 10 5.5-10"
-												></path></svg
-											>
-											Vue.js
+										<span class="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-mono rounded bg-neutral-800 text-neutral-400 border border-neutral-700">
+											<span class="h-1.5 w-1.5 rounded-full bg-blue-500"></span>WebGL
 										</span>
 									</div>
 								</div>
-								<span
-									class="text-neutral-500 group-open:rotate-180 transition-transform duration-300 text-xs font-mono"
-									>▼</span
-								>
-							</summary>
-
-							<div
-								class="p-6 border-t border-neutral-800 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-neutral-950/20"
-							>
-								<div
-									class="lg:col-span-7 flex flex-col gap-4 text-xs md:text-sm text-neutral-400 leading-relaxed"
-								>
-									<p>
-										<strong class="text-neutral-300"
-											>The Context:</strong
-										> Debugging validation bottlenecks for an
-										active government web application framework
-										in production.
-									</p>
-									<p>
-										<strong class="text-neutral-300"
-											>The Discovery:</strong
-										> Traced a failure cascade where valid client
-										payloads were systematically dropping out
-										due to improper backend data sanitization
-										and strict validation mismatches.
-									</p>
-									<p>
-										<strong class="text-neutral-300"
-											>The Solution:</strong
-										> Restructured inputs safely across interface
-										boundaries and ran target validation requests
-										to ensure data integrity.
-									</p>
-								</div>
-								<div
-									id="live-sandbox-metrics"
-									class="lg:col-span-5 bg-neutral-950 border border-neutral-800 rounded-lg h-40 p-4 font-mono text-[10px] flex flex-col gap-2 overflow-y-auto"
-								>
-									<div
-										class="flex justify-between items-center text-neutral-500 border-b border-neutral-900/60 pb-1.5 mb-1"
+								
+								<!-- System Interactive Toggle Switches -->
+								<div class="flex gap-1 font-mono text-[10px]">
+									<button 
+										data-trigger="spec" 
+										class="toggle-btn px-2 py-0.5 border border-neutral-200 bg-neutral-200 text-neutral-950 rounded transition-all duration-200 select-none cursor-pointer"
 									>
-										<span>// LIVE_VALIDATION_LOGGER</span>
-										<span class="flex items-center gap-1.5">
-											<span
-												id="sandbox-pulse"
-												class="h-1.5 w-1.5 rounded-full bg-neutral-700"
-											></span>
-											<span
-												id="sandbox-status"
-												class="uppercase text-[9px]"
-												>IDLE</span
-											>
-										</span>
-									</div>
-									<div
-										id="sandbox-log-entries"
-										class="flex flex-col gap-1 text-neutral-500 italic"
+										--spec
+									</button>
+									<button 
+										data-trigger="verbose" 
+										class="toggle-btn px-2 py-0.5 border border-neutral-800 text-neutral-500 hover:text-neutral-300 hover:border-neutral-700 rounded transition-all duration-200 select-none cursor-pointer"
 									>
-										Waiting for system boundary telemetry...
-									</div>
+										--verbose
+									</button>
 								</div>
 							</div>
-						</details>
+
+							<!-- Split Content Layout Grid -->
+							<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+								
+								<!-- Dynamic Interactive Display Viewports -->
+								<div class="md:col-span-2 min-h-[150px]">
+									
+									<!-- VIEW A: Standard Functional Specification Panel -->
+									<div data-panel="spec" class="space-y-4 text-xs leading-relaxed text-neutral-400 font-sans">
+										<p>
+											<strong class="text-neutral-200 font-mono">The Objective:</strong> 
+											Engineering an interactive platform designed to merge relational database commerce pipelines with responsive 3D asset manipulation and client-side web canvas spatial projections.
+										</p>
+										<p>
+											<strong class="text-neutral-200 font-mono">The Strategy:</strong> 
+											Isolated heavy graphic model parsing and object serialization overhead away from the main interface execution loop by deploying asynchronous asset streaming protocols.
+										</p>
+										<p>
+											<strong class="text-neutral-200 font-mono">The Execution:</strong> 
+											Delivered a decoupled core system application layer that optimized browser paint cycles, maintaining a stable 60 FPS interactive render viewport during real-time client scaling transformations.
+										</p>
+									</div>
+
+									<!-- VIEW B: Verbose System Architecture Panel (Hidden by Default) -->
+									<div data-panel="verbose" class="hidden font-mono text-[11px] leading-relaxed text-neutral-400 bg-neutral-950/40 border border-neutral-800/60 rounded p-4 space-y-2">
+										<div class="text-neutral-500">// PIPELINE_COMPILATION_OUTPUT</div>
+										<div>[STACK_INIT] ──► Vue.js Virtual Core Context Virtualization Map</div>
+										<div>[GRAPHICS]   ──► WebGL_2.0 Canvas Element Canvas Binding Engine [PASS]</div>
+										<div>[ASYNC_OPS]  ──► Blob Object Streaming Pipeline Allocation Optimization</div>
+										<div>[DOM_REF]    ──► Dynamic Canvas Mutation Interceptor Matrix Active</div>
+										<div class="text-neutral-500">// RUNTIME_METRICS: Overhead throttled below 4.2ms compilation ceilings.</div>
+									</div>
+									
+								</div>
+
+								<!-- Right Column Mini Sub-Console Window -->
+								<div class="border border-neutral-800/80 rounded p-4 bg-neutral-950/40 font-mono text-[10px] text-neutral-400 flex flex-col justify-between h-full min-h-[150px]">
+									<div>
+										<div class="flex items-center justify-between text-neutral-500 border-b border-neutral-800/60 pb-2 mb-2">
+											<span>// GPU_RENDER_VIEWPORT</span>
+											<span class="text-emerald-500 animate-pulse">● STABLE</span>
+										</div>
+										<div class="space-y-1 text-neutral-500">
+											<div>Context  : WebGL_Compiled</div>
+											<div>Buffers  : Vectors_Indexed</div>
+											<div>Throttle : Active_Worker_Loop</div>
+										</div>
+									</div>
+									<div class="text-neutral-500 italic mt-4 animate-pulse">
+										Awaiting input vectors...
+									</div>
+								</div>
+								
+							</div>
+						</div>
 
 						<details
 							id="map-project-card"
@@ -1094,6 +1053,41 @@ import "../styles/global.css";
 						e.stopPropagation();
 					});
 				}
+
+				// --- INTERACTIVE PROJECT SPECIFICATION VIEW CONTROLLER ---
+				const projectCards = document.querySelectorAll('.project-card');
+
+				projectCards.forEach(card => {
+					const toggleButtons = card.querySelectorAll('.toggle-btn');
+					const panels = card.querySelectorAll('[data-panel]');
+
+					toggleButtons.forEach(btn => {
+						btn.addEventListener('click', () => {
+							const targetState = btn.getAttribute('data-trigger');
+
+							// 1. Reset button active states inside this explicit card container
+							toggleButtons.forEach(b => {
+								b.classList.remove('bg-neutral-200', 'text-neutral-950', 'border-neutral-200');
+								b.classList.add('text-neutral-500', 'border-neutral-800');
+							});
+							
+							// Highlight the clicked interactive option toggle
+							btn.classList.add('bg-neutral-200', 'text-neutral-950', 'border-neutral-200');
+							btn.classList.remove('text-neutral-500', 'border-neutral-800');
+
+							// 2. Cross-fade panel visibility layouts
+							panels.forEach(panel => {
+								if (panel.getAttribute('data-panel') === targetState) {
+									panel.classList.remove('hidden');
+									panel.classList.add('animate-fade-in');
+								} else {
+									panel.classList.add('hidden');
+									panel.classList.remove('animate-fade-in');
+								}
+							});
+						});
+					});
+				});
 			});
 		</script>
 	</body>
