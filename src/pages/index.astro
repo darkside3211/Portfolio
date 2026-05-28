@@ -9,6 +9,13 @@ import "../styles/global.css";
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Gerard Baldo | System-First Engineer</title>
+		<script type="importmap">
+			{
+				"imports": {
+					"three": "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js"
+				}
+			}
+		</script>
 		<script is:inline>
 			(function () {
 				const savedTheme = localStorage.getItem("theme");
@@ -188,7 +195,7 @@ import "../styles/global.css";
 
 			<!-- UPDATED: Wider constraint and asymmetric grid layout -->
 			<main
-				class="ml-64 flex-1 px-8 md:px-16 py-16 max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
+				class="ml-64 flex-1 px-8 md:px-16 py-16 max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
 			>
 				<!-- LEFT COLUMN: Content Column (Spans 8 of 12 columns) -->
 				<div class="lg:col-span-8 flex flex-col gap-12">
@@ -361,27 +368,21 @@ import "../styles/global.css";
 						</h2>
 
 						<!-- Capstone Project Card: Spatial E-Commerce Engine -->
-						<div class="border border-neutral-800 bg-neutral-900/10 rounded-xl p-6 system-card project-card rigid-card">
+						<div class="border border-neutral-800 bg-neutral-900/10 rounded-xl p-6 system-card project-card w-full">
 							
-							<!-- Project Header Array -->
-							<div class="flex items-center justify-between mb-6 border-b border-neutral-800/60 pb-4">
-								<div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-									<h3 class="font-bold text-neutral-300 tracking-tight font-mono">// SPATIAL_ECOMMERCE_ENGINE</h3>
+							<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-neutral-800/60 pb-4">
+								<div class="flex items-center gap-3">
+									<h3 class="text-sm font-bold tracking-tight text-neutral-300 font-mono">// SPATIAL_ECOMMERCE_ENGINE</h3>
 									<div class="flex gap-1.5 font-mono text-[10px]">
-										<span class="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-mono rounded bg-neutral-800 text-neutral-400 border border-neutral-700">
-											<span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>Vue.js
-										</span>
-										<span class="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-mono rounded bg-neutral-800 text-neutral-400 border border-neutral-700">
-											<span class="h-1.5 w-1.5 rounded-full bg-blue-500"></span>WebGL
-										</span>
+										<span class="px-2 py-0.5 bg-neutral-800 text-neutral-400 border border-neutral-700 rounded">Vue.js</span>
+										<span class="px-2 py-0.5 bg-neutral-800 text-neutral-400 border border-neutral-700 rounded">WebGL</span>
 									</div>
 								</div>
 								
-								<!-- System Interactive Toggle Switches -->
 								<div class="flex gap-1 font-mono text-[10px]">
 									<button 
 										data-trigger="spec" 
-										class="toggle-btn px-2 py-0.5 border border-neutral-200 bg-neutral-200 text-neutral-950 rounded transition-all duration-200 select-none cursor-pointer"
+										class="toggle-btn px-2 py-0.5 border border-neutral-200 bg-neutral-200 text-neutral-950 rounded transition-all duration-200 select-none cursor-pointer animate-fade-in"
 									>
 										--spec
 									</button>
@@ -394,55 +395,76 @@ import "../styles/global.css";
 								</div>
 							</div>
 
-							<!-- Split Content Layout Grid -->
-							<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+							<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-stretch">
 								
-								<!-- Dynamic Interactive Display Viewports -->
-								<div class="md:col-span-2 min-h-[150px]">
+								<div class="lg:col-span-2 flex flex-col justify-between min-h-[320px]">
 									
-									<!-- VIEW A: Standard Functional Specification Panel -->
 									<div data-panel="spec" class="space-y-4 text-xs leading-relaxed text-neutral-400 font-sans">
 										<p>
-											<strong class="text-neutral-200 font-mono">The Objective:</strong> 
-											Engineering an interactive platform designed to merge relational database commerce pipelines with responsive 3D asset manipulation and client-side web canvas spatial projections.
+											<slot name="objective">
+												<strong class="text-neutral-200 block text-[13px] mb-1 font-mono">The Objective</strong> 
+												Engineering an interactive platform designed to merge relational database commerce pipelines with responsive 3D asset manipulation and client-side web canvas spatial projections.
+											</slot>
 										</p>
 										<p>
-											<strong class="text-neutral-200 font-mono">The Strategy:</strong> 
-											Isolated heavy graphic model parsing and object serialization overhead away from the main interface execution loop by deploying asynchronous asset streaming protocols.
+											<slot name="strategy">
+												<strong class="text-neutral-200 block text-[13px] mb-1 font-mono">The Strategy</strong> 
+												Isolated heavy graphic model parsing and object serialization overhead away from the main interface execution loop by deploying asynchronous asset streaming protocols.
+											</slot>
 										</p>
 										<p>
-											<strong class="text-neutral-200 font-mono">The Execution:</strong> 
-											Delivered a decoupled core system application layer that optimized browser paint cycles, maintaining a stable 60 FPS interactive render viewport during real-time client scaling transformations.
+											<slot name="execution">
+												<strong class="text-neutral-200 block text-[13px] mb-1 font-mono">The Execution</strong> 
+												Delivered a decoupled core system application layer that optimized browser paint cycles, maintaining a stable 60 FPS interactive render viewport during real-time client scaling transformations.
+											</slot>
 										</p>
 									</div>
 
-									<!-- VIEW B: Verbose System Architecture Panel (Hidden by Default) -->
-									<div data-panel="verbose" class="hidden font-mono text-[11px] leading-relaxed text-neutral-400 bg-neutral-950/40 border border-neutral-800/60 rounded p-4 space-y-2">
+									<div data-panel="verbose" class="hidden font-mono text-[11px] leading-relaxed text-neutral-400 bg-neutral-950/40 border border-neutral-800/60 rounded p-4 space-y-3 h-full">
 										<div class="text-neutral-500">// PIPELINE_COMPILATION_OUTPUT</div>
 										<div>[STACK_INIT] ──► Vue.js Virtual Core Context Virtualization Map</div>
 										<div>[GRAPHICS]   ──► WebGL_2.0 Canvas Element Canvas Binding Engine [PASS]</div>
 										<div>[ASYNC_OPS]  ──► Blob Object Streaming Pipeline Allocation Optimization</div>
 										<div>[DOM_REF]    ──► Dynamic Canvas Mutation Interceptor Matrix Active</div>
-										<div class="text-neutral-500">// RUNTIME_METRICS: Overhead throttled below 4.2ms compilation ceilings.</div>
+										<div class="text-neutral-500 mt-4">// RUNTIME_METRICS: Overhead throttled below 4.2ms compilation ceilings.</div>
 									</div>
 									
 								</div>
 
-								<!-- Right Column Mini Sub-Console Window -->
-								<div class="border border-neutral-800/80 rounded p-4 bg-neutral-950/40 font-mono text-[10px] text-neutral-400 flex flex-col justify-between h-full min-h-[150px]">
-									<div>
+								<div class="lg:col-span-3 border border-neutral-800/80 rounded-xl p-4 bg-neutral-950/40 font-mono text-[10px] text-neutral-400 flex flex-col justify-between min-h-[350px]">
+									<div class="w-full flex flex-col h-full">
 										<div class="flex items-center justify-between text-neutral-500 border-b border-neutral-800/60 pb-2 mb-2">
-											<span>// GPU_RENDER_VIEWPORT</span>
-											<span class="text-emerald-500 animate-pulse">● STABLE</span>
+											<div class="flex items-center gap-2">
+												<span>// GPU_RENDER_VIEWPORT</span>
+												<button id="toggle-expand-btn" class="hidden text-[9px] border border-neutral-800 text-neutral-500 hover:text-neutral-200 hover:border-neutral-600 px-1.5 py-0.5 rounded cursor-pointer select-none font-mono transition-all">[ FULLSCREEN ]</button>
+											</div>
+											<span id="canvas-status" class="text-neutral-500 font-bold">○ OFFLINE</span>
 										</div>
-										<div class="space-y-1 text-neutral-500">
-											<div>Context  : WebGL_Compiled</div>
-											<div>Buffers  : Vectors_Indexed</div>
-											<div>Throttle : Active_Worker_Loop</div>
+
+										<!-- Model Selector Segmented Control -->
+										<div class="flex flex-wrap items-center gap-1 mb-3 font-mono text-[9px]" id="model-selector-container">
+											<span class="text-neutral-500 mr-1">// MODEL:</span>
+											<button data-model="HeartRing.glb" class="model-select-btn px-2 py-0.5 border border-neutral-200 bg-neutral-200 text-neutral-950 rounded select-none cursor-pointer">Heart Ring (301KB)</button>
+											<button data-model="EvilEyeEarring.glb" class="model-select-btn px-2 py-0.5 border border-neutral-800 text-neutral-500 hover:text-neutral-300 hover:border-neutral-700 rounded select-none cursor-pointer">Evil Eye (307KB)</button>
+											<button data-model="FlatBracelet.glb" class="model-select-btn px-2 py-0.5 border border-neutral-800 text-neutral-500 hover:text-neutral-300 hover:border-neutral-700 rounded select-none cursor-pointer">Bracelet (4.8MB)</button>
+											<button data-model="HeartNecklace.glb" class="model-select-btn px-2 py-0.5 border border-neutral-800 text-neutral-500 hover:text-neutral-300 hover:border-neutral-700 rounded select-none cursor-pointer">Necklace (5.9MB)</button>
+										</div>
+										
+										<div id="canvas-container" class="w-full h-[280px] relative overflow-hidden rounded border border-dashed border-neutral-800 bg-neutral-950/60 flex items-center justify-center shadow-inner transition-all duration-300 ease-in-out">
+											<canvas id="jewelry-canvas" class="w-full h-full hidden"></canvas>
+											
+											<button 
+												id="boot-canvas-btn" 
+												class="absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-neutral-900/80 hover:bg-neutral-800/50 transition-all duration-200 text-neutral-400 font-mono text-[10px] gap-1 z-10"
+											>
+												<span class="font-bold tracking-wider text-neutral-200">[ INITIALIZE GRAPHICS SUBSYSTEM ]</span>
+												<span class="text-[9px] text-neutral-500 font-sans">Click to compile shader pipelines and mount 3D spatial matrix</span>
+											</button>
 										</div>
 									</div>
-									<div class="text-neutral-500 italic mt-4 animate-pulse">
-										Awaiting input vectors...
+									
+									<div id="canvas-console-msg" class="text-neutral-500 italic mt-2 border-t border-neutral-800/40 pt-2">
+										System idling. Awaiting graphics context initialization request...
 									</div>
 								</div>
 								
@@ -1088,7 +1110,295 @@ import "../styles/global.css";
 						});
 					});
 				});
+
+				// --- DYNAMIC CLIENT-SIDE 3D VIEWPORT ENGINE ---
+				const bootBtn = document.querySelector('#boot-canvas-btn');
+				const canvasElement = document.querySelector('#jewelry-canvas');
+				const statusText = document.querySelector('#canvas-status');
+				const consoleMsg = document.querySelector('#canvas-console-msg');
+				const modelButtons = document.querySelectorAll('.model-select-btn');
+				const expandBtn = document.querySelector('#toggle-expand-btn');
+				const canvasContainer = document.querySelector('#canvas-container');
+
+				let activeModel = 'HeartRing.glb';
+				let THREE, GLTFLoader, OrbitControls;
+				let scene, camera, renderer, loader, controls, currentModel;
+				let isBooted = false;
+
+				// Handle model selector button clicks
+				modelButtons.forEach(btn => {
+					btn.addEventListener('click', () => {
+						const selectedModel = btn.getAttribute('data-model');
+						if (activeModel === selectedModel) return;
+
+						activeModel = selectedModel;
+
+						// Reset styles for all model selector buttons
+						modelButtons.forEach(b => {
+							b.className = 'model-select-btn px-2 py-0.5 border border-neutral-800 text-neutral-500 hover:text-neutral-300 hover:border-neutral-700 rounded select-none cursor-pointer';
+						});
+
+						// Style the active button
+						btn.className = 'model-select-btn px-2 py-0.5 border border-neutral-200 bg-neutral-200 text-neutral-950 rounded select-none cursor-pointer';
+
+						// If the engine is already booted, load the new model immediately
+						if (isBooted) {
+							loadModel(activeModel);
+						}
+					});
+				});
+
+				const modalElement = document.querySelector('#graphics-modal');
+				const closeModalBtn = document.querySelector('#close-modal-btn');
+				const modalPlaceholder = document.querySelector('#modal-canvas-placeholder');
+				const inlineContainer = document.querySelector('#canvas-container');
+
+				if (expandBtn && modalElement && closeModalBtn && modalPlaceholder && inlineContainer && canvasElement) {
+					expandBtn.addEventListener('click', () => {
+						// Open fullscreen modal
+						modalElement.classList.remove('hidden');
+						// Force reflow
+						modalElement.offsetHeight;
+						modalElement.classList.add('opacity-100');
+						
+						// Move canvas to modal placeholder
+						modalPlaceholder.appendChild(canvasElement);
+						
+						// Trigger resize to update camera aspect ratio and renderer size
+						setTimeout(() => {
+							window.dispatchEvent(new Event('resize'));
+						}, 50);
+					});
+
+					const closeModal = () => {
+						modalElement.classList.remove('opacity-100');
+						setTimeout(() => {
+							modalElement.classList.add('hidden');
+							// Move canvas back to inline container
+							inlineContainer.appendChild(canvasElement);
+							// Trigger resize to fit inline container size
+							window.dispatchEvent(new Event('resize'));
+						}, 300);
+					};
+
+					closeModalBtn.addEventListener('click', closeModal);
+					
+					// Close modal on escape key
+					window.addEventListener('keydown', (e) => {
+						if (e.key === 'Escape' && !modalElement.classList.contains('hidden')) {
+							closeModal();
+						}
+					});
+				}
+
+				async function loadModel(modelName) {
+					statusText.innerText = '● COMPILING';
+					statusText.className = 'text-amber-500 animate-pulse';
+					consoleMsg.innerText = `Establishing model stream for ${modelName}...`;
+
+					// Unload the current model to free up resources
+					if (currentModel) {
+						scene.remove(currentModel);
+						currentModel.traverse((node) => {
+							if (node.isMesh) {
+								node.geometry.dispose();
+								if (Array.isArray(node.material)) {
+									node.material.forEach((mat) => mat.dispose());
+								} else {
+									node.material.dispose();
+								}
+							}
+						});
+						currentModel = null;
+					}
+
+					loader.load(`/assets/models/${modelName}`, (gltf) => {
+						currentModel = gltf.scene;
+
+						// DYNAMIC SCALING: Normalize sizes so nothing is too big or too small
+						const box = new THREE.Box3().setFromObject(currentModel);
+						const size = box.getSize(new THREE.Vector3());
+						const maxDim = Math.max(size.x, size.y, size.z);
+						const targetSize = 1.8; // Normalized size in WebGL units
+						const scale = targetSize / maxDim;
+						currentModel.scale.set(scale, scale, scale);
+
+						// Center the scaled geometry perfectly inside the camera's focus space
+						box.setFromObject(currentModel);
+						const center = box.getCenter(new THREE.Vector3());
+						currentModel.position.sub(center);
+
+						scene.add(currentModel);
+
+						// Reset OrbitControls target to center of the new model
+						if (controls) {
+							controls.target.set(0, 0, 0);
+						}
+
+						// Update status readout to operational
+						statusText.innerText = '● ACTIVE';
+						statusText.className = 'text-emerald-600 animate-pulse';
+						consoleMsg.innerText = `Pipeline stable. Model ${modelName} responding at 60 FPS.`;
+					}, undefined, (error) => {
+						console.error(error);
+						statusText.innerText = '❌ ERROR';
+						statusText.className = 'text-red-500';
+						consoleMsg.innerText = 'Buffer stream interrupted. Check asset resolution rules.';
+					});
+				}
+
+				if (bootBtn && canvasElement) {
+					bootBtn.addEventListener('click', async () => {
+						// 1. Update UI to compilation mode
+						bootBtn.classList.add('hidden');
+						canvasElement.classList.remove('hidden');
+						if (expandBtn) expandBtn.classList.remove('hidden'); // Reveal expand button
+						statusText.innerText = '● COMPILING';
+						statusText.className = 'text-amber-500 animate-pulse';
+						consoleMsg.innerText = 'Downloading model buffers & establishing WebGL context...';
+
+						try {
+							// 2. Dynamically import Three.js, GLTFLoader and OrbitControls over CDN using importmap
+							THREE = await import('three');
+							const loaderMod = await import('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/loaders/GLTFLoader.js');
+							GLTFLoader = loaderMod.GLTFLoader;
+
+							const controlsMod = await import('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/controls/OrbitControls.js');
+							OrbitControls = controlsMod.OrbitControls;
+
+							// 3. Initialize explicit rendering bounds
+							const width = canvasElement.parentElement.clientWidth;
+							const height = canvasElement.parentElement.clientHeight;
+
+							scene = new THREE.Scene();
+
+							camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+							camera.position.set(0, 0, 3.5);
+
+							renderer = new THREE.WebGLRenderer({ canvas: canvasElement, antialias: true, alpha: true });
+							renderer.setSize(width, height);
+							renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+							// PHYSICALLY CORRECT LIGHTING & COLOR SPACE SETUP (Fixes washed out/black textures)
+							renderer.outputEncoding = THREE.sRGBEncoding;
+							renderer.physicallyCorrectLights = true;
+							renderer.toneMapping = THREE.ACESFilmicToneMapping;
+							renderer.toneMappingExposure = 1.15;
+
+							// 4. Attach system ambient, hemisphere, and key/fill directional lights
+							const ambientLight = new THREE.AmbientLight(0xffffff, 0.55);
+							scene.add(ambientLight);
+
+							const hemiLight = new THREE.HemisphereLight(0xffffff, 0x333333, 1.25);
+							scene.add(hemiLight);
+
+							// Key light
+							const keyLight = new THREE.DirectionalLight(0xffffff, 1.8);
+							keyLight.position.set(5, 8, 5);
+							scene.add(keyLight);
+
+							// Fill light
+							const fillLight = new THREE.DirectionalLight(0xffffff, 1.0);
+							fillLight.position.set(-5, 2, 2);
+							scene.add(fillLight);
+
+							// Rim light for edge definitions
+							const rimLight = new THREE.DirectionalLight(0xffffff, 1.2);
+							rimLight.position.set(0, 4, -5);
+							scene.add(rimLight);
+
+							// GENERATE DYNAMIC PMREM ENVIRONMENT REFLECTIONS (Ensures metals reflect beautifully instead of looking black)
+							const pmremGenerator = new THREE.PMREMGenerator(renderer);
+							pmremGenerator.compileEquirectangularShader();
+							
+							const canvas = document.createElement('canvas');
+							canvas.width = 64;
+							canvas.height = 32;
+							const ctx = canvas.getContext('2d');
+							const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+							grad.addColorStop(0, '#ffffff'); // bright sky reflection
+							grad.addColorStop(0.5, '#999999'); // horizon
+							grad.addColorStop(1, '#111111'); // dark ground
+							ctx.fillStyle = grad;
+							ctx.fillRect(0, 0, canvas.width, canvas.height);
+							
+							const tempTexture = new THREE.CanvasTexture(canvas);
+							tempTexture.mapping = THREE.EquirectangularReflectionMapping;
+							const envMap = pmremGenerator.fromEquirectangular(tempTexture).texture;
+							scene.environment = envMap;
+							
+							tempTexture.dispose();
+							pmremGenerator.dispose();
+
+							// 5. Initialize the Loader and OrbitControls
+							loader = new GLTFLoader();
+							isBooted = true;
+
+							controls = new OrbitControls(camera, renderer.domElement);
+							controls.enableDamping = true;
+							controls.dampingFactor = 0.05;
+							controls.enableZoom = true;
+							controls.autoRotate = true;
+							controls.autoRotateSpeed = 1.0;
+
+							await loadModel(activeModel);
+
+							// 6. Interactive Render Loop
+							function animate() {
+								requestAnimationFrame(animate);
+								
+								if (controls) {
+									controls.update();
+								}
+								
+								renderer.render(scene, camera);
+							}
+							animate();
+
+							// Handle structural viewport adjustments gracefully
+							window.addEventListener('resize', () => {
+								const w = canvasElement.parentElement.clientWidth;
+								const h = canvasElement.parentElement.clientHeight;
+								camera.aspect = w / h;
+								camera.updateProjectionMatrix();
+								renderer.setSize(w, h);
+							});
+
+						} catch (err) {
+							console.error("WebGL Engine boot sequence failure:", err);
+							statusText.innerText = '❌ ERROR';
+							statusText.className = 'text-red-500';
+							consoleMsg.innerText = 'WebGL Engine boot sequence failure.';
+						}
+					});
+				}
 			});
 		</script>
+
+		<!-- Fullscreen 3D Viewport Lightbox Modal -->
+		<div id="graphics-modal" class="fixed inset-0 z-[100] hidden bg-neutral-950/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 md:p-10 opacity-0 transition-opacity duration-300">
+			<div class="relative w-full max-w-5xl h-[85vh] bg-neutral-900/90 border border-neutral-800 rounded-2xl p-6 flex flex-col justify-between shadow-2xl font-mono text-[10px] text-neutral-400">
+				
+				<!-- Modal Header -->
+				<div class="flex items-center justify-between border-b border-neutral-800 pb-3 mb-4 text-xs">
+					<div class="flex items-center gap-2">
+						<span class="text-emerald-500 animate-pulse">●</span>
+						<span class="text-neutral-300 font-bold">// SPATIAL_ECOMMERCE_VIEWPORT (IMMERSE_MODE)</span>
+					</div>
+					<button id="close-modal-btn" class="border border-neutral-800 hover:border-neutral-600 text-neutral-400 hover:text-neutral-200 px-3 py-1 rounded cursor-pointer transition-all select-none">[ CLOSE_VIEW ]</button>
+				</div>
+
+				<!-- Modal Canvas Body -->
+				<div id="modal-canvas-placeholder" class="flex-1 w-full relative rounded-xl border border-dashed border-neutral-800 bg-neutral-950/80 flex items-center justify-center overflow-hidden shadow-inner">
+					<!-- The canvas will be appended here dynamically on expand -->
+				</div>
+
+				<!-- Modal Footer Info -->
+				<div class="flex flex-col sm:flex-row sm:items-center justify-between border-t border-neutral-800 pt-3 mt-4 gap-2 text-[9px] text-neutral-500">
+					<span>CONTROL: LEFT_DRAG = ORBIT | SCROLL = ZOOM | RIGHT_DRAG = PAN</span>
+					<span id="modal-console-msg" class="italic">Viewport scale optimized to full density.</span>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
