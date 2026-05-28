@@ -14,38 +14,38 @@ A premium, developer-centric portfolio designed around a brutalist, blueprint-in
 
 ---
 
-## ⚡ Kinetic Features & Micro-Interactions
+## 🚀 Key Enhancements & Changes (Redesign Draft)
 
-### 1. Real-Time Cognitive Telemetry Log Streamer
-- Located in the right-hand `// ENGINE_METRICS` column.
-- Features a dynamic terminal log playback module that simulates client-side socket handshakes and prints kernel load messages sequentially.
-- Prevents click propagation to keep the parent dashboard metrics context intact.
+We have implemented a series of micro-interactions, telemetry widgets, layout enhancements, and theme fixes to elevate visual fidelity and client-side responsiveness.
 
-### 2. Capstone Spec-Sheet & Interactive Project View (Spatial E-Commerce Engine)
-- Combines commercial relational pipelines with responsive WebGL 3D asset manipulation.
-- Includes a dual-panel specification viewport toggle:
-  - `--spec`: Standard functional description outlining project objectives and execution.
-  - `--verbose`: Virtual compiler stream output displaying graphics, stack, and async diagnostics.
-- Complemented by a live GPU render status panel.
+### 1. Interactive Capstone Card (`SPATIAL_ECOMMERCE_ENGINE`)
+- Swapped out the old static DSWD project details accordion card for a split-layout capstone card.
+- Implemented a dual-panel display view:
+  - `--spec`: Standard functional description detailing object manipulation and paint-cycle optimizations.
+  - `--verbose`: Virtual compiler stream output displaying Virtual Core context, WebGL binding engines, and streaming allocations.
+- Included a real-time GPU render status widget.
 
-### 3. Unified Intake & Spatial Mapping Engine (Case Study Page)
-- Restructures address-dependent intake pipelines to map coordinates in Philippine geographical boundaries.
-- Mounts Leaflet.js maps dynamically on the container's `'toggle'` event, bypassing the Leaflet display calculated height limitation.
-- Features a client-side recursive sub-form repeater allowing operators to commit beneficiary family member nodes to memory registry state.
+### 2. Live Telemetry Widget (`// COGNITIVE_SYSTEM_TELEMETRY`)
+- Embedded a command-line log streamer panel inside the right-hand aside column of the dashboard.
+- Configured a log streamer script to output sequential boot sequences (OK, SPEC, INFO, RDY status flags) using natural network stepping delays when a client lands on the page.
+- Prevented click propagation so that clicking the console does not trigger the metrics toggle card.
 
-### 4. Spec-Sheet Manifesto Redesign
-- Converts standard text blocks into structured tables representing:
-  - `[CONSTANTS]`: Fundamental Architecture, Data Integrity.
-  - `[VARIABLES]`: Framework Syntaxes, Language Trends.
-  - `[CORE_VALUE]`: Decoupling value from rote memorization in favor of structural execution.
+### 3. Spec-Sheet Manifesto Redesign
+- Replaced paragraphs inside the *System Over Syntax* component with a structured table outlining project **Constants**, **Variables**, **Core Value**, and **Operational Capabilities** check-lists.
 
-### 5. Unified 12-Column Layout Grid
-- Aligns the main landing page and case study page inside an asymmetric, sticky right-aside 12-column grid.
+### 4. Case Study Page Redesign (`spatial-map.astro`)
+- Restructured the single-column case study page into the asymmetric 12-column grid layout to unify it with the main dashboard.
+- Integrated the `// ENGINE_METRICS` column and its collapsible build walkthrough console.
+- Injected command-line path headers with active blinking cursors (`.terminal-path`) at the top of each case study section.
+
+### 5. Theme-Aware Card Hover Colors & Readability Fix
+- Redesigned hover styles for `.system-card`:
+  - **Dark Mode**: Applied subtle dark background highlights (`rgba(30, 30, 30, 0.4)`) and muted border highlights to ensure text readability.
+  - **Light (Beige) Mode**: Maintained warm sand highlights (`rgba(235, 231, 220, 0.6)`) and custom border colors (`#d3cdb3`).
 
 ### 6. System Micro-Animations
-- **Pulsing Status Indicator (`.engine-status-active`)**: A looping CSS keyframe glow mapping environment uptime.
-- **Blinking Terminal Cursor (`.terminal-path`)**: A command-line blinking cursor appended via pseudoclasses.
-- **Blueprint Border Illumination (`.system-card`)**: Fully responsive hover states. Under dark mode, hover highlights use clean, readable zinc highlights (`rgba(30,30,30,0.4)`); under Beige Mode, they shift to warm sand hues (`rgba(235, 231, 220, 0.6)`), preventing text washout.
+- **Pulsing Status Indicator (`.engine-status-active`)**: A pulsing CSS keyframe glow showing environment active status.
+- **Blinking Terminal Cursor (`.terminal-path`)**: A terminal block cursor animation appended to file paths.
 
 ---
 
