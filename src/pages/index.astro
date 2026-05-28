@@ -10,15 +10,49 @@ import "../styles/global.css";
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Gerard Baldo | System-First Engineer</title>
 		<script is:inline>
-			(function() {
-				const savedTheme = localStorage.getItem('theme');
-				if (savedTheme === 'light') {
-					document.documentElement.classList.add('light');
+			(function () {
+				const savedTheme = localStorage.getItem("theme");
+				if (savedTheme === "light") {
+					document.documentElement.classList.add("light");
 				} else {
-					document.documentElement.classList.remove('light');
+					document.documentElement.classList.remove("light");
 				}
 			})();
 		</script>
+		<style>
+			/* 1. Dot-Matrix Grid Layer Canvas mapping */
+			body {
+				background-image: radial-gradient(
+					rgba(63, 63, 70, 0.25) 1px,
+					transparent 1px
+				);
+				background-size: 20px 20px;
+			}
+			:global(.light) body {
+				background-image: radial-gradient(
+					rgba(181, 173, 148, 0.4) 1px,
+					transparent 1px
+				);
+			}
+
+			/* 2. Rigid Brutalist Shadow Mappings */
+			.rigid-card {
+				box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.5);
+				transition:
+					transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+					box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+			}
+			.rigid-card:hover {
+				transform: translate(-1px, -1px);
+				box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.6);
+			}
+			:global(.light) .rigid-card {
+				box-shadow: 4px 4px 0px 0px rgba(42, 40, 34, 0.08);
+			}
+			:global(.light) .rigid-card:hover {
+				box-shadow: 5px 5px 0px 0px rgba(42, 40, 34, 0.12);
+			}
+		</style>
 	</head>
 	<body
 		class="bg-neutral-950 text-neutral-100 font-sans selection:bg-neutral-800 antialiased"
@@ -242,21 +276,49 @@ import "../styles/global.css";
 						</div>
 					</details>
 
-					<details id="map-project-card" name="portfolio-projects" class="group border border-neutral-800 bg-neutral-900/10 rounded-xl overflow-hidden transition-all duration-300 open:bg-neutral-900/40 open:border-neutral-700">
-						<summary class="flex justify-between items-center p-6 cursor-pointer list-none select-none hover:bg-neutral-900/30 transition-colors">
-							<div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-								<h3 class="font-bold text-neutral-300 tracking-tight group-open:text-neutral-100">Unified Intake & Spatial Mapping Engine</h3>
+					<details
+						id="map-project-card"
+						name="portfolio-projects"
+						class="group border border-neutral-800 bg-neutral-900/10 rounded-xl overflow-hidden transition-all duration-300 open:bg-neutral-900/40 open:border-neutral-700"
+					>
+						<summary
+							class="flex justify-between items-center p-6 cursor-pointer list-none select-none hover:bg-neutral-900/30 transition-colors"
+						>
+							<div
+								class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4"
+							>
+								<h3
+									class="font-bold text-neutral-300 tracking-tight group-open:text-neutral-100"
+								>
+									Unified Intake & Spatial Mapping Engine
+								</h3>
 								<div class="flex gap-1.5">
-									<span class="px-2 py-0.5 text-[10px] font-mono rounded bg-neutral-800 text-neutral-400 border border-neutral-700">Leaflet.js</span>
-									<span class="px-2 py-0.5 text-[10px] font-mono rounded bg-neutral-800 text-neutral-400 border border-neutral-700">Dynamic DOM Repeater</span>
-									<span class="px-2 py-0.5 text-[10px] font-mono rounded bg-neutral-800 text-neutral-400 border border-neutral-700">Vanilla JS State</span>
+									<span
+										class="px-2 py-0.5 text-[10px] font-mono rounded bg-neutral-800 text-neutral-400 border border-neutral-700"
+										>Leaflet.js</span
+									>
+									<span
+										class="px-2 py-0.5 text-[10px] font-mono rounded bg-neutral-800 text-neutral-400 border border-neutral-700"
+										>Dynamic DOM Repeater</span
+									>
+									<span
+										class="px-2 py-0.5 text-[10px] font-mono rounded bg-neutral-800 text-neutral-400 border border-neutral-700"
+										>Vanilla JS State</span
+									>
 								</div>
 							</div>
-							<span class="text-neutral-500 group-open:rotate-180 transition-transform duration-300 text-xs font-mono">▼</span>
+							<span
+								class="text-neutral-500 group-open:rotate-180 transition-transform duration-300 text-xs font-mono"
+								>▼</span
+							>
 						</summary>
-						
-						<div class="p-6 border-t border-neutral-800 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-neutral-950/20">
-							<div class="lg:col-span-5 flex flex-col gap-4 text-xs md:text-sm text-neutral-400 leading-relaxed">
+
+						<div
+							class="p-6 border-t border-neutral-800 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-neutral-950/20"
+						>
+							<div
+								class="lg:col-span-5 flex flex-col gap-4 text-xs md:text-sm text-neutral-400 leading-relaxed"
+							>
 								<a
 									href="/projects/spatial-map"
 									class="inline-flex items-center justify-between w-full border border-neutral-800 hover:border-neutral-700 bg-neutral-900/10 hover:bg-neutral-900/30 text-neutral-400 hover:text-neutral-200 transition-all rounded px-3 py-2 text-xs font-mono select-none"
@@ -265,32 +327,97 @@ import "../styles/global.css";
 									<span>➔</span>
 								</a>
 
-								<p><strong class="text-neutral-300">The Context:</strong> A complete restructuring of a legacy government profiling form into a dynamic relational intake system featuring zero-friction GIS coordinate mapping.</p>
-								<p><strong class="text-neutral-300">Relational & Dynamic:</strong> Re-engineered a rigid intake layout into a responsive DOM controller with dynamic nested sub-form repeaters for multi-member data integrity.</p>
-								<p><strong class="text-neutral-300">Constraint-Driven GIS:</strong> Implemented Leaflet.js over Google Maps to ensure a zero-friction handoff, feeding validated vectors directly into dormant database columns.</p>
-								
-								<div class="mt-2 border border-neutral-800/80 rounded-lg p-3 bg-neutral-950/40">
-									<h4 class="text-xs font-mono text-neutral-400 uppercase tracking-wider mb-2">// Saved Registry</h4>
-									<ul id="saved-locations-list" class="flex flex-col gap-1.5 text-xs text-neutral-500 max-h-24 overflow-y-auto">
-										<li id="empty-registry-msg" class="italic">No locations committed to memory yet.</li>
+								<p>
+									<strong class="text-neutral-300"
+										>The Context:</strong
+									> A complete restructuring of a legacy government
+									profiling form into a dynamic relational intake
+									system featuring zero-friction GIS coordinate
+									mapping.
+								</p>
+								<p>
+									<strong class="text-neutral-300"
+										>Relational & Dynamic:</strong
+									> Re-engineered a rigid intake layout into a responsive
+									DOM controller with dynamic nested sub-form repeaters
+									for multi-member data integrity.
+								</p>
+								<p>
+									<strong class="text-neutral-300"
+										>Constraint-Driven GIS:</strong
+									> Implemented Leaflet.js over Google Maps to ensure
+									a zero-friction handoff, feeding validated vectors
+									directly into dormant database columns.
+								</p>
+
+								<div
+									class="mt-2 border border-neutral-800/80 rounded-lg p-3 bg-neutral-950/40"
+								>
+									<h4
+										class="text-xs font-mono text-neutral-400 uppercase tracking-wider mb-2"
+									>
+										// Saved Registry
+									</h4>
+									<ul
+										id="saved-locations-list"
+										class="flex flex-col gap-1.5 text-xs text-neutral-500 max-h-24 overflow-y-auto"
+									>
+										<li
+											id="empty-registry-msg"
+											class="italic"
+										>
+											No locations committed to memory
+											yet.
+										</li>
 									</ul>
 								</div>
 							</div>
 
 							<div class="lg:col-span-7 flex flex-col gap-3">
-								<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
-								<div id="map" class="w-full h-64 bg-neutral-950 border border-neutral-800 rounded-lg z-10"></div>
-								
-								<div class="grid grid-cols-1 sm:grid-cols-3 gap-2 items-end">
+								<link
+									rel="stylesheet"
+									href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+									crossorigin=""
+								/>
+								<div
+									id="map"
+									class="w-full h-64 bg-neutral-950 border border-neutral-800 rounded-lg z-10"
+								>
+								</div>
+
+								<div
+									class="grid grid-cols-1 sm:grid-cols-3 gap-2 items-end"
+								>
 									<div>
-										<label class="block text-[10px] font-mono text-neutral-500 uppercase tracking-wider mb-1">Latitude (Y)</label>
-										<input type="number" step="any" id="input-lat" value="12.8797" class="w-full bg-neutral-900 border border-neutral-800 rounded px-2.5 py-1.5 text-xs font-mono text-neutral-200 focus:outline-none focus:border-neutral-700 transition-colors" />
+										<label
+											class="block text-[10px] font-mono text-neutral-500 uppercase tracking-wider mb-1"
+											>Latitude (Y)</label
+										>
+										<input
+											type="number"
+											step="any"
+											id="input-lat"
+											value="12.8797"
+											class="w-full bg-neutral-900 border border-neutral-800 rounded px-2.5 py-1.5 text-xs font-mono text-neutral-200 focus:outline-none focus:border-neutral-700 transition-colors"
+										/>
 									</div>
 									<div>
-										<label class="block text-[10px] font-mono text-neutral-500 uppercase tracking-wider mb-1">Longitude (X)</label>
-										<input type="number" step="any" id="input-lng" value="121.7740" class="w-full bg-neutral-900 border border-neutral-800 rounded px-2.5 py-1.5 text-xs font-mono text-neutral-200 focus:outline-none focus:border-neutral-700 transition-colors" />
+										<label
+											class="block text-[10px] font-mono text-neutral-500 uppercase tracking-wider mb-1"
+											>Longitude (X)</label
+										>
+										<input
+											type="number"
+											step="any"
+											id="input-lng"
+											value="121.7740"
+											class="w-full bg-neutral-900 border border-neutral-800 rounded px-2.5 py-1.5 text-xs font-mono text-neutral-200 focus:outline-none focus:border-neutral-700 transition-colors"
+										/>
 									</div>
-									<button id="btn-save-coord" class="w-full bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 text-neutral-200 font-mono text-xs py-1.5 rounded transition-colors font-medium active:bg-neutral-800">
+									<button
+										id="btn-save-coord"
+										class="w-full bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 text-neutral-200 font-mono text-xs py-1.5 rounded transition-colors font-medium active:bg-neutral-800"
+									>
 										COMMIT_PIN
 									</button>
 								</div>
@@ -302,27 +429,30 @@ import "../styles/global.css";
 		</div>
 	</body>
 
-	<script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+	<script
+		is:inline
+		src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+		crossorigin=""></script>
 
 	<script is:inline>
 		// Block execution until Leaflet CDN is fully mounted to window scope
-		window.addEventListener('DOMContentLoaded', () => {
-			const card = document.getElementById('map-project-card');
+		window.addEventListener("DOMContentLoaded", () => {
+			const card = document.getElementById("map-project-card");
 			let mapInitialized = false;
 			let map, marker;
 
 			// DOM Engine Selectors
-			const latInput = document.getElementById('input-lat');
-			const lngInput = document.getElementById('input-lng');
-			const saveBtn = document.getElementById('btn-save-coord');
-			const savedList = document.getElementById('saved-locations-list');
-			const emptyMsg = document.getElementById('empty-registry-msg');
+			const latInput = document.getElementById("input-lat");
+			const lngInput = document.getElementById("input-lng");
+			const saveBtn = document.getElementById("btn-save-coord");
+			const savedList = document.getElementById("saved-locations-list");
+			const emptyMsg = document.getElementById("empty-registry-msg");
 
 			// Local Array Cache for the Coordinates
 			let savedRegistry = [];
 
 			// DEFENSIVE EXECUTION: Initialize map engine only when the card toggles open
-			card.addEventListener('toggle', () => {
+			card.addEventListener("toggle", () => {
 				if (card.open && !mapInitialized) {
 					initializeMapEngine();
 				}
@@ -330,37 +460,46 @@ import "../styles/global.css";
 
 			function initializeMapEngine() {
 				// 1. Anchor Map view centered over the geographical Philippines
-				map = L.map('map', { zoomControl: false }).setView([12.8797, 121.7740], 5);
+				map = L.map("map", { zoomControl: false }).setView(
+					[12.8797, 121.774],
+					5,
+				);
 				mapInitialized = true;
 
 				// 2. Inject standard OpenStreetMap light tiles
-				L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-					attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
-				}).addTo(map);
+				L.tileLayer(
+					"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+					{
+						attribution:
+							'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors',
+					},
+				).addTo(map);
 
 				// Position default zoom controls to the bottom right out of the layout flow
-				L.control.zoom({ position: 'bottomright' }).addTo(map);
+				L.control.zoom({ position: "bottomright" }).addTo(map);
 
 				// 3. Drop base starting marker instance
 				const startLat = parseFloat(latInput.value);
 				const startLng = parseFloat(lngInput.value);
-				marker = L.marker([startLat, startLng], { draggable: true }).addTo(map);
+				marker = L.marker([startLat, startLng], {
+					draggable: true,
+				}).addTo(map);
 
 				// 4. MAP INTERACTION: Click to relocate pin
-				map.on('click', (e) => {
+				map.on("click", (e) => {
 					const { lat, lng } = e.latlng;
 					updateSystemPosition(lat, lng);
 				});
 
 				// 5. MARKER INTERACTION: Dragging pin updates inputs manually
-				marker.on('dragend', () => {
+				marker.on("dragend", () => {
 					const { lat, lng } = marker.getLatLng();
 					updateInputsOnly(lat, lng);
 				});
 
 				// 6. INPUT INTERACTION: Typing values repositions map and pin
-				[latInput, lngInput].forEach(input => {
-					input.addEventListener('input', () => {
+				[latInput, lngInput].forEach((input) => {
+					input.addEventListener("input", () => {
 						const lat = parseFloat(latInput.value);
 						const lng = parseFloat(lngInput.value);
 						if (!isNaN(lat) && !isNaN(lng)) {
@@ -383,11 +522,16 @@ import "../styles/global.css";
 			}
 
 			// 7. NEW SPIN LOGIC: Committing and recalling pins from memory registry
-			saveBtn.addEventListener('click', () => {
+			saveBtn.addEventListener("click", () => {
 				const lat = parseFloat(latInput.value);
 				const lng = parseFloat(lngInput.value);
 
-				if (isNaN(lat) || !isNaN(lat) && (lat < -90 || lat > 90 || lng < -180 || lng > 180)) return;
+				if (
+					isNaN(lat) ||
+					(!isNaN(lat) &&
+						(lat < -90 || lat > 90 || lng < -180 || lng > 180))
+				)
+					return;
 
 				const locationNode = { id: Date.now(), lat, lng };
 				savedRegistry.push(locationNode);
@@ -396,12 +540,13 @@ import "../styles/global.css";
 				if (emptyMsg) emptyMsg.remove();
 
 				// Append clickable text node to interface list
-				const li = document.createElement('li');
-				li.className = 'flex justify-between items-center bg-neutral-900/80 border border-neutral-800/60 rounded px-2 py-1 text-neutral-400 font-mono text-[11px] hover:border-neutral-700 hover:text-neutral-200 cursor-pointer transition-all';
+				const li = document.createElement("li");
+				li.className =
+					"flex justify-between items-center bg-neutral-900/80 border border-neutral-800/60 rounded px-2 py-1 text-neutral-400 font-mono text-[11px] hover:border-neutral-700 hover:text-neutral-200 cursor-pointer transition-all";
 				li.innerHTML = `<span>LOC_${locationNode.id.toString().slice(-4)} ➔ [${lat.toFixed(4)}, ${lng.toFixed(4)}]</span>`;
-				
+
 				// Clicking the list item recalls coordinate parameters and centers map
-				li.addEventListener('click', () => {
+				li.addEventListener("click", () => {
 					updateSystemPosition(locationNode.lat, locationNode.lng);
 				});
 
@@ -409,29 +554,32 @@ import "../styles/global.css";
 			});
 
 			// Theme Toggle Logic
-			const themeToggleBtn = document.getElementById('theme-toggle');
-			const themeIcon = document.getElementById('theme-icon');
-			const themeText = themeToggleBtn.querySelector('span');
+			const themeToggleBtn = document.getElementById("theme-toggle");
+			const themeIcon = document.getElementById("theme-icon");
+			const themeText = themeToggleBtn.querySelector("span");
 
 			function updateThemeUI(isLight) {
 				if (isLight) {
-					document.documentElement.classList.add('light');
-					if (themeText) themeText.textContent = 'THEME: BEIGE_MODE';
-					if (themeIcon) themeIcon.textContent = '☾';
+					document.documentElement.classList.add("light");
+					if (themeText) themeText.textContent = "THEME: BEIGE_MODE";
+					if (themeIcon) themeIcon.textContent = "☾";
 				} else {
-					document.documentElement.classList.remove('light');
-					if (themeText) themeText.textContent = 'THEME: DEFAULT (DARK)';
-					if (themeIcon) themeIcon.textContent = '☼';
+					document.documentElement.classList.remove("light");
+					if (themeText)
+						themeText.textContent = "THEME: DEFAULT (DARK)";
+					if (themeIcon) themeIcon.textContent = "☼";
 				}
 			}
 
 			// Initialize UI state
-			const isCurrentlyLight = document.documentElement.classList.contains('light');
+			const isCurrentlyLight =
+				document.documentElement.classList.contains("light");
 			updateThemeUI(isCurrentlyLight);
 
-			themeToggleBtn.addEventListener('click', () => {
-				const isLight = document.documentElement.classList.toggle('light');
-				localStorage.setItem('theme', isLight ? 'light' : 'dark');
+			themeToggleBtn.addEventListener("click", () => {
+				const isLight =
+					document.documentElement.classList.toggle("light");
+				localStorage.setItem("theme", isLight ? "light" : "dark");
 				updateThemeUI(isLight);
 			});
 		});
