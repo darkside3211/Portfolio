@@ -65,7 +65,8 @@ import "../styles/global.css";
 				}
 			}
 			details[open] > *:not(summary) {
-				animation: accordionSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+				animation: accordionSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1)
+					forwards;
 			}
 		</style>
 	</head>
@@ -193,7 +194,7 @@ import "../styles/global.css";
 				<div class="lg:col-span-8 flex flex-col gap-12">
 					<section
 						id="manifesto"
-						class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-8 backdrop-blur-sm scroll-mt-16 rigid-card"
+						class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-8 backdrop-blur-sm scroll-mt-16 rigid-card system-card"
 					>
 						<div
 							class="flex items-center justify-between border-b border-neutral-800/60 pb-3 mb-5 font-mono text-[10px] text-neutral-500"
@@ -217,7 +218,7 @@ import "../styles/global.css";
 										x2="20"
 										y2="19"></line></svg
 								>
-								<span>~/manifesto/core_philosophy.md</span>
+								<span class="terminal-path">~/manifesto/core_philosophy.md</span>
 							</div>
 							<span>[STABLE]</span>
 						</div>
@@ -247,7 +248,7 @@ import "../styles/global.css";
 
 					<section
 						id="capabilities"
-						class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-8 backdrop-blur-sm scroll-mt-16 rigid-card"
+						class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-8 backdrop-blur-sm scroll-mt-16 rigid-card system-card"
 					>
 						<div
 							class="flex items-center justify-between border-b border-neutral-800/60 pb-3 mb-5 font-mono text-[10px] text-neutral-500"
@@ -273,7 +274,7 @@ import "../styles/global.css";
 									></path><path d="M10 8h.01"></path><path
 										d="M14 8h.01"></path></svg
 								>
-								<span>~/workbench/operational_bounds.sys</span>
+								<span class="terminal-path">~/workbench/operational_bounds.sys</span>
 							</div>
 							<span>[READY]</span>
 						</div>
@@ -340,7 +341,7 @@ import "../styles/global.css";
 
 						<details
 							name="portfolio-projects"
-							class="group border border-neutral-800 bg-neutral-900/10 rounded-xl overflow-hidden transition-all duration-300 open:bg-neutral-900/40 open:border-neutral-700 rigid-card"
+							class="group border border-neutral-800 bg-neutral-900/10 rounded-xl overflow-hidden transition-all duration-300 open:bg-neutral-900/40 open:border-neutral-700 rigid-card system-card"
 						>
 							<summary
 								class="flex justify-between items-center p-6 cursor-pointer list-none select-none hover:bg-neutral-900/30 transition-colors"
@@ -418,16 +419,16 @@ import "../styles/global.css";
 									<p>
 										<strong class="text-neutral-300"
 											>The Context:</strong
-										> Debugging validation bottlenecks for
-										an active government web application framework
+										> Debugging validation bottlenecks for an
+										active government web application framework
 										in production.
 									</p>
 									<p>
 										<strong class="text-neutral-300"
 											>The Discovery:</strong
-										> Traced a failure cascade where valid
-										client payloads were systematically dropping
-										out due to improper backend data sanitization
+										> Traced a failure cascade where valid client
+										payloads were systematically dropping out
+										due to improper backend data sanitization
 										and strict validation mismatches.
 									</p>
 									<p>
@@ -438,28 +439,40 @@ import "../styles/global.css";
 										to ensure data integrity.
 									</p>
 								</div>
+								<div
+									id="live-sandbox-metrics"
+									class="lg:col-span-5 bg-neutral-950 border border-neutral-800 rounded-lg h-40 p-4 font-mono text-[10px] flex flex-col gap-2 overflow-y-auto"
+								>
 									<div
-										id="live-sandbox-metrics"
-										class="lg:col-span-5 bg-neutral-950 border border-neutral-800 rounded-lg h-40 p-4 font-mono text-[10px] flex flex-col gap-2 overflow-y-auto"
+										class="flex justify-between items-center text-neutral-500 border-b border-neutral-900/60 pb-1.5 mb-1"
 									>
-										<div class="flex justify-between items-center text-neutral-500 border-b border-neutral-900/60 pb-1.5 mb-1">
-											<span>// LIVE_VALIDATION_LOGGER</span>
-											<span class="flex items-center gap-1.5">
-												<span id="sandbox-pulse" class="h-1.5 w-1.5 rounded-full bg-neutral-700"></span>
-												<span id="sandbox-status" class="uppercase text-[9px]">IDLE</span>
-											</span>
-										</div>
-										<div id="sandbox-log-entries" class="flex flex-col gap-1 text-neutral-500 italic">
-											Waiting for system boundary telemetry...
-										</div>
+										<span>// LIVE_VALIDATION_LOGGER</span>
+										<span class="flex items-center gap-1.5">
+											<span
+												id="sandbox-pulse"
+												class="h-1.5 w-1.5 rounded-full bg-neutral-700"
+											></span>
+											<span
+												id="sandbox-status"
+												class="uppercase text-[9px]"
+												>IDLE</span
+											>
+										</span>
 									</div>
+									<div
+										id="sandbox-log-entries"
+										class="flex flex-col gap-1 text-neutral-500 italic"
+									>
+										Waiting for system boundary telemetry...
+									</div>
+								</div>
 							</div>
 						</details>
 
 						<details
 							id="map-project-card"
 							name="portfolio-projects"
-							class="group border border-neutral-800 bg-neutral-900/10 rounded-xl overflow-hidden transition-all duration-300 open:bg-neutral-900/40 open:border-neutral-700 rigid-card"
+							class="group border border-neutral-800 bg-neutral-900/10 rounded-xl overflow-hidden transition-all duration-300 open:bg-neutral-900/40 open:border-neutral-700 rigid-card system-card"
 						>
 							<summary
 								class="flex justify-between items-center p-6 cursor-pointer list-none select-none hover:bg-neutral-900/30 transition-colors"
@@ -470,8 +483,7 @@ import "../styles/global.css";
 									<h3
 										class="font-bold text-neutral-300 tracking-tight group-open:text-neutral-100"
 									>
-										Unified Intake & Spatial Mapping
-										Engine
+										Unified Intake & Spatial Mapping Engine
 									</h3>
 									<div class="flex gap-1.5">
 										<span
@@ -536,8 +548,7 @@ import "../styles/global.css";
 												stroke-linecap="round"
 												stroke-linejoin="round"
 												class="text-yellow-500/90"
-												><path d="M12 2v20"
-												></path><path
+												><path d="M12 2v20"></path><path
 													d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
 												></path></svg
 											>
@@ -568,26 +579,25 @@ import "../styles/global.css";
 									<p>
 										<strong class="text-neutral-300"
 											>The Context:</strong
-										> A complete restructuring of a legacy
-										government profiling form into a dynamic
-										relational intake system featuring zero-friction
-										GIS coordinate mapping.
+										> A complete restructuring of a legacy government
+										profiling form into a dynamic relational intake
+										system featuring zero-friction GIS coordinate
+										mapping.
 									</p>
 									<p>
 										<strong class="text-neutral-300"
 											>Relational & Dynamic:</strong
-										> Re-engineered a rigid intake layout
-										into a responsive DOM controller with
-										dynamic nested sub-form repeaters for
-										multi-member data integrity.
+										> Re-engineered a rigid intake layout into
+										a responsive DOM controller with dynamic nested
+										sub-form repeaters for multi-member data integrity.
 									</p>
 									<p>
 										<strong class="text-neutral-300"
 											>Constraint-Driven GIS:</strong
 										> Implemented Leaflet.js over Google Maps
 										to ensure a zero-friction handoff, feeding
-										validated vectors directly into dormant
-										database columns.
+										validated vectors directly into dormant database
+										columns.
 									</p>
 
 									<div
@@ -606,8 +616,8 @@ import "../styles/global.css";
 												id="empty-registry-msg"
 												class="italic"
 											>
-												No locations committed to
-												memory yet.
+												No locations committed to memory
+												yet.
 											</li>
 										</ul>
 									</div>
@@ -669,15 +679,14 @@ import "../styles/global.css";
 
 				<!-- RIGHT COLUMN: Fills that plain empty whitespace void (Spans 4 of 12 columns) -->
 				<aside
-					class="lg:col-span-4 border border-neutral-800 bg-neutral-900/10 rounded-xl p-5 font-mono text-[11px] flex flex-col gap-4 rigid-card lg:sticky lg:top-16 backdrop-blur-sm"
+					id="engine-metrics-card"
+					class="lg:col-span-4 border border-neutral-800 bg-neutral-900/10 rounded-xl p-5 font-mono text-[11px] flex flex-col gap-4 rigid-card lg:sticky lg:top-16 backdrop-blur-sm cursor-pointer select-none system-card"
 				>
 					<div
 						class="flex items-center justify-between border-b border-neutral-800/60 pb-2 text-neutral-400"
 					>
 						<span>// ENGINE_METRICS</span>
-						<span
-							class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"
-						></span>
+						<span class="h-2 w-2 engine-status-active"></span>
 					</div>
 
 					<div class="flex flex-col gap-2">
@@ -715,6 +724,46 @@ import "../styles/global.css";
 							<div class="flex items-center gap-2">
 								<span class="text-emerald-500">✓</span>
 								<span>Implementation Specialist</span>
+							</div>
+						</div>
+					</div>
+
+					<div
+						id="walkthrough-console"
+						class="hidden border-t border-neutral-800/60 pt-4 mt-2 flex flex-col gap-3"
+					>
+						<span
+							class="text-neutral-500 font-bold uppercase text-[9px] tracking-wider"
+							>// SYSTEM_WALKTHROUGH</span
+						>
+						<div
+							class="bg-neutral-950 border border-neutral-900 p-3 rounded font-mono text-[10px] flex flex-col gap-2.5 leading-relaxed text-neutral-400"
+						>
+							<div class="flex items-start gap-1.5">
+								<span class="text-emerald-500 font-bold">01.</span>
+								<div>
+									<span class="text-neutral-200 font-bold">Astro Core:</span>
+									Pre-renders pages to static HTML, shipping zero client JS.
+								</div>
+							</div>
+							<div class="flex items-start gap-1.5">
+								<span class="text-emerald-500 font-bold">02.</span>
+								<div>
+									<span class="text-neutral-200 font-bold">Tailwind compilation:</span>
+									Utility classes bundle to minimal static stylesheet.
+								</div>
+							</div>
+							<div class="flex items-start gap-1.5">
+								<span class="text-emerald-500 font-bold">03.</span>
+								<div>
+									<span class="text-neutral-200 font-bold">Vanilla JS State:</span>
+									Coordinates and maps load and bind on element initialization.
+								</div>
+							</div>
+							<div
+								class="text-[9px] text-neutral-500 border-t border-neutral-900/60 pt-1.5 mt-1"
+							>
+								Target: ESNEXT | Mode: Static Build
 							</div>
 						</div>
 					</div>
@@ -817,39 +866,52 @@ import "../styles/global.css";
 				}
 
 				// DOM elements for telemetry sandbox sync
-				const sandboxLogEntries = document.getElementById("sandbox-log-entries");
+				const sandboxLogEntries = document.getElementById(
+					"sandbox-log-entries",
+				);
 				const sandboxStatus = document.getElementById("sandbox-status");
 				const sandboxPulse = document.getElementById("sandbox-pulse");
 
 				function triggerSandboxLog(lat, lng) {
-					if (!sandboxLogEntries || !sandboxStatus || !sandboxPulse) return;
+					if (!sandboxLogEntries || !sandboxStatus || !sandboxPulse)
+						return;
 
 					// Clear placeholder notice if it's the first time
-					if (sandboxLogEntries.querySelector(".italic") || sandboxLogEntries.innerHTML.includes("Waiting for system")) {
+					if (
+						sandboxLogEntries.querySelector(".italic") ||
+						sandboxLogEntries.innerHTML.includes(
+							"Waiting for system",
+						)
+					) {
 						sandboxLogEntries.innerHTML = "";
 					}
 
 					// Set status to validating
 					sandboxStatus.textContent = "VALIDATING...";
-					sandboxPulse.className = "h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse";
+					sandboxPulse.className =
+						"h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse";
 
 					const txId = Math.floor(1000 + Math.random() * 9000);
 					const timeStr = new Date().toLocaleTimeString();
 
 					// Create log entry
 					const entry = document.createElement("div");
-					entry.className = "text-[9px] text-neutral-400 font-mono border-l-2 border-amber-500/50 pl-1.5 py-0.5";
+					entry.className =
+						"text-[9px] text-neutral-400 font-mono border-l-2 border-amber-500/50 pl-1.5 py-0.5";
 					entry.innerHTML = `[${timeStr}] TX_${txId}: VALIDATING INTAKE PAYLOAD {lat: ${lat.toFixed(4)}, lng: ${lng.toFixed(4)}}`;
 					sandboxLogEntries.appendChild(entry);
-					sandboxLogEntries.scrollTop = sandboxLogEntries.scrollHeight;
+					sandboxLogEntries.scrollTop =
+						sandboxLogEntries.scrollHeight;
 
 					// Trigger success state after 600ms simulation delay
 					setTimeout(() => {
-						entry.className = "text-[9px] text-neutral-300 font-mono border-l-2 border-emerald-500 pl-1.5 py-0.5";
+						entry.className =
+							"text-[9px] text-neutral-300 font-mono border-l-2 border-emerald-500 pl-1.5 py-0.5";
 						entry.innerHTML = `[${timeStr}] TX_${txId}: <span class="text-emerald-500">✓</span> POST_INTAKE_OK | SYNC: SUCCESS`;
-						
+
 						sandboxStatus.textContent = "ACTIVE";
-						sandboxPulse.className = "h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse";
+						sandboxPulse.className =
+							"h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse";
 					}, 600);
 				}
 
@@ -919,6 +981,27 @@ import "../styles/global.css";
 					localStorage.setItem("theme", isLight ? "light" : "dark");
 					updateThemeUI(isLight);
 				});
+
+				// Walkthrough Console Toggle
+				const engineCard = document.getElementById("engine-metrics-card");
+				const walkthroughConsole = document.getElementById(
+					"walkthrough-console",
+				);
+
+				if (engineCard && walkthroughConsole) {
+					engineCard.addEventListener("click", () => {
+						walkthroughConsole.classList.toggle("hidden");
+						walkthroughConsole.classList.toggle("animate-fade-in");
+						console.log(
+							"System Walkthrough Initialized: Astro + Vanilla JS Target ESNEXT.",
+						);
+					});
+
+					// Prevent clicks inside the walkthrough console from closing it
+					walkthroughConsole.addEventListener("click", (e) => {
+						e.stopPropagation();
+					});
+				}
 			});
 		</script>
 	</body>

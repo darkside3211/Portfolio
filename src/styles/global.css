@@ -17,3 +17,81 @@ html.light {
 #map {
 	background-color: #e5e5e5 !important;
 }
+
+/* --- SYSTEM MICRO-ANIMATIONS --- */
+
+/* 1. Pulsing Status Indicator */
+@keyframes status-pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 6px rgba(74, 222, 128, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+	}
+}
+
+.engine-status-active {
+	background-color: #4ade80;
+	/* Tailwind green-400 */
+	border-radius: 50%;
+	animation: status-pulse 2s infinite;
+}
+
+/* 2. Blinking Terminal Cursor */
+@keyframes terminal-blink {
+
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0;
+	}
+}
+
+.terminal-path::after {
+	content: "█";
+	margin-left: 4px;
+	animation: terminal-blink 1s step-end infinite;
+	color: #a3a3a3;
+	/* Matches your muted comment syntax */
+	font-size: 0.9em;
+}
+
+/* 3. Blueprint Border Illumination */
+.system-card {
+	transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.system-card:hover {
+	border-color: #d4d4d8;
+	/* Light up the border slightly */
+	background-color: rgba(245, 245, 244, 0.6);
+	/* Subtle shift against the dotted grid */
+	box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* 4. Walkthrough Fade In Animation */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(4px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate-fade-in {
+	animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
