@@ -1,1 +1,19 @@
 @import "tailwindcss";
+
+html.light {
+	--color-neutral-950: #F4F1EA;
+	--color-neutral-900: #EBE7DC;
+	--color-neutral-800: #E3DEC3;
+	--color-neutral-700: #D3CDB3;
+	--color-neutral-600: #A39E8F;
+	--color-neutral-500: #7C776D;
+	--color-neutral-400: #5C5852;
+	--color-neutral-300: #2D2B2A;
+	--color-neutral-200: #1C1A19;
+	--color-neutral-100: #11100F;
+}
+
+/* Set a light background for the Leaflet map container to match light tiles */
+#map {
+	background-color: #e5e5e5 !important;
+}

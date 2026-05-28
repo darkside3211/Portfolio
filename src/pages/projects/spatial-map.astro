@@ -1,0 +1,566 @@
+---
+// src/pages/projects/spatial-map.astro
+import "../../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Gerard Baldo | Spatial Map Case Study</title>
+		
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+		<script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+		<script is:inline>
+			(function() {
+				const savedTheme = localStorage.getItem('theme');
+				if (savedTheme === 'light') {
+					document.documentElement.classList.add('light');
+				} else {
+					document.documentElement.classList.remove('light');
+				}
+			})();
+		</script>
+
+		<style>
+			#interactive-simulation-card {
+				transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+				            border-color 0.7s ease, 
+				            box-shadow 0.7s ease;
+				width: 100%;
+				max-width: none;
+			}
+			#interactive-simulation-card.expanded {
+				width: calc(100vw - 16rem - 4rem);
+				border-color: rgba(16, 185, 129, 0.35);
+				box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.9), 
+				            0 0 35px -5px rgba(16, 185, 129, 0.15);
+				background-color: rgba(10, 10, 10, 0.45);
+				backdrop-filter: blur(12px);
+			}
+			@media (min-width: 768px) {
+				#interactive-simulation-card.expanded {
+					width: calc(100vw - 16rem - 8rem);
+				}
+			}
+
+			/* Beige mode overrides */
+			:global(.light) #interactive-simulation-card.expanded {
+				background-color: rgba(242, 238, 225, 0.65);
+				border-color: rgba(16, 185, 129, 0.4);
+				box-shadow: 0 20px 40px -15px rgba(130, 120, 100, 0.12);
+			}
+			:global(.light) #interactive-simulation-card .bg-neutral-950 { background-color: #fdfdfc; border-color: #e6e0d2; }
+			:global(.light) #interactive-simulation-card .bg-neutral-900 { background-color: #f3eee0; border-color: #ddd7c9; }
+			:global(.light) #interactive-simulation-card input, 
+			:global(.light) #interactive-simulation-card select { color: #2a2822; background-color: #f3eee0; border-color: #ddd7c9; }
+			:global(.light) #interactive-simulation-card .text-neutral-100,
+			:global(.light) #interactive-simulation-card .text-neutral-200,
+			:global(.light) #interactive-simulation-card .text-neutral-300 { color: #2a2822; }
+			:global(.light) #interactive-simulation-card .text-neutral-400,
+			:global(.light) #interactive-simulation-card .text-neutral-500 { color: #7d7766; }
+			:global(.light) #sim-api-console { background-color: #f3eee0; border-color: #ddd7c9; color: #5c574a; }
+			:global(.light) #sim-payload-json { color: #047857; }
+		</style>
+	</head>
+	<body
+		class="bg-neutral-950 text-neutral-100 font-sans selection:bg-neutral-800 antialiased overflow-x-hidden"
+	>
+		<div class="flex min-h-screen">
+			<aside
+				class="fixed top-0 left-0 h-screen w-64 border-r border-neutral-800 bg-neutral-950 p-6 flex flex-col justify-between z-50"
+			>
+				<div class="flex flex-col gap-8">
+					<div class="flex flex-col gap-3">
+						<div
+							class="h-14 w-14 rounded-lg bg-neutral-900 border border-neutral-800 flex items-center justify-center text-lg font-bold tracking-tight text-neutral-300"
+						>
+							GB
+						</div>
+						<div>
+							<h2
+								class="font-semibold text-neutral-200 tracking-tight"
+							>
+								Gerard Baldo
+							</h2>
+							<p class="text-xs text-neutral-500 font-mono">
+								System-First Engineer
+							</p>
+						</div>
+					</div>
+
+					<nav class="flex flex-col gap-2 text-sm">
+						<a
+							href="/"
+							class="text-neutral-400 hover:text-neutral-100 transition-colors py-1.5 font-medium font-mono text-xs tracking-wider"
+							>➔ RETURN_HOME</a
+						>
+					</nav>
+				</div>
+
+				<div class="flex flex-col gap-4">
+					<button
+						id="theme-toggle"
+						class="flex items-center justify-between w-full border border-neutral-800 hover:border-neutral-700 bg-neutral-900/10 hover:bg-neutral-900/30 text-neutral-400 hover:text-neutral-200 transition-all rounded px-3 py-2 text-xs font-mono select-none cursor-pointer"
+					>
+						<span>THEME: DEFAULT (DARK)</span>
+						<span id="theme-icon">☼</span>
+					</button>
+
+					<div
+						class="text-[10px] text-neutral-500 font-mono flex items-center gap-2 tracking-tight"
+					>
+						<span
+							class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"
+						></span>
+						<span>ENVIRONMENT: ACTIVE</span>
+					</div>
+				</div>
+			</aside>
+
+			<main
+				class="ml-64 flex-1 px-8 md:px-16 py-16 max-w-4xl flex flex-col gap-8"
+			>
+				<a href="/" class="text-xs font-mono text-neutral-500 hover:text-neutral-300 transition-colors self-start">
+					// BACK_TO_DASHBOARD
+				</a>
+
+				<section class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-8 backdrop-blur-sm">
+					<span class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">// Case Study</span>
+					<h1 class="text-3xl font-bold mt-2 mb-4 tracking-tight text-neutral-100">
+						Unified Intake & Spatial Mapping Engine
+					</h1>
+					<p class="text-neutral-400 leading-relaxed text-sm md:text-base">
+						A complete restructuring of a legacy government profiling form into a dynamic relational intake system featuring zero-friction GIS coordinate mapping.
+					</p>
+
+					<div class="flex flex-wrap gap-2 mt-6">
+						<span class="px-2 py-1 text-xs font-mono rounded bg-neutral-900 text-neutral-400 border border-neutral-800">Leaflet.js</span>
+						<span class="px-2 py-1 text-xs font-mono rounded bg-neutral-900 text-neutral-400 border border-neutral-800">Dynamic DOM Repeater</span>
+						<span class="px-2 py-1 text-xs font-mono rounded bg-neutral-900 text-neutral-400 border border-neutral-800">Vanilla JS State</span>
+						<span class="px-2 py-1 text-xs font-mono rounded bg-neutral-900 text-neutral-400 border border-neutral-800">DSWD Pag Abot</span>
+					</div>
+				</section>
+
+				<section class="border border-neutral-800 bg-neutral-900/10 rounded-xl p-8 flex flex-col gap-6">
+					<div>
+						<h2 class="text-lg font-bold text-neutral-200 mb-3 tracking-tight">// THE BOTTLENECK & THE TASK</h2>
+						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
+							The Pag Abot Program targets individuals and families in street situations (FISS), providing critical social rescue and long-term reintegration. When field operations deployed, operators faced massive frictional gridlock caused by their core data-collection tool: <strong>the legacy intake form was rigid and address-dependent.</strong>
+						</p>
+						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
+							Because beneficiaries are frequently located under overpasses, on street corners, or near landmarks with zero structured physical addresses, traditional text logging broke. Furthermore, processing entire family structures was highly inefficient—the old interface could not scale fluidly to account for multiple family members encountered together on-site.
+						</p>
+						<p class="text-neutral-400 text-sm leading-relaxed">
+							Prior development teams stalled trying to implement coordinate tracking and dynamic layouts. My supervisors handed me the task from scratch: refactor the entire collection component to introduce seamless, high-velocity profiling and multi-member data integrity within a unified workspace.
+						</p>
+					</div>
+
+					<hr class="border-neutral-800/80" />
+
+					<div>
+						<h2 class="text-lg font-bold text-neutral-200 mb-3 tracking-tight">// INTENTIONALLY ENGINEERED ARCHITECTURE</h2>
+						
+						<h3 class="text-xs font-mono text-neutral-300 uppercase tracking-wider mb-2 mt-4">1. Relational Intake Form & Dynamic Sub-Form Repeater</h3>
+						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
+							To maximize field intake speed, I re-engineered the legacy fill-up form into a responsive, clean DOM controller. I integrated a specific classification toggle that allowed operators to instantly flag an individual's location context (e.g., street-level environment vs. structured shelter).
+						</p>
+						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
+							To map families cohabiting in these environments, I engineered a **dynamic nested sub-form repeater**. Instead of routing operators through complex secondary pages, a single button click instantly instantiates and injects a clean, secondary family intake container directly into the active view. Each sub-form automatically tracks relational data—binding the family member directly to the primary beneficiary node while maintaining field validation arrays on the client side.
+						</p>
+
+						<h3 class="text-xs font-mono text-neutral-300 uppercase tracking-wider mb-2 mt-4">2. Zero-Friction GIS Isolation: Leaflet over Google</h3>
+						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
+							When adding the cartographic tracking layer, the mainstream solution was Google Maps API. However, this presented organizational friction: it required billing profiles, API key bindings, and permanent account setups. Because I was developing this as an intern, tying critical infrastructure to temporary profiles risked severe deployment issues later.
+						</p>
+						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
+							Prioritizing a **seamless, frictionless corporate handoff**, I integrated <strong>Leaflet.js</strong>. It was light, fast, customizable, and ran entirely token-free, allowing the team to adopt the code base instantly with absolute zero authentication management or billing configuration overhead.
+						</p>
+
+						<h3 class="text-xs font-mono text-neutral-300 uppercase tracking-wider mb-2 mt-4">3. Reclaiming Dormant Database Schemas</h3>
+						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
+							Completed in a rapid 3-to-4 day development cycle, my prototype was wired straight into the application's underlying submission pipeline. During my analysis of the core application layout, I discovered that the existing database schema and system API already possessed unmapped, dormant spatial coordinate columns that were sitting completely unused. 
+						</p>
+						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
+							I calibrated the dynamic form's payload format to feed latitude/longitude data directly into those exact waiting structures, passing data safely through the pre-configured backend API guardrails without needing any server-side database refactoring.
+						</p>
+
+						<h3 class="text-xs font-mono text-neutral-300 uppercase tracking-wider mb-2 mt-4">4. Defeating the Leaflet Container Trap</h3>
+						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
+							Embedding this new layout inside our clean, accordion-style project tracking dashboard introduced a layout failure: initializing a Leaflet instance inside a hidden element (`display: none`) strips its capability to calculate real layout widths. When expanded, the map would render corrupted tiles and shattered boundaries.
+						</p>
+						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
+							I resolved this defensively by listening exclusively to the container card's `'toggle'` event. The GIS layer only initializes when physical heights are accurately computed in the DOM:
+						</p>
+
+						<div class="bg-neutral-950 border border-neutral-800 rounded-lg p-4 font-mono text-xs text-neutral-300 overflow-x-auto leading-relaxed mb-6">
+							<span class="text-neutral-500">// Initialize GIS layer only when accordion actively opens to preserve layout heights</span><br />
+							card.addEventListener(<span class="text-emerald-400">'toggle'</span>, () =&gt; &#123;<br />
+							&nbsp;&nbsp;<span class="text-amber-400">if</span> (card.open && !mapInitialized) &#123;<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;initializeMapEngine();<br />
+							&nbsp;&nbsp;&#125;<br />
+							&#125;);
+						</div>
+					</div>
+				</section>
+
+				<section id="interactive-simulation-card" class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-6 md:p-8 flex flex-col gap-6">
+					<div class="flex flex-col gap-1.5">
+						<div class="flex items-center justify-between">
+							<div class="flex items-center gap-2">
+								<span id="sim-status-pulse" class="h-1.5 w-1.5 rounded-full bg-neutral-700 transition-all duration-700"></span>
+								<span id="sim-status-text" class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest transition-all duration-700">// Sandbox Environment: Standby</span>
+							</div>
+						</div>
+						<h2 class="text-lg font-bold text-neutral-200 tracking-tight">// INTERACTIVE SYSTEM SIMULATION</h2>
+						<p class="text-neutral-400 text-xs mt-1 leading-relaxed">
+							A standalone reconstruction of the operational workspace originally built with Vue.js. Interact with the form parameters, expand family units, and drop map markers to monitor structural payload mutations live.
+						</p>
+					</div>
+
+					<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+						<div class="lg:col-span-7 border border-neutral-800/80 bg-neutral-950 rounded-xl p-5 flex flex-col gap-4">
+							<div class="flex items-center justify-between border-b border-neutral-800 pb-3">
+								<span class="text-xs font-mono font-bold tracking-tight text-neutral-300">PRIMARY_INTAKE_CONTROLLER</span>
+								<div class="flex items-center gap-2">
+									<label class="text-[10px] font-mono text-neutral-500 uppercase">Street Context:</label>
+									<button id="sim-context-toggle" class="px-2 py-0.5 text-[10px] font-mono font-bold rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 hover:bg-amber-500/20 transition-all select-none cursor-pointer">
+										STREET_SITUATION
+									</button>
+								</div>
+							</div>
+
+							<div class="grid grid-cols-2 gap-3 text-xs">
+								<div class="flex flex-col gap-1">
+									<label class="font-mono text-[10px] text-neutral-500">BENEFICIARY_NAME</label>
+									<input id="sim-input-name" type="text" value="Gerard Dominic" class="bg-neutral-900 border border-neutral-800 text-neutral-200 rounded px-2.5 py-1.5 focus:outline-none focus:border-neutral-700 font-mono text-xs" />
+								</div>
+								<div class="flex flex-col gap-1">
+									<label class="font-mono text-[10px] text-neutral-500">CAPTURED_COORDINATES</label>
+									<div class="grid grid-cols-2 gap-1 font-mono text-[11px]">
+										<div class="bg-neutral-900 border border-neutral-800 text-neutral-400 px-2 py-1.5 rounded flex justify-between">
+											<span class="text-neutral-600">LAT:</span><span id="sim-lat">14.654</span>
+										</div>
+										<div class="bg-neutral-900 border border-neutral-800 text-neutral-400 px-2 py-1.5 rounded flex justify-between">
+											<span class="text-neutral-600">LNG:</span><span id="sim-lng">121.049</span>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="flex flex-col gap-2 mt-2">
+								<div class="flex items-center justify-between">
+									<span class="font-mono text-[10px] text-neutral-400 tracking-wider">// RELATED_DEPENDENTS_REGISTRY</span>
+									<button id="sim-add-member-btn" class="px-2 py-1 text-[10px] font-mono rounded bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 hover:border-neutral-700 text-neutral-300 transition-all cursor-pointer">
+										+ Add Family Member Node
+									</button>
+								</div>
+								<div id="sim-dependents-wrapper" class="flex flex-col gap-2.5 max-h-[190px] overflow-y-auto pr-1">
+									</div>
+							</div>
+						</div>
+
+						<div class="lg:col-span-5 flex flex-col gap-4 w-full">
+							<div class="border border-neutral-800 rounded-xl overflow-hidden h-[280px] bg-neutral-950 relative z-10 w-full" id="sim-map-canvas">
+								</div>
+							
+							<div class="border border-neutral-800 bg-neutral-950 rounded-xl p-4 font-mono text-[10px] flex flex-col gap-2">
+								<span class="text-neutral-500 tracking-wider">// REAL-TIME PAYLOAD OBJECT STREAM (STAGED SCHEMA)</span>
+								<pre id="sim-payload-json" class="text-emerald-400 leading-normal max-h-[120px] overflow-y-auto text-left"></pre>
+								
+								<div class="border-t border-neutral-800/80 pt-2.5 mt-1 flex flex-col gap-2">
+									<button id="sim-submit-btn" class="w-full bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 hover:border-emerald-500/50 text-emerald-400 font-mono text-[10px] py-1.5 rounded transition-all cursor-pointer select-none">
+										SUBMIT_PAYLOAD_TO_API
+									</button>
+									<div id="sim-api-console" class="bg-neutral-900 border border-neutral-800/80 rounded p-2 text-neutral-500 text-[9px] min-h-[45px] max-h-[70px] overflow-y-auto leading-relaxed">
+										Console: Idle. Ready for payload submission...
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="border border-neutral-800 bg-neutral-900/10 rounded-xl p-8 flex flex-col gap-6">
+					<h2 class="text-lg font-bold text-neutral-200 tracking-tight">// SYSTEM DATA FLOW</h2>
+					
+					<div class="bg-neutral-950 border border-neutral-800 rounded-lg p-6 font-mono text-xs text-neutral-400 leading-relaxed overflow-x-auto">
+<pre class="leading-normal">
+ [Unified Intake Controller] ───► [Street Classification Toggle: ACTIVE]
+              │
+              ├─► [Add Family Member] ──► [Inject Dynamic Relational Form Node]
+              │
+              ▼
+[Leaflet Map Canvas Mount]
+              │
+    ┌─────────┴─────────┐
+    ▼                   ▼
+[User Map Pin Click] [Manual Input Vector]
+    │                   │
+    ▼                   ▼
+[Coordinate Capture] ──► [Input Synced & Validated]
+                        │
+                        ▼
+             [Staged Payload Assembly]
+             (Populating Dormant Spatial DB Columns)
+</pre>
+					</div>
+				</section>
+			</main>
+		</div>
+
+		<script is:inline>
+			window.addEventListener('DOMContentLoaded', () => {
+				// 1. Core Portfolio Theme Toggle Logic
+				const themeToggleBtn = document.getElementById('theme-toggle');
+				const themeIcon = document.getElementById('theme-icon');
+				const themeText = themeToggleBtn.querySelector('span');
+
+				function updateThemeUI(isLight) {
+					if (isLight) {
+						document.documentElement.classList.add('light');
+						if (themeText) themeText.textContent = 'THEME: BEIGE_MODE';
+						if (themeIcon) themeIcon.textContent = '☾';
+					} else {
+						document.documentElement.classList.remove('light');
+						if (themeText) themeText.textContent = 'THEME: DEFAULT (DARK)';
+						if (themeIcon) themeIcon.textContent = '☼';
+					}
+				}
+
+				const isCurrentlyLight = document.documentElement.classList.contains('light');
+				updateThemeUI(isCurrentlyLight);
+
+				themeToggleBtn.addEventListener('click', () => {
+					const isLight = document.documentElement.classList.toggle('light');
+					localStorage.setItem('theme', isLight ? 'light' : 'dark');
+					updateThemeUI(isLight);
+				});
+
+				// 2. Interactive Workspace Sandbox State Engine
+				let sandboxState = {
+					location_context: "STREET_SITUATION",
+					primary_beneficiary: "Gerard Dominic",
+					coordinates: { lat: 14.6542, lng: 121.0496 },
+					dependents: []
+				};
+
+				let dependentIdCounter = 0;
+				let sandboxMap = null;
+				let currentMarker = null;
+
+				const contextToggle = document.getElementById('sim-context-toggle');
+				const nameInput = document.getElementById('sim-input-name');
+				const latLabel = document.getElementById('sim-lat');
+				const lngLabel = document.getElementById('sim-lng');
+				const dependentsWrapper = document.getElementById('sim-dependents-wrapper');
+				const addMemberBtn = document.getElementById('sim-add-member-btn');
+				const payloadDisplay = document.getElementById('sim-payload-json');
+
+				function updatePayloadView() {
+					payloadDisplay.textContent = JSON.stringify(sandboxState, null, 2);
+				}
+
+				// Synchronize Toggle Changes
+				contextToggle.addEventListener('click', () => {
+					if (sandboxState.location_context === "STREET_SITUATION") {
+						sandboxState.location_context = "STRUCTURED_SHELTER";
+						contextToggle.textContent = "STRUCTURED_SHELTER";
+						contextToggle.className = "px-2 py-0.5 text-[10px] font-mono font-bold rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition-all select-none cursor-pointer";
+					} else {
+						sandboxState.location_context = "STREET_SITUATION";
+						contextToggle.textContent = "STREET_SITUATION";
+						contextToggle.className = "px-2 py-0.5 text-[10px] font-mono font-bold rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 hover:bg-amber-500/20 transition-all select-none cursor-pointer";
+					}
+					updatePayloadView();
+				});
+
+				// Sync Primary Name Input
+				nameInput.addEventListener('input', (e) => {
+					sandboxState.primary_beneficiary = e.target.value;
+					updatePayloadView();
+				});
+
+				// Instantiate Dynamic Sub-form Generator (Repeater Engine)
+				function createDependentSubform() {
+					dependentIdCounter++;
+					const id = dependentIdCounter;
+					
+					// Push fresh node registry entry into memory array
+					const defaultNode = { id: id, name: "Dependent Node", relationship: "Child" };
+					sandboxState.dependents.push(defaultNode);
+
+					// Inject clean HTML template block directly into wrapper container
+					const subform = document.createElement('div');
+					subform.id = `dep-node-${id}`;
+					subform.className = "grid grid-cols-12 gap-2 bg-neutral-900 border border-neutral-800/60 rounded-lg p-2.5 items-center animation-fade-in";
+					subform.innerHTML = `
+						<div class="col-span-6 flex flex-col gap-0.5">
+							<input type="text" placeholder="Dependent Name" value="Dependent Node" class="dep-name bg-neutral-950 border border-neutral-800 text-neutral-300 rounded px-2 py-1 font-mono text-[11px] focus:outline-none focus:border-neutral-700" />
+						</div>
+						<div class="col-span-4 flex flex-col gap-0.5">
+							<select class="dep-relation bg-neutral-950 border border-neutral-800 text-neutral-400 rounded px-1.5 py-1 font-mono text-[10px] focus:outline-none">
+								<option value="Child" selected>Child</option>
+								<option value="Spouse">Spouse</option>
+								<option value="Sibling">Sibling</option>
+								<option value="Other">Other</option>
+							</select>
+						</div>
+						<div class="col-span-2 flex justify-end">
+							<button class="dep-delete-btn font-mono text-[10px] text-rose-500/70 hover:text-rose-400 bg-rose-500/5 border border-rose-500/10 px-2 py-1 rounded hover:bg-rose-500/10 transition-all cursor-pointer">DEL</button>
+						</div>
+					`;
+
+					dependentsWrapper.appendChild(subform);
+					updatePayloadView();
+
+					// Event Listeners for inner subform mutation
+					const nameField = subform.querySelector('.dep-name');
+					const relationField = subform.querySelector('.dep-relation');
+					const deleteBtn = subform.querySelector('.dep-delete-btn');
+
+					nameField.addEventListener('input', (e) => {
+						const match = sandboxState.dependents.find(d => d.id === id);
+						if (match) match.name = e.target.value;
+						updatePayloadView();
+					});
+
+					relationField.addEventListener('change', (e) => {
+						const match = sandboxState.dependents.find(d => d.id === id);
+						if (match) match.relationship = e.target.value;
+						updatePayloadView();
+					});
+
+					deleteBtn.addEventListener('click', () => {
+						sandboxState.dependents = sandboxState.dependents.filter(d => d.id !== id);
+						subform.remove();
+						updatePayloadView();
+					});
+				}
+
+				addMemberBtn.addEventListener('click', createDependentSubform);
+
+				// Initialize Leaflet Interactive Canvas Workspace
+				function initSandboxMapEngine() {
+					if (sandboxMap) return; // Prevent double mounts
+
+					// Mount base coordinates targeting an operational sector
+					sandboxMap = L.map('sim-map-canvas', {
+						center: [14.6542, 121.0496],
+						zoom: 13,
+						zoomControl: false
+					});
+
+					// Load standard colorful OpenStreetMap tiles
+					L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+						attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
+					}).addTo(sandboxMap);
+
+					// Set Initial Pin configuration
+					currentMarker = L.marker([14.6542, 121.0496]).addTo(sandboxMap);
+
+					// Coordinate Capture Vector Stream Listener
+					sandboxMap.on('click', (event) => {
+						const { lat, lng } = event.latlng;
+						
+						// Lock down floating system decimals to a clean 6-digit precision standard
+						const lockedLat = parseFloat(lat.toFixed(6));
+						const lockedLng = parseFloat(lng.toFixed(6));
+
+						// Relocate marker target visual coordinates
+						currentMarker.setLatLng([lockedLat, lockedLng]);
+						sandboxMap.panTo([lockedLat, lockedLng]);
+
+						// Mutate System Memory State and update the UI View
+						sandboxState.coordinates.lat = lockedLat;
+						sandboxState.coordinates.lng = lockedLng;
+						
+						latLabel.textContent = lockedLat;
+						lngLabel.textContent = lockedLng;
+
+						updatePayloadView();
+					});
+				}
+
+				// Execute core payload visualization stream on initialization
+				updatePayloadView();
+				
+				// Standard initialization loop execution
+				setTimeout(() => {
+					initSandboxMapEngine();
+				}, 100);
+
+				// 2.5 Submit Action & Validation Guardrails
+				const submitBtn = document.getElementById('sim-submit-btn');
+				const apiConsole = document.getElementById('sim-api-console');
+
+				submitBtn.addEventListener('click', () => {
+					const lat = sandboxState.coordinates.lat;
+					const lng = sandboxState.coordinates.lng;
+					const name = sandboxState.primary_beneficiary.trim();
+
+					apiConsole.innerHTML = "";
+					
+					if (!name) {
+						apiConsole.innerHTML = `<span class="text-rose-500 font-bold">[VALIDATION_FAILURE]</span> <span class="text-rose-400">Primary beneficiary field is empty. Ingestion aborted.</span>`;
+						return;
+					}
+
+					// Philippine geographical limits
+					const minLat = 4.0;
+					const maxLat = 21.0;
+					const minLng = 116.0;
+					const maxLng = 127.0;
+
+					if (lat < minLat || lat > maxLat || lng < minLng || lng > maxLng) {
+						apiConsole.innerHTML = `<span class="text-rose-500 font-bold">[VALIDATION_FAILURE]</span> <span class="text-rose-400">Coordinates [${lat}, ${lng}] are outside the administrative borders of the Philippines (${minLat}° to ${maxLat}° N, ${minLng}° to ${maxLng}° E). Ingestion aborted.</span>`;
+					} else {
+						apiConsole.innerHTML = `<span class="text-emerald-500 font-bold">[API_SUCCESS]</span> <span class="text-emerald-400">Ingestion successful! Staged schema committed to dormant database columns. Staging 1 primary node ("${name}") and ${sandboxState.dependents.length} dependent nodes.</span>`;
+					}
+				});
+
+				// 3. Intersection Observer for Dynamic Breakout Layout
+				const simCard = document.getElementById('interactive-simulation-card');
+				const statusPulse = document.getElementById('sim-status-pulse');
+				const statusText = document.getElementById('sim-status-text');
+
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							simCard.classList.add('expanded');
+							statusPulse.className = "h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse transition-all duration-700";
+							statusText.className = "text-[10px] font-mono text-emerald-400 uppercase tracking-widest transition-all duration-700";
+							statusText.textContent = "// Sandbox Environment: Active Workspace";
+							let count = 0;
+							const interval = setInterval(() => {
+								if (sandboxMap) {
+									sandboxMap.invalidateSize();
+								}
+								count++;
+								if (count > 35) clearInterval(interval);
+							}, 20);
+						} else {
+							simCard.classList.remove('expanded');
+							statusPulse.className = "h-1.5 w-1.5 rounded-full bg-neutral-700 transition-all duration-700";
+							statusText.className = "text-[10px] font-mono text-neutral-500 uppercase tracking-widest transition-all duration-700";
+							statusText.textContent = "// Sandbox Environment: Standby";
+							let count = 0;
+							const interval = setInterval(() => {
+								if (sandboxMap) {
+									sandboxMap.invalidateSize();
+								}
+								count++;
+								if (count > 35) clearInterval(interval);
+							}, 20);
+						}
+					});
+				}, {
+					threshold: 0.15
+				});
+				observer.observe(simCard);
+			});
+		</script>
+	</body>
+</html>
