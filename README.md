@@ -1,43 +1,30 @@
-# Astro Starter Kit: Minimal
+# Micro-Interactions, Telemetry & Design Unification Walkthrough
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Implemented system-first micro-interactions, blueprint border hover illumination, the interactive walkthrough console, spec-sheet manifesto redesign, and the live telemetry widget on both the main dashboard and the case study page.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Changes Made
 
-## 🚀 Project Structure
+### 1. Spec-Sheet Manifesto Redesign (index.astro)
+- Refactored the "System Over Syntax" card into an engine spec-sheet layout.
+- Added structured tables detailing system **Constants** (Architecture, Data Integrity), **Variables** (Framework Syntaxes, Trends), and **Core Value** (Structural Execution).
+- Incorporated an **Operational Capabilities** check-list featuring data flow mapping, failure isolation, and codebase adaptability.
 
-Inside of your Astro project, you'll see the following folders and files:
+### 2. Live Telemetry Widget (index.astro)
+- Embedded a real-time command-line log streamer panel (`#telemetry-widget` / `#telemetry-log-stream`) inside the right-hand `// ENGINE_METRICS` column.
+- Styled the widget to match the site's dark and light (beige) modes seamlessly.
+- Appended active JavaScript log playback streaming a step-by-step system initialization sequence upon user landing.
+- Handled click events inside the log console defensively so they do not propagate and close the parent metrics toggle card.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+### 3. Case Study Page Redesign (spatial-map.astro)
+- **Layout Restructuring**: Converted the single-column case study layout into a 12-column asymmetric grid layout, matching the homepage dashboard layout.
+- **Engine Metrics Integration**: Added the `// ENGINE_METRICS` aside component on the right side of the layout. Toggling it displays the interactive `#walkthrough-console` showing Astro's compile target and build setup.
+- **Card Hover Uniformity**: Added both `.system-card` and `.rigid-card` styling to all sections for consistent hover states, and updated `#interactive-simulation-card` to transition background changes harmoniously alongside width transitions.
+- **Section File Paths**: Injected stylized file-path headers with active terminal-path cursors to structure the documentation flow:
+  - `~/case_study/unified_intake_spatial_mapping.md`
+  - `~/case_study/bottleneck_analysis.md`
+  - `~/case_study/system_simulation.exe`
+  - `~/case_study/data_flow_map.dot`
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Validation Results
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Ran `npm run build` with zero compiler warnings or errors. Static HTML pages are generated successfully for both `/` and `/projects/spatial-map`.
