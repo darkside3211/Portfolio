@@ -231,19 +231,40 @@ import "../styles/global.css";
 						>
 							System Over Syntax
 						</h1>
-						<p
-							class="text-neutral-400 leading-relaxed text-sm md:text-base"
-						>
-							Frameworks and language syntaxes are variables;
-							fundamental software architecture and data integrity
-							are the constants. I don't build my value on
-							memorizing documentation that can be looked up in
-							five seconds. I build it on structural
-							execution—understanding how data flows across a
-							stack, diagnosing root-cause system failures under
-							pressure, and rapidly mapping new environments to
-							deliver secure, functional software.
-						</p>
+						<!-- De-textified Spec Grid -->
+						<div class="font-mono text-xs space-y-4 border-t border-neutral-800/60 pt-4 mt-6">
+							<div class="grid grid-cols-3 gap-2">
+								<span class="text-neutral-500">[CONSTANTS]</span>
+								<span class="col-span-2 text-neutral-200 font-semibold">Fundamental Architecture, Data Integrity</span>
+							</div>
+							<div class="grid grid-cols-3 gap-2">
+								<span class="text-neutral-500">[VARIABLES]</span>
+								<span class="col-span-2 text-neutral-400 italic">Framework Syntaxes, Language Trends</span>
+							</div>
+							<div class="grid grid-cols-3 gap-2 border-b border-neutral-800/40 pb-4">
+								<span class="text-neutral-500">[CORE_VALUE]</span>
+								<span class="col-span-2 text-neutral-300 leading-relaxed">
+									Value isn't built on memorizing documentation that can be looked up in seconds. It is built on structural execution.
+								</span>
+							</div>
+
+							<!-- Runtime Capabilities Checklist -->
+							<div class="space-y-2.5 pt-2">
+								<div class="text-neutral-500 font-bold uppercase text-[9px] tracking-wider">// OPERATIONAL_CAPABILITIES</div>
+								<div class="flex items-start gap-2 text-neutral-400">
+									<span class="text-amber-500">■</span>
+									<span><strong class="text-neutral-200">Trace Data Flows:</strong> Explicit cross-stack pipeline mapping under high load.</span>
+								</div>
+								<div class="flex items-start gap-2 text-neutral-400">
+									<span class="text-amber-500">■</span>
+									<span><strong class="text-neutral-200">Isolate Failures:</strong> Rapid root-cause diagnosis of platform vectors under pressure.</span>
+								</div>
+								<div class="flex items-start gap-2 text-neutral-400">
+									<span class="text-amber-500">■</span>
+									<span><strong class="text-neutral-200">Environment Adaptability:</strong> Deciphering complex legacy technical codebases quickly.</span>
+								</div>
+							</div>
+						</div>
 					</section>
 
 					<section
@@ -767,6 +788,20 @@ import "../styles/global.css";
 							</div>
 						</div>
 					</div>
+
+					<!-- Live Telemetry Terminal Widget -->
+					<div id="telemetry-widget" class="border border-neutral-800/80 rounded-lg p-4 bg-neutral-950/60 text-stone-200 font-mono text-[11px] leading-relaxed shadow-inner mt-4">
+						<div class="flex items-center justify-between text-neutral-500 border-b border-neutral-900/60 pb-2 mb-2">
+							<span>// COGNITIVE_SYSTEM_TELEMETRY</span>
+							<span class="animate-pulse text-emerald-500 text-[9px] flex items-center gap-1">● LIVE</span>
+						</div>
+						
+						<!-- Target container where our client script will stream logs -->
+						<div id="telemetry-log-stream" class="space-y-1 min-h-[140px]">
+							<!-- Baseline placeholder lines if JavaScript is initializing -->
+							<div class="text-neutral-500">Initializing secure terminal socket...</div>
+						</div>
+					</div>
 				</aside>
 			</main>
 		</div>
@@ -999,6 +1034,63 @@ import "../styles/global.css";
 
 					// Prevent clicks inside the walkthrough console from closing it
 					walkthroughConsole.addEventListener("click", (e) => {
+						e.stopPropagation();
+					});
+				}
+
+				// Active Stream Controller Script for Telemetry Log
+				const logContainer = document.getElementById("telemetry-log-stream");
+				const telemetryWidget = document.getElementById("telemetry-widget");
+				if (logContainer) {
+					// Ordered sequence logs mapping back to your structural ecosystem
+					const bootLogs = [
+						{ type: 'OK', text: 'Kernel architecture verified via Astro core target [ESNEXT].' },
+						{ type: 'OK', text: 'Interface orchestration matrix attached via Vue.js pipelines.' },
+						{ type: 'OK', text: 'Data routing rules verified via PHP Laravel backend.' },
+						{ type: 'OK', text: 'Validation guardrails online [Cypress, Playwright, Postman].' },
+						{ type: 'SPEC', text: 'Freshworks Certified Solutions Specialist parameters matching.' },
+						{ type: 'INFO', text: 'Listening for incoming integration webhook probes...' },
+						{ type: 'READY', text: 'System completely idle. Awaiting client interaction.█' }
+					];
+
+					logContainer.innerHTML = ''; // Wipe initial server placeholder
+					let currentLine = 0;
+
+					function renderNextLogLine() {
+						if (currentLine >= bootLogs.length) return;
+
+						const lineData = bootLogs[currentLine];
+						const row = document.createElement('div');
+						
+						// Syntax highlight styling based on status type
+						let badge = `<span class="text-neutral-500">[SYS]</span>`;
+						if (lineData.type === 'OK') badge = `<span class="text-emerald-400">[ OK ]</span>`;
+						if (lineData.type === 'SPEC') badge = `<span class="text-amber-400">[SPEC]</span>`;
+						if (lineData.type === 'INFO') badge = `<span class="text-sky-400">[INFO]</span>`;
+						if (lineData.type === 'READY') badge = `<span class="text-emerald-400 animate-pulse">[RDY]</span>`;
+
+						row.innerHTML = `${badge} <span class="text-neutral-300">${lineData.text}</span>`;
+						row.className = 'opacity-0 transform translate-y-1 transition-all duration-300 ease-out';
+						
+						logContainer.appendChild(row);
+
+						// Force repaint to trigger animation fade-in effect smoothly
+						setTimeout(() => {
+							row.classList.remove('opacity-0', 'translate-y-1');
+						}, 10);
+
+						currentLine++;
+						// Natural stepping delay simulating network handshakes
+						setTimeout(renderNextLogLine, Math.random() * 400 + 300);
+					}
+
+					// Initialize telemetry script playback
+					setTimeout(renderNextLogLine, 400);
+				}
+
+				if (telemetryWidget) {
+					// Prevent clicks inside the telemetry log container from toggling the walkthrough console
+					telemetryWidget.addEventListener("click", (e) => {
 						e.stopPropagation();
 					});
 				}
