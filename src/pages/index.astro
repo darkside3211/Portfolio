@@ -218,7 +218,7 @@ import "../styles/global.css";
 				class="ml-64 flex-1 px-8 md:px-16 py-16 max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
 			>
 				<!-- LEFT COLUMN: Content Column (Spans 8 of 12 columns) -->
-				<div class="lg:col-span-8 flex flex-col gap-12">
+				<div id="content-column" class="lg:col-span-8 flex flex-col gap-12 transition-all duration-500 ease-in-out">
 					<section
 						id="manifesto"
 						class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-8 backdrop-blur-sm scroll-mt-16 rigid-card system-card"
@@ -402,13 +402,12 @@ import "../styles/global.css";
 						</div>
 					</section>
 
-					<!-- // SYSTEM AUTHOR (Readme) -->
 					<section
 						id="readme"
-						class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-8 backdrop-blur-sm scroll-mt-16 rigid-card system-card"
+						class="border border-neutral-800 [.light_&]:border-[#d2c9b1] bg-neutral-900/30 [.light_&]:bg-[#fdfaf2] rounded-xl p-8 backdrop-blur-sm scroll-mt-16 relative overflow-hidden min-h-[340px]"
 					>
-						<!-- Card Header -->
-						<div class="flex items-center justify-between mb-5 border-b border-neutral-800/60 pb-3 font-mono text-[10px] text-neutral-500">
+						<!-- Card Header Workspace Controllers -->
+						<div class="flex items-center justify-between mb-5 border-b border-neutral-800/60 [.light_&]:border-b-[#d2c9b1]/50 pb-3 font-mono text-[10px] text-neutral-500 relative z-10">
 							<div class="flex items-center gap-1.5">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -427,36 +426,59 @@ import "../styles/global.css";
 								</svg>
 								<span class="terminal-path">~/system_config/readme.txt</span>
 							</div>
-							<span>[AUTHOR_INFO]</span>
+							
+							<!-- Interactive Dev/QA Layout Switches -->
+							<div class="flex items-center gap-1 font-mono text-[9px] select-none">
+								<button 
+									data-bio-trigger="split" 
+									class="bio-toggle-btn px-2 py-0.5 border border-neutral-200 bg-neutral-200 text-neutral-950 rounded cursor-pointer transition-all duration-200"
+								>
+									--split
+								</button>
+								<button 
+									data-bio-trigger="expand" 
+									class="bio-toggle-btn px-2 py-0.5 border border-neutral-800 [.light_&]:border-neutral-300 text-neutral-500 hover:text-neutral-300 rounded cursor-pointer transition-all duration-200"
+								>
+									--expand
+								</button>
+								<span class="ml-2 hidden sm:inline text-neutral-600 font-bold tracking-wider">[AUTHOR_INFO]</span>
+							</div>
 						</div>
 
-						<!-- Card Body -->
-						<div class="flex flex-col md:flex-row gap-6 items-start">
-							<!-- Photograph -->
-							<div class="w-full md:w-32 lg:w-40 shrink-0">
-								<div class="aspect-square overflow-hidden rounded-md border border-neutral-800 bg-neutral-950/40 shadow-inner grayscale hover:grayscale-0 transition-all duration-500 ease-in-out">
-									<!-- Ensure you add your photo to the public/assets folder -->
-									<img 
-										src="/assets/profile-photo.jpg" 
-										alt="Gerard Dominic Baldo" 
-										class="w-full h-full object-cover"
-									/>
-								</div>
+						<!-- Left-Side Portrait Subsystem: Handles smooth spatial transformations -->
+						<div id="bio-portrait-layer" class="absolute left-0 top-0 h-full w-full sm:w-[55%] pointer-events-none select-none z-0 transition-all duration-500 ease-in-out">
+							<img 
+								src="/profile.jpg" 
+								alt="Gerard Dominic Baldo" 
+								class="w-full h-full object-cover object-left-top brightness-[1.02] transition-all duration-500 ease-in-out"
+								id="bio-portrait-img"
+							/>
+							<!-- Color Stop Mask Engine (Adapts programmatically based on active layout matrix) -->
+							<div id="bio-gradient-mask" class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent via-35% via-neutral-950/70 via-55% to-neutral-950 to-75% [.light_&]:from-transparent [.light_&]:via-transparent [.light_&]:via-35% [.light_&]:via-[#fdfaf2]/70 [.light_&]:via-55% [.light_&]:to-[#fdfaf2] [.light_&]:to-75% transition-all duration-500 ease-in-out"></div>
+						</div>
+
+						<!-- Content Layer: Transitions smoothly from restricted sidebar to a wide multi-column layout -->
+						<div id="bio-content-layer" class="relative z-10 w-full sm:max-w-[48%] sm:ml-auto flex flex-col h-full justify-between gap-6 transition-all duration-500 ease-in-out">
+							<!-- Profile Metadata -->
+							<div>
+								<h2 class="text-3xl font-extrabold text-neutral-100 [.light_&]:text-[#2d2a24] tracking-tight">Gerard Dominic Baldo</h2>
+								<p class="text-sm text-amber-400 [.light_&]:text-[#b0873b] font-mono font-bold uppercase tracking-wider mt-1">// System-First Engineer</p>
+								<p class="text-xs text-neutral-500 [.light_&]:text-[#7c7565] font-mono mt-0.5">Core Tech: Vue.js // Laravel // Astro Architecture</p>
 							</div>
 
-							<!-- Bio Copy -->
-							<div class="w-full flex-1">
-								<h3 class="text-xl font-bold text-neutral-100 tracking-tight">Gerard Dominic Baldo</h3>
-								<p class="text-neutral-500 font-mono text-[10px] uppercase tracking-wider mt-1 mb-4">Full-Stack Developer & QA Engineer</p>
+							<!-- Layout Divider -->
+							<div id="bio-divider" class="w-full h-[1px] bg-neutral-800 [.light_&]:bg-[#d2c9b1]/50 transition-all duration-500"></div>
 
-								<div class="space-y-4 text-sm text-neutral-400 leading-relaxed border-l-2 border-amber-500/60 pl-4">
-									<p>
-										I specialize in translating complex business requirements into stable, zero-defect software. Having started my career handling high-level client demonstrations and enterprise ITSM implementations, I know exactly what end-users expect. Now, my focus is entirely on building, optimizing, and rigorously testing the systems that make those experiences possible.
-									</p>
-									<p>
-										My approach to software mirrors how I approach my time offline: I value structural integrity and precision, whether I'm architecting a backend pipeline, tuning custom PC hardware, or shooting candid street photography with a 50mm prime.
-									</p>
-								</div>
+							<!-- Biography Processing Blocks -->
+							<div id="bio-text-grid" class="grid grid-cols-1 gap-4 text-sm leading-relaxed text-neutral-400 [.light_&]:text-[#4a453a] font-medium transition-all duration-500">
+								<p class="bio-paragraph-primary">
+									I specialize in translating complex operational frameworks into stable, zero-defect software architectures. 
+									Having spent time engineering technical infrastructure rollouts and system validation pipelines, 
+									my focus is entirely on building, optimizing, and rigorously testing backend processes and highly adaptive frontends.
+								</p>
+								<p class="bio-paragraph-secondary text-xs text-neutral-500 [.light_&]:text-[#7c7565] font-mono italic">
+									~ Time offline is spent analyzing structural integrity: whether tuning bare-metal custom PC systems or framing environments through a fixed 50mm lens.
+								</p>
 							</div>
 						</div>
 					</section>
@@ -1474,6 +1496,96 @@ import "../styles/global.css";
 							consoleMsg.innerText = 'WebGL Engine boot sequence failure.';
 						}
 					});
+				}
+
+				// --- INTERACTIVE BIOGRAPHY LAYOUT CONTROLLER SYSTEM ---
+				const bioSection = document.getElementById("readme");
+				const bioToggleBtns = document.querySelectorAll(".bio-toggle-btn");
+				const portraitLayer = document.getElementById("bio-portrait-layer");
+				const portraitImg = document.getElementById("bio-portrait-img");
+				const gradientMask = document.getElementById("bio-gradient-mask");
+				const contentLayer = document.getElementById("bio-content-layer");
+				const textGrid = document.getElementById("bio-text-grid");
+				const contentColumn = document.getElementById("content-column");
+
+				if (bioSection && bioToggleBtns.length && portraitLayer && contentLayer && textGrid) {
+					// Function to execute the layout transition state
+					function setBioLayoutState(activeState) {
+						// 1. Reset configuration switch button styles
+						bioToggleBtns.forEach(b => {
+							const trigger = b.getAttribute("data-bio-trigger");
+							if (trigger === activeState) {
+								b.className = "bio-toggle-btn px-2 py-0.5 border border-neutral-200 bg-neutral-200 text-neutral-950 rounded cursor-pointer transition-all duration-200";
+							} else {
+								b.className = "bio-toggle-btn px-2 py-0.5 border border-neutral-800 [.light_&]:border-neutral-300 text-neutral-500 hover:text-neutral-300 rounded cursor-pointer transition-all duration-200";
+							}
+						});
+
+						// 2. Execute Layout State Mutation Mappings
+						if (activeState === "expand") {
+							// Expand the column grid wrapper container to full row width
+							if (contentColumn) {
+								contentColumn.classList.remove("lg:col-span-8");
+								contentColumn.classList.add("lg:col-span-12");
+							}
+
+							// Transition portrait into a subtle textural backdrop blur
+							portraitLayer.className = "absolute inset-0 w-full h-full pointer-events-none select-none z-0 transition-all duration-500 ease-in-out";
+							if (portraitImg) portraitImg.className = "w-full h-full object-cover object-center brightness-[0.25] [.light_&]:brightness-[0.93] blur-[3px] transition-all duration-500 ease-in-out";
+							
+							// Flatten the color gradient completely to keep text highly legible
+							if (gradientMask) gradientMask.className = "absolute inset-0 bg-neutral-950/40 [.light_&]:bg-[#fdfaf2]/75 transition-all duration-500 ease-in-out";
+
+							// Expand the layout boundaries of the data block to full-width constraints
+							contentLayer.className = "relative z-10 w-full max-w-full flex flex-col h-full justify-between gap-6 transition-all duration-500 ease-in-out";
+							
+							// Map text blocks onto a structured dual-column column spec grid
+							textGrid.className = "grid grid-cols-1 md:grid-cols-2 gap-8 text-sm leading-relaxed text-neutral-300 [.light_&]:text-[#2d2a24] font-medium transition-all duration-500";
+						} else {
+							// Revert column grid wrapper container back to asymmetrical layout
+							if (contentColumn) {
+								contentColumn.classList.remove("lg:col-span-12");
+								contentColumn.classList.add("lg:col-span-8");
+							}
+
+							// Revert to original precision-cropped asymmetrical architecture
+							portraitLayer.className = "absolute left-0 top-0 h-full w-full sm:w-[55%] pointer-events-none select-none z-0 transition-all duration-500 ease-in-out";
+							if (portraitImg) portraitImg.className = "w-full h-full object-cover object-left-top brightness-[1.02] transition-all duration-500 ease-in-out";
+							
+							// Re-initialize the alpha masking filter boundary
+							if (gradientMask) gradientMask.className = "absolute inset-0 bg-gradient-to-r from-transparent via-transparent via-35% via-neutral-950/70 via-55% to-neutral-950 to-75% [.light_&]:from-transparent [.light_&]:via-transparent [.light_&]:via-35% [.light_&]:via-[#fdfaf2]/70 [.light_&]:via-55% [.light_&]:to-[#fdfaf2] [.light_&]:to-75% transition-all duration-500 ease-in-out";
+
+							// Return typography content within isolated side column parameters
+							contentLayer.className = "relative z-10 w-full sm:max-w-[48%] sm:ml-auto flex flex-col h-full justify-between gap-6 transition-all duration-500 ease-in-out";
+							
+							// Flatten data nodes back to a standard vertical stack flow
+							textGrid.className = "grid grid-cols-1 gap-4 text-sm leading-relaxed text-neutral-400 [.light_&]:text-[#4a453a] font-medium transition-all duration-500";
+						}
+					}
+
+					// Let manual buttons still override layout state
+					bioToggleBtns.forEach(btn => {
+						btn.addEventListener("click", () => {
+							const targetState = btn.getAttribute("data-bio-trigger");
+							setBioLayoutState(targetState);
+						});
+					});
+
+					// Scroll-driven Auto-Expansion using IntersectionObserver
+					const bioObserver = new IntersectionObserver((entries) => {
+						entries.forEach(entry => {
+							if (entry.isIntersecting) {
+								setBioLayoutState("expand");
+							} else {
+								setBioLayoutState("split");
+							}
+						});
+					}, {
+						// Trigger layout expansion when 35% of the card is visible in the viewport
+						threshold: 0.35
+					});
+
+					bioObserver.observe(bioSection);
 				}
 			});
 		</script>
