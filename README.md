@@ -1,6 +1,6 @@
 # Implementation Walkthrough - Interactive 3D Canvas Viewport & Layout Adjustments
 
-I have successfully resolved the 3D model visual issues, auto-normalized model dimensions, integrated OrbitControls for interactive navigation, and added an immersive fullscreen lightbox modal.
+successfully resolved the 3D model visual issues, auto-normalized model dimensions, integrated OrbitControls for interactive navigation, and added an immersive fullscreen lightbox modal.
 
 ## Changes Completed
 
