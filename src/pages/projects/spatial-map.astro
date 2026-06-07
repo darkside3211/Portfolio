@@ -33,17 +33,20 @@ import "../../styles/global.css";
 				width: 100%;
 				max-width: none;
 			}
+			/* Mobile / Tablet default: width 100%, expand style properties only */
 			#interactive-simulation-card.expanded {
-				width: calc(100vw - 16rem - 4rem);
+				width: 100%;
 				border-color: rgba(16, 185, 129, 0.35);
-				box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.9), 
-				            0 0 35px -5px rgba(16, 185, 129, 0.15);
+				box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.9);
 				background-color: rgba(10, 10, 10, 0.45);
 				backdrop-filter: blur(12px);
 			}
-			@media (min-width: 768px) {
+			/* Desktop breakpoint (lg: 1024px) - trigger actual width expansion breakout */
+			@media (min-width: 1024px) {
 				#interactive-simulation-card.expanded {
 					width: calc(100vw - 16rem - 8rem);
+					box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.9), 
+					            0 0 35px -5px rgba(16, 185, 129, 0.15);
 				}
 			}
 
@@ -70,8 +73,84 @@ import "../../styles/global.css";
 		class="bg-neutral-950 text-neutral-100 font-sans selection:bg-neutral-800 antialiased overflow-x-hidden"
 	>
 		<div class="flex min-h-screen">
+			<!-- Mobile Header -->
+			<header
+				class="fixed top-0 left-0 right-0 h-16 border-b border-neutral-800 bg-neutral-950/90 backdrop-blur-md px-4 flex items-center justify-between z-50 lg:hidden"
+			>
+				<div class="flex items-center gap-3">
+					<div
+						class="h-9 w-9 rounded bg-neutral-900 border border-neutral-800 flex items-center justify-center text-xs font-bold tracking-tight text-neutral-300"
+					>
+						GB
+					</div>
+					<div>
+						<h2 class="text-xs font-semibold text-neutral-200 tracking-tight">
+							Gerard Baldo
+						</h2>
+						<p class="text-[9px] text-neutral-500 font-mono">
+							System-First Engineer
+						</p>
+					</div>
+				</div>
+				<div class="flex items-center gap-2">
+					<button
+						class="theme-toggle-btn border border-neutral-800 bg-neutral-900/10 text-neutral-400 hover:text-neutral-200 transition-all rounded p-1.5 text-xs font-mono select-none cursor-pointer"
+						aria-label="Toggle Theme"
+					>
+						☼
+					</button>
+					<button
+						id="menu-toggle"
+						class="border border-neutral-800 bg-neutral-900/10 text-neutral-400 hover:text-neutral-200 transition-all rounded p-1.5 text-xs font-mono select-none cursor-pointer"
+						aria-label="Toggle Menu"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="18"
+							height="18"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<line x1="4" y1="12" x2="20" y2="12" id="menu-line-1"></line>
+							<line x1="4" y1="6" x2="20" y2="6" id="menu-line-2"></line>
+							<line x1="4" y1="18" x2="20" y2="18" id="menu-line-3"></line>
+						</svg>
+					</button>
+				</div>
+			</header>
+
+			<!-- Mobile Navigation Drawer -->
+			<div
+				id="mobile-menu"
+				class="fixed inset-x-0 top-16 bg-neutral-950/95 border-b border-neutral-800 z-40 flex flex-col justify-between p-6 transition-all duration-300 ease-in-out -translate-y-full opacity-0 pointer-events-none lg:hidden"
+			>
+				<nav class="flex flex-col gap-4 text-sm mt-4">
+					<a
+						href="/"
+						class="mobile-nav-link group flex items-center gap-2 text-neutral-400 hover:text-neutral-100 transition-colors py-1.5 font-medium font-mono text-xs tracking-wider"
+					>
+						➔ RETURN_HOME
+					</a>
+				</nav>
+
+				<div class="flex flex-col gap-4 mt-8 pt-4 border-t border-neutral-800">
+					<div
+						class="text-[10px] text-neutral-500 font-mono flex items-center gap-2 tracking-tight"
+					>
+						<span
+							class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"
+						></span>
+						<span>ENVIRONMENT: ACTIVE</span>
+					</div>
+				</div>
+			</div>
+
 			<aside
-				class="fixed top-0 left-0 h-screen w-64 border-r border-neutral-800 bg-neutral-950 p-6 flex flex-col justify-between z-50"
+				class="hidden lg:flex fixed top-0 left-0 h-screen w-64 border-r border-neutral-800 bg-neutral-950 p-6 flex-col justify-between z-50"
 			>
 				<div class="flex flex-col gap-8">
 					<div class="flex flex-col gap-3">
@@ -104,7 +183,7 @@ import "../../styles/global.css";
 				<div class="flex flex-col gap-4">
 					<button
 						id="theme-toggle"
-						class="flex items-center justify-between w-full border border-neutral-800 hover:border-neutral-700 bg-neutral-900/10 hover:bg-neutral-900/30 text-neutral-400 hover:text-neutral-200 transition-all rounded px-3 py-2 text-xs font-mono select-none cursor-pointer"
+						class="theme-toggle-btn flex items-center justify-between w-full border border-neutral-800 hover:border-neutral-700 bg-neutral-900/10 hover:bg-neutral-900/30 text-neutral-400 hover:text-neutral-200 transition-all rounded px-3 py-2 text-xs font-mono select-none cursor-pointer"
 					>
 						<span>THEME: DEFAULT (DARK)</span>
 						<span id="theme-icon">☼</span>
@@ -122,7 +201,7 @@ import "../../styles/global.css";
 			</aside>
 
 			<main
-				class="ml-64 flex-1 px-8 md:px-16 py-16 max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
+				class="flex-1 px-4 md:px-8 pt-24 pb-16 lg:ml-64 lg:px-16 lg:py-16 max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
 			>
 				<!-- LEFT COLUMN: Content Column (Spans 8 of 12 columns) -->
 				<div class="lg:col-span-8 flex flex-col gap-8">
@@ -512,30 +591,54 @@ import "../../styles/global.css";
 		<script is:inline>
 			window.addEventListener('DOMContentLoaded', () => {
 				// 1. Core Portfolio Theme Toggle Logic
-				const themeToggleBtn = document.getElementById('theme-toggle');
-				const themeIcon = document.getElementById('theme-icon');
-				const themeText = themeToggleBtn.querySelector('span');
+				const themeToggleBtns = document.querySelectorAll(".theme-toggle-btn");
 
 				function updateThemeUI(isLight) {
-					if (isLight) {
-						document.documentElement.classList.add('light');
-						if (themeText) themeText.textContent = 'THEME: BEIGE_MODE';
-						if (themeIcon) themeIcon.textContent = '☾';
-					} else {
-						document.documentElement.classList.remove('light');
-						if (themeText) themeText.textContent = 'THEME: DEFAULT (DARK)';
-						if (themeIcon) themeIcon.textContent = '☼';
-					}
+					themeToggleBtns.forEach(btn => {
+						const textSpan = btn.querySelector("span");
+						if (isLight) {
+							document.documentElement.classList.add("light");
+							btn.innerHTML = textSpan ? `<span>THEME: BEIGE_MODE</span><span id="theme-icon">☾</span>` : "☾";
+						} else {
+							document.documentElement.classList.remove("light");
+							btn.innerHTML = textSpan ? `<span>THEME: DEFAULT (DARK)</span><span id="theme-icon">☼</span>` : "☼";
+						}
+					});
 				}
 
 				const isCurrentlyLight = document.documentElement.classList.contains('light');
 				updateThemeUI(isCurrentlyLight);
 
-				themeToggleBtn.addEventListener('click', () => {
-					const isLight = document.documentElement.classList.toggle('light');
-					localStorage.setItem('theme', isLight ? 'light' : 'dark');
-					updateThemeUI(isLight);
+				themeToggleBtns.forEach(btn => {
+					btn.addEventListener('click', () => {
+						const isLight = document.documentElement.classList.toggle('light');
+						localStorage.setItem('theme', isLight ? 'light' : 'dark');
+						updateThemeUI(isLight);
+					});
 				});
+
+				// Mobile Menu Toggle Logic
+				const menuToggle = document.getElementById("menu-toggle");
+				const mobileMenu = document.getElementById("mobile-menu");
+				const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+
+				if (menuToggle && mobileMenu) {
+					menuToggle.addEventListener("click", () => {
+						const isOpen = menuToggle.classList.toggle("open");
+						if (isOpen) {
+							mobileMenu.classList.remove("-translate-y-full", "opacity-0", "pointer-events-none");
+						} else {
+							mobileMenu.classList.add("-translate-y-full", "opacity-0", "pointer-events-none");
+						}
+					});
+
+					mobileNavLinks.forEach(link => {
+						link.addEventListener("click", () => {
+							menuToggle.classList.remove("open");
+							mobileMenu.classList.add("-translate-y-full", "opacity-0", "pointer-events-none");
+						});
+					});
+				}
 
 				// 2. Interactive Workspace Sandbox State Engine
 				let sandboxState = {
