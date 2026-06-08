@@ -419,18 +419,18 @@ import "../styles/global.css";
 						<!-- Left-Side Portrait Subsystem: Handles smooth spatial transformations -->
 						<div
 							id="bio-portrait-layer"
-							class="relative w-full h-64 sm:absolute sm:left-0 sm:top-0 sm:h-full sm:w-[320px] pointer-events-none select-none z-0 mb-6 sm:mb-0"
+							class="hidden sm:block sm:absolute sm:left-0 sm:top-0 sm:h-full sm:w-[320px] pointer-events-none select-none z-0"
 						>
 							<img
 								src="/profile.jpg"
 								alt="Gerard Dominic Baldo"
-								class="w-full h-full object-cover object-left-top brightness-[1.02] rounded-lg sm:rounded-none"
+								class="w-full h-full object-cover object-left-top brightness-[1.02] sm:rounded-none"
 								id="bio-portrait-img"
 							/>
 							<!-- Color Stop Mask Engine -->
 							<div
 								id="bio-gradient-mask"
-								class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent via-60% to-neutral-950 sm:bg-gradient-to-r sm:from-transparent sm:via-transparent sm:via-65% sm:via-neutral-950/70 sm:via-80% sm:to-neutral-950 sm:to-95% [.light_&]:to-[#fdfaf2] [.light_&]:sm:from-transparent [.light_&]:sm:via-transparent [.light_&]:sm:via-65% [.light_&]:sm:via-[#fdfaf2]/80 [.light_&]:sm:via-80% [.light_&]:sm:to-[#fdfaf2] [.light_&]:sm:to-95%"
+								class="absolute inset-0 sm:bg-gradient-to-r sm:from-transparent sm:via-transparent sm:via-65% sm:via-neutral-950/70 sm:via-80% sm:to-neutral-950 sm:to-95% [.light_&]:sm:from-transparent [.light_&]:sm:via-transparent [.light_&]:sm:via-65% [.light_&]:sm:via-[#fdfaf2]/80 [.light_&]:sm:via-80% [.light_&]:sm:to-[#fdfaf2] [.light_&]:sm:to-95%"
 							>
 							</div>
 						</div>
@@ -441,23 +441,43 @@ import "../styles/global.css";
 							class="relative z-10 w-full sm:pl-[340px] flex flex-col h-full justify-between gap-6"
 						>
 							<!-- Profile Metadata -->
-							<div>
-								<h2
-									class="text-3xl font-extrabold text-neutral-100 [.light_&]:text-[#2d2a24] tracking-tight"
-								>
-									Gerard Dominic Baldo
-								</h2>
-								<p
-									class="text-sm text-amber-400 [.light_&]:text-[#b0873b] font-mono font-bold uppercase tracking-wider mt-1"
-								>
-									// System-First Engineer
-								</p>
-								<p
-									class="text-xs text-neutral-500 [.light_&]:text-[#7c7565] font-mono mt-0.5"
-								>
-									Core Tech: Vue.js // Laravel // Astro
-									Architecture
-								</p>
+							<div class="flex flex-row items-center justify-between gap-4">
+								<div class="flex-1">
+									<h2
+										class="text-2xl sm:text-3xl font-extrabold text-neutral-100 [.light_&]:text-[#2d2a24] tracking-tight"
+									>
+										Gerard Dominic Baldo
+									</h2>
+									<p
+										class="text-sm text-amber-400 [.light_&]:text-[#b0873b] font-mono font-bold uppercase tracking-wider mt-1"
+									>
+										// System-First Engineer
+									</p>
+									<p
+										class="text-xs text-neutral-500 [.light_&]:text-[#7c7565] font-mono mt-0.5"
+									>
+										Core Tech: Vue.js // Laravel // Astro
+										Architecture
+									</p>
+								</div>
+
+								<!-- Mobile-only premium avatar -->
+								<div class="sm:hidden flex-shrink-0 relative select-none pointer-events-none">
+									<div class="relative w-20 h-20 rounded-lg border border-neutral-800 [.light_&]:border-[#d2c9b1] bg-neutral-950/40 p-1">
+										<div class="w-full h-full rounded-md overflow-hidden relative">
+											<img
+												src="/profile.jpg"
+												alt="Gerard Dominic Baldo"
+												class="w-full h-full object-cover object-left-top brightness-[1.02]"
+											/>
+										</div>
+									</div>
+									<!-- Micro-Status Indicator badge -->
+									<span class="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+										<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+										<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+									</span>
+								</div>
 							</div>
 
 							<!-- Layout Divider -->
