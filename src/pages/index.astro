@@ -81,8 +81,166 @@ import "../styles/global.css";
 		class="bg-neutral-950 text-neutral-100 font-sans selection:bg-neutral-800 antialiased"
 	>
 		<div class="flex min-h-screen">
+			<!-- Mobile Header -->
+			<header
+				class="fixed top-0 left-0 right-0 h-16 border-b border-neutral-800 bg-neutral-950/90 backdrop-blur-md px-4 flex items-center justify-between z-50 lg:hidden"
+			>
+				<div class="flex items-center gap-3">
+					<div
+						class="h-9 w-9 rounded bg-neutral-900 border border-neutral-800 flex items-center justify-center text-xs font-bold tracking-tight text-neutral-300"
+					>
+						GB
+					</div>
+					<div>
+						<h2 class="text-xs font-semibold text-neutral-200 tracking-tight">
+							Gerard Baldo
+						</h2>
+						<p class="text-[9px] text-neutral-500 font-mono">
+							System-First Engineer
+						</p>
+					</div>
+				</div>
+				<div class="flex items-center gap-2">
+					<button
+						class="theme-toggle-btn border border-neutral-800 bg-neutral-900/10 text-neutral-400 hover:text-neutral-200 transition-all rounded p-1.5 text-xs font-mono select-none cursor-pointer"
+						aria-label="Toggle Theme"
+					>
+						☼
+					</button>
+					<button
+						id="menu-toggle"
+						class="border border-neutral-800 bg-neutral-900/10 text-neutral-400 hover:text-neutral-200 transition-all rounded p-1.5 text-xs font-mono select-none cursor-pointer"
+						aria-label="Toggle Menu"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="18"
+							height="18"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<line x1="4" y1="12" x2="20" y2="12" id="menu-line-1"></line>
+							<line x1="4" y1="6" x2="20" y2="6" id="menu-line-2"></line>
+							<line x1="4" y1="18" x2="20" y2="18" id="menu-line-3"></line>
+						</svg>
+					</button>
+				</div>
+			</header>
+
+			<!-- Mobile Navigation Drawer -->
+			<div
+				id="mobile-menu"
+				class="fixed inset-x-0 top-16 bg-neutral-950/95 border-b border-neutral-800 z-40 flex flex-col justify-between p-6 transition-all duration-300 ease-in-out -translate-y-full opacity-0 pointer-events-none lg:hidden"
+			>
+				<nav class="flex flex-col gap-4 text-sm mt-4">
+					<a
+						href="#readme"
+						class="mobile-nav-link group flex items-center gap-2 text-neutral-400 hover:text-neutral-100 transition-colors py-1.5 font-medium font-mono text-xs tracking-wider"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="13"
+							height="13"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="text-neutral-600 group-hover:text-neutral-400 transition-colors"
+							><path
+								d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+							></path><polyline points="14 2 14 8 20 8"
+							></polyline></svg
+						>
+						01. README.TXT
+					</a>
+					<a
+						href="#manifesto"
+						class="mobile-nav-link group flex items-center gap-2 text-neutral-400 hover:text-neutral-100 transition-colors py-1.5 font-medium font-mono text-xs tracking-wider"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="13"
+							height="13"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="text-neutral-600 group-hover:text-neutral-400 transition-colors"
+							><path
+								d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+							></path><polyline points="14 2 14 8 20 8"
+							></polyline></svg
+						>
+						02. MANIFESTO
+					</a>
+					<a
+						href="#capabilities"
+						class="mobile-nav-link group flex items-center gap-2 text-neutral-400 hover:text-neutral-100 transition-colors py-1.5 font-medium font-mono text-xs tracking-wider"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="13"
+							height="13"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="text-neutral-600 group-hover:text-neutral-400 transition-colors"
+							><rect width="18" height="18" x="3" y="3" rx="2"
+							></rect><path d="M9 3v18"></path><path
+								d="M15 3v18"></path><path d="M3 9h18"
+							></path><path d="M3 15h18"></path></svg
+						>
+						03. CAPABILITIES
+					</a>
+					<a
+						href="#projects"
+						class="mobile-nav-link group flex items-center gap-2 text-neutral-400 hover:text-neutral-100 transition-colors py-1.5 font-medium font-mono text-xs tracking-wider"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="13"
+							height="13"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="text-neutral-600 group-hover:text-neutral-400 transition-colors"
+							><path d="m7.5 4.27 9 5.15"></path><path
+								d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"
+							></path><path d="m3.3 7 8.7 5 8.7-5"
+							></path><path d="M12 22V12"></path></svg
+						>
+						04. PROJECTS_AREA
+					</a>
+				</nav>
+
+				<div class="flex flex-col gap-4 mt-8 pt-4 border-t border-neutral-800">
+					<div
+						class="text-[10px] text-neutral-500 font-mono flex items-center gap-2 tracking-tight"
+					>
+						<span
+							class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"
+						></span>
+						<span>ENVIRONMENT: ACTIVE</span>
+					</div>
+				</div>
+			</div>
+
 			<aside
-				class="fixed top-0 left-0 h-screen w-64 border-r border-neutral-800 bg-neutral-950 p-6 flex flex-col justify-between z-50"
+				class="hidden lg:flex fixed top-0 left-0 h-screen w-64 border-r border-neutral-800 bg-neutral-950 p-6 flex-col justify-between z-50"
 			>
 				<div class="flex flex-col gap-8">
 					<div class="flex flex-col gap-3">
@@ -105,6 +263,28 @@ import "../styles/global.css";
 
 					<nav class="flex flex-col gap-2 text-sm">
 						<a
+							href="#readme"
+							class="group flex items-center gap-2 text-neutral-400 hover:text-neutral-100 transition-colors py-1.5 font-medium font-mono text-xs tracking-wider"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="13"
+								height="13"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="text-neutral-600 group-hover:text-neutral-400 transition-colors"
+								><path
+									d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+								></path><polyline points="14 2 14 8 20 8"
+								></polyline></svg
+							>
+							01. README.TXT
+						</a>
+						<a
 							href="#manifesto"
 							class="group flex items-center gap-2 text-neutral-400 hover:text-neutral-100 transition-colors py-1.5 font-medium font-mono text-xs tracking-wider"
 						>
@@ -124,7 +304,7 @@ import "../styles/global.css";
 								></path><polyline points="14 2 14 8 20 8"
 								></polyline></svg
 							>
-							01. MANIFESTO
+							02. MANIFESTO
 						</a>
 						<a
 							href="#capabilities"
@@ -146,7 +326,7 @@ import "../styles/global.css";
 									d="M15 3v18"></path><path d="M3 9h18"
 								></path><path d="M3 15h18"></path></svg
 							>
-							02. CAPABILITIES
+							03. CAPABILITIES
 						</a>
 						<a
 							href="#projects"
@@ -168,7 +348,7 @@ import "../styles/global.css";
 								></path><path d="m3.3 7 8.7 5 8.7-5"
 								></path><path d="M12 22V12"></path></svg
 							>
-							03. PROJECTS_AREA
+							04. PROJECTS_AREA
 						</a>
 					</nav>
 				</div>
@@ -176,7 +356,7 @@ import "../styles/global.css";
 				<div class="flex flex-col gap-4">
 					<button
 						id="theme-toggle"
-						class="flex items-center justify-between w-full border border-neutral-800 hover:border-neutral-700 bg-neutral-900/10 hover:bg-neutral-900/30 text-neutral-400 hover:text-neutral-200 transition-all rounded px-3 py-2 text-xs font-mono select-none cursor-pointer"
+						class="theme-toggle-btn flex items-center justify-between w-full border border-neutral-800 hover:border-neutral-700 bg-neutral-900/10 hover:bg-neutral-900/30 text-neutral-400 hover:text-neutral-200 transition-all rounded px-3 py-2 text-xs font-mono select-none cursor-pointer"
 					>
 						<span>THEME: DEFAULT (DARK)</span>
 						<span id="theme-icon">☼</span>
@@ -195,10 +375,138 @@ import "../styles/global.css";
 
 			<!-- UPDATED: Wider constraint and asymmetric grid layout -->
 			<main
-				class="ml-64 flex-1 px-8 md:px-16 py-16 max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
+				class="flex-1 px-4 md:px-8 pt-24 pb-16 lg:ml-64 lg:px-16 lg:py-16 max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
 			>
 				<!-- LEFT COLUMN: Content Column (Spans 8 of 12 columns) -->
-				<div class="lg:col-span-8 flex flex-col gap-12">
+				<div
+					id="content-column"
+					class="lg:col-span-8 flex flex-col gap-12 transition-all duration-500 ease-in-out"
+				>
+					<section
+						id="readme"
+						class="border border-neutral-800 [.light_&]:border-[#d2c9b1] bg-neutral-900/30 [.light_&]:bg-[#fdfaf2] rounded-xl p-6 sm:p-8 backdrop-blur-sm scroll-mt-16 relative flex flex-col sm:block overflow-hidden min-h-fit sm:min-h-[340px]"
+					>
+						<!-- Card Header Workspace Controllers -->
+						<div
+							class="flex items-center justify-between mb-5 border-b border-neutral-800/60 [.light_&]:border-b-[#d2c9b1]/50 pb-3 font-mono text-[10px] text-neutral-500 relative z-10"
+						>
+							<div class="flex items-center gap-1.5">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="11"
+									height="11"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="text-amber-500/90"
+								>
+									<path
+										d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+									></path>
+									<polyline points="14 2 14 8 20 8"
+									></polyline>
+								</svg>
+								<span class="terminal-path"
+									>~/system_config/readme.txt</span
+								>
+							</div>
+							<span>[AUTHOR_INFO]</span>
+						</div>
+
+						<!-- Left-Side Portrait Subsystem: Handles smooth spatial transformations -->
+						<div
+							id="bio-portrait-layer"
+							class="relative w-full h-64 sm:absolute sm:left-0 sm:top-0 sm:h-full sm:w-[320px] pointer-events-none select-none z-0 mb-6 sm:mb-0"
+						>
+							<img
+								src="/profile.jpg"
+								alt="Gerard Dominic Baldo"
+								class="w-full h-full object-cover object-left-top brightness-[1.02] rounded-lg sm:rounded-none"
+								id="bio-portrait-img"
+							/>
+							<!-- Color Stop Mask Engine -->
+							<div
+								id="bio-gradient-mask"
+								class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent via-60% to-neutral-950 sm:bg-gradient-to-r sm:from-transparent sm:via-transparent sm:via-65% sm:via-neutral-950/70 sm:via-80% sm:to-neutral-950 sm:to-95% [.light_&]:to-[#fdfaf2] [.light_&]:sm:from-transparent [.light_&]:sm:via-transparent [.light_&]:sm:via-65% [.light_&]:sm:via-[#fdfaf2]/80 [.light_&]:sm:via-80% [.light_&]:sm:to-[#fdfaf2] [.light_&]:sm:to-95%"
+							>
+							</div>
+						</div>
+
+						<!-- Content Layer: Transitions smoothly from restricted sidebar to a wide multi-column layout -->
+						<div
+							id="bio-content-layer"
+							class="relative z-10 w-full sm:pl-[340px] flex flex-col h-full justify-between gap-6"
+						>
+							<!-- Profile Metadata -->
+							<div>
+								<h2
+									class="text-3xl font-extrabold text-neutral-100 [.light_&]:text-[#2d2a24] tracking-tight"
+								>
+									Gerard Dominic Baldo
+								</h2>
+								<p
+									class="text-sm text-amber-400 [.light_&]:text-[#b0873b] font-mono font-bold uppercase tracking-wider mt-1"
+								>
+									// System-First Engineer
+								</p>
+								<p
+									class="text-xs text-neutral-500 [.light_&]:text-[#7c7565] font-mono mt-0.5"
+								>
+									Core Tech: Vue.js // Laravel // Astro
+									Architecture
+								</p>
+							</div>
+
+							<!-- Layout Divider -->
+							<div
+								id="bio-divider"
+								class="w-full h-[1px] bg-neutral-800 [.light_&]:bg-[#d2c9b1]/50"
+							>
+							</div>
+
+							<!-- Biography Processing Blocks -->
+							<div
+								id="bio-text-grid"
+								class="space-y-4 text-sm leading-relaxed text-neutral-400 [.light_&]:text-[#4a453a] font-medium"
+							>
+								<p>
+									Hey, I'm Gerard. You could call me a nerd or
+									whatever, but I've just always had this
+									thing for computers and figuring out how
+									they actually work. When I build something,
+									whether I'm using Vue.js, Laravel, or Astro,
+									I care a lot about doing it the right way. I
+									like making sure the foundation is solid
+									instead of just hacking things together. I'm
+									constantly turning problems over in my head,
+									I'm that guy who steps away from the
+									keyboard and suddenly figures out the
+									solution to a bug out of nowhere. I just
+									like doing things right, and doing them
+									smart. Lately, I’ve also been doing some QA
+									work, and honestly, intentionally trying to
+									break other people's code is a blast. It
+									feels a little evil, sure, but finding
+									exactly where a system cracks is a massive
+									perk—and it honestly just makes me build my
+									own stuff even tighter.
+								</p>
+								<p
+									class="text-xs text-neutral-500 [.light_&]:text-[#7c7565] font-mono italic"
+								>
+									~ When I need to step away and clear my
+									head, I completely disconnect. I spend most
+									of my free time taking walks, admiring the
+									scenery, and just taking pictures wherever I
+									happen to go.
+								</p>
+							</div>
+						</div>
+					</section>
+
 					<section
 						id="manifesto"
 						class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-8 backdrop-blur-sm scroll-mt-16 rigid-card system-card"
@@ -1239,22 +1547,19 @@ import "../styles/global.css";
 				});
 
 				// Theme Toggle Logic
-				const themeToggleBtn = document.getElementById("theme-toggle");
-				const themeIcon = document.getElementById("theme-icon");
-				const themeText = themeToggleBtn.querySelector("span");
+				const themeToggleBtns = document.querySelectorAll(".theme-toggle-btn");
 
 				function updateThemeUI(isLight) {
-					if (isLight) {
-						document.documentElement.classList.add("light");
-						if (themeText)
-							themeText.textContent = "THEME: BEIGE_MODE";
-						if (themeIcon) themeIcon.textContent = "☾";
-					} else {
-						document.documentElement.classList.remove("light");
-						if (themeText)
-							themeText.textContent = "THEME: DEFAULT (DARK)";
-						if (themeIcon) themeIcon.textContent = "☼";
-					}
+					themeToggleBtns.forEach(btn => {
+						const textSpan = btn.querySelector("span");
+						if (isLight) {
+							document.documentElement.classList.add("light");
+							btn.innerHTML = textSpan ? `<span>THEME: BEIGE_MODE</span><span id="theme-icon">☾</span>` : "☾";
+						} else {
+							document.documentElement.classList.remove("light");
+							btn.innerHTML = textSpan ? `<span>THEME: DEFAULT (DARK)</span><span id="theme-icon">☼</span>` : "☼";
+						}
+					});
 				}
 
 				// Initialize UI state
@@ -1262,12 +1567,37 @@ import "../styles/global.css";
 					document.documentElement.classList.contains("light");
 				updateThemeUI(isCurrentlyLight);
 
-				themeToggleBtn.addEventListener("click", () => {
-					const isLight =
-						document.documentElement.classList.toggle("light");
-					localStorage.setItem("theme", isLight ? "light" : "dark");
-					updateThemeUI(isLight);
+				themeToggleBtns.forEach(btn => {
+					btn.addEventListener("click", () => {
+						const isLight =
+							document.documentElement.classList.toggle("light");
+						localStorage.setItem("theme", isLight ? "light" : "dark");
+						updateThemeUI(isLight);
+					});
 				});
+
+				// Mobile Menu Toggle Logic
+				const menuToggle = document.getElementById("menu-toggle");
+				const mobileMenu = document.getElementById("mobile-menu");
+				const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+
+				if (menuToggle && mobileMenu) {
+					menuToggle.addEventListener("click", () => {
+						const isOpen = menuToggle.classList.toggle("open");
+						if (isOpen) {
+							mobileMenu.classList.remove("-translate-y-full", "opacity-0", "pointer-events-none");
+						} else {
+							mobileMenu.classList.add("-translate-y-full", "opacity-0", "pointer-events-none");
+						}
+					});
+
+					mobileNavLinks.forEach(link => {
+						link.addEventListener("click", () => {
+							menuToggle.classList.remove("open");
+							mobileMenu.classList.add("-translate-y-full", "opacity-0", "pointer-events-none");
+						});
+					});
+				}
 
 				// Walkthrough Console Toggle
 				const engineCard = document.getElementById(

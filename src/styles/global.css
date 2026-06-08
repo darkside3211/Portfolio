@@ -99,3 +99,23 @@ html.light .system-card:hover {
 .animate-fade-in {
 	animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* --- MOBILE NAVIGATION STYLES --- */
+#menu-toggle svg line {
+	transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+	transform-origin: center;
+}
+#menu-toggle.open #menu-line-1 {
+	transform: translateY(6px) rotate(45deg);
+}
+#menu-toggle.open #menu-line-2 {
+	opacity: 0;
+}
+#menu-toggle.open #menu-line-3 {
+	transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Ensure body doesn't overflow horizontally */
+html, body {
+	overflow-x: hidden;
+}
