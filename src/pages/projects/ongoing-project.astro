@@ -1,0 +1,793 @@
+---
+// src/pages/projects/ongoing-project.astro
+import "../../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Gerard Baldo | Ongoing Project Sandbox</title>
+
+		<script is:inline>
+			(function () {
+				const savedTheme = localStorage.getItem("theme");
+				if (savedTheme === "light") {
+					document.documentElement.classList.add("light");
+				} else {
+					document.documentElement.classList.remove("light");
+				}
+			})();
+		</script>
+
+		<style>
+			/* Dot-Matrix Grid Layer Canvas mapping */
+			body {
+				background-image: radial-gradient(
+					rgba(63, 63, 70, 0.25) 1px,
+					transparent 1px
+				);
+				background-size: 20px 20px;
+			}
+			:global(.light) body {
+				background-image: radial-gradient(
+					rgba(181, 173, 148, 0.4) 1px,
+					transparent 1px
+				);
+			}
+
+			/* Rigid shadow styles for brutalist look */
+			.rigid-card {
+				box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.5);
+				transition:
+					transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+					box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+			}
+			.rigid-card:hover {
+				transform: translate(-1px, -1px);
+				box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.6);
+			}
+			:global(.light) .rigid-card {
+				box-shadow: 4px 4px 0px 0px rgba(42, 40, 34, 0.08);
+			}
+			:global(.light) .rigid-card:hover {
+				box-shadow: 5px 5px 0px 0px rgba(42, 40, 34, 0.12);
+			}
+
+			/* Custom layout animations */
+			@keyframes borderPulse {
+				0%,
+				100% {
+					border-color: rgba(234, 179, 8, 0.4);
+				}
+				50% {
+					border-color: rgba(234, 179, 8, 0.8);
+				}
+			}
+			.under-construction-border {
+				animation: borderPulse 2s infinite ease-in-out;
+			}
+		</style>
+	</head>
+	<body
+		class="bg-neutral-950 text-neutral-100 font-sans selection:bg-neutral-800 antialiased overflow-x-hidden"
+	>
+		<div class="flex min-h-screen">
+			<!-- Mobile Header -->
+			<header
+				class="fixed top-0 left-0 right-0 h-16 border-b border-neutral-800 bg-neutral-950/90 backdrop-blur-md px-4 flex items-center justify-between z-50 lg:hidden"
+			>
+				<div class="flex items-center gap-3">
+					<div
+						class="h-9 w-9 rounded bg-neutral-900 border border-neutral-800 flex items-center justify-center text-xs font-bold tracking-tight text-neutral-300"
+					>
+						GB
+					</div>
+					<div>
+						<h2
+							class="text-xs font-semibold text-neutral-200 tracking-tight"
+						>
+							Gerard Baldo
+						</h2>
+						<p class="text-[9px] text-neutral-500 font-mono">
+							System-First Engineer
+						</p>
+					</div>
+				</div>
+				<div class="flex items-center gap-2">
+					<button
+						class="theme-toggle-btn border border-neutral-800 bg-neutral-900/10 text-neutral-400 hover:text-neutral-200 transition-all rounded p-1.5 text-xs font-mono select-none cursor-pointer"
+						aria-label="Toggle Theme"
+					>
+						☼
+					</button>
+					<button
+						id="menu-toggle"
+						class="border border-neutral-800 bg-neutral-900/10 text-neutral-400 hover:text-neutral-200 transition-all rounded p-1.5 text-xs font-mono select-none cursor-pointer"
+						aria-label="Toggle Menu"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="18"
+							height="18"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<line
+								x1="4"
+								y1="12"
+								x2="20"
+								y2="12"
+								id="menu-line-1"></line>
+							<line x1="4" y1="6" x2="20" y2="6" id="menu-line-2"
+							></line>
+							<line
+								x1="4"
+								y1="18"
+								x2="20"
+								y2="18"
+								id="menu-line-3"></line>
+						</svg>
+					</button>
+				</div>
+			</header>
+
+			<!-- Mobile Navigation Drawer -->
+			<div
+				id="mobile-menu"
+				class="fixed inset-x-0 top-16 bg-neutral-950/95 border-b border-neutral-800 z-40 flex flex-col justify-between p-6 transition-all duration-300 ease-in-out -translate-y-full opacity-0 pointer-events-none lg:hidden"
+			>
+				<nav class="flex flex-col gap-4 text-sm mt-4">
+					<a
+						href="/"
+						class="mobile-nav-link group flex items-center gap-2 text-neutral-400 hover:text-neutral-100 transition-colors py-1.5 font-medium font-mono text-xs tracking-wider"
+					>
+						➔ RETURN_HOME
+					</a>
+				</nav>
+
+				<div
+					class="flex flex-col gap-4 mt-8 pt-4 border-t border-neutral-800"
+				>
+					<div
+						class="text-[10px] text-neutral-500 font-mono flex items-center gap-2 tracking-tight"
+					>
+						<span
+							class="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse"
+						></span>
+						<span>ENVIRONMENT: STAGED_SANDBOX</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- Desktop Sidebar -->
+			<aside
+				class="hidden lg:flex fixed top-0 left-0 h-screen w-64 border-r border-neutral-800 bg-neutral-950 p-6 flex-col justify-between z-50"
+			>
+				<div class="flex flex-col gap-8">
+					<div class="flex flex-col gap-3">
+						<div
+							class="h-14 w-14 rounded-lg bg-neutral-900 border border-neutral-800 flex items-center justify-center text-lg font-bold tracking-tight text-neutral-300"
+						>
+							GB
+						</div>
+						<div>
+							<h2
+								class="font-semibold text-neutral-200 tracking-tight"
+							>
+								Gerard Baldo
+							</h2>
+							<p class="text-xs text-neutral-500 font-mono">
+								System-First Engineer
+							</p>
+						</div>
+					</div>
+
+					<nav class="flex flex-col gap-2 text-sm">
+						<a
+							href="/"
+							class="text-neutral-400 hover:text-neutral-100 transition-colors py-1.5 font-medium font-mono text-xs tracking-wider flex items-center gap-1.5"
+						>
+							<span>➔</span> RETURN_HOME
+						</a>
+					</nav>
+				</div>
+
+				<div class="flex flex-col gap-4">
+					<button
+						id="theme-toggle"
+						class="theme-toggle-btn flex items-center justify-between w-full border border-neutral-800 hover:border-neutral-700 bg-neutral-900/10 hover:bg-neutral-900/30 text-neutral-400 hover:text-neutral-200 transition-all rounded px-3 py-2 text-xs font-mono select-none cursor-pointer"
+					>
+						<span>THEME: DEFAULT (DARK)</span>
+						<span id="theme-icon">☼</span>
+					</button>
+
+					<div
+						class="text-[10px] text-neutral-500 font-mono flex items-center gap-2 tracking-tight"
+					>
+						<span
+							class="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse"
+						></span>
+						<span>ENVIRONMENT: STAGED_SANDBOX</span>
+					</div>
+				</div>
+			</aside>
+
+			<!-- Main Container -->
+			<main
+				class="flex-1 px-4 md:px-8 pt-24 pb-16 lg:ml-64 lg:px-16 lg:py-16 max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
+			>
+				<!-- LEFT COLUMN: Content (Spans 8 columns) -->
+				<div class="lg:col-span-8 flex flex-col gap-8">
+					<a
+						href="/"
+						class="text-xs font-mono text-neutral-500 hover:text-neutral-300 transition-colors self-start"
+					>
+						// BACK_TO_DASHBOARD
+					</a>
+
+					<!-- Intro Banner Card -->
+					<section
+						class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-8 backdrop-blur-sm rigid-card system-card relative overflow-hidden"
+					>
+						<!-- Under Construction Caution Tape Strip -->
+						<div
+							class="absolute top-0 inset-x-0 h-1.5"
+							style="background: repeating-linear-gradient(45deg, #eab308, #eab308 10px, #171717 10px, #171717 20px);"
+						>
+						</div>
+
+						<div
+							class="flex items-center justify-between border-b border-neutral-800/60 pb-3 mb-5 mt-2 font-mono text-[10px] text-neutral-500"
+						>
+							<div class="flex items-center gap-1.5">
+								<span class="text-amber-500">⚠️</span>
+								<span class="terminal-path"
+									>~/sandbox/active_development.log</span
+								>
+							</div>
+							<span class="text-amber-400 font-bold font-mono"
+								>[STAGED_WIP]</span
+							>
+						</div>
+						<span
+							class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest"
+							>// Workspace Sandbox</span
+						>
+						<h1
+							class="text-3xl font-bold mt-2 mb-4 tracking-tight text-neutral-100"
+						>
+							Ongoing Project Sandbox
+						</h1>
+						<p
+							class="text-neutral-400 leading-relaxed text-sm md:text-base"
+						>
+							Welcome to my experimental dashboard. Below are
+							three modular hero buttons acting as live sandbox
+							containers. In the future, these containers will
+							house fully functional web applications, 3D graphics
+							scripts, and interactive tools.
+						</p>
+					</section>
+
+					<!-- Sandbox Grid: The 3 Hero Placeholders -->
+					<div class="grid grid-cols-1 gap-6">
+						<!-- Card 1: WebGL Shader Playground -->
+						<div
+							id="sandbox-node-1"
+							class="sandbox-card border border-neutral-800 bg-neutral-900/10 hover:bg-neutral-900/20 rounded-xl p-6 system-card flex flex-col gap-4 relative overflow-hidden cursor-pointer select-none transition-all"
+						>
+							<div
+								class="flex items-center justify-between border-b border-neutral-800/50 pb-3"
+							>
+								<div class="flex items-center gap-2">
+									<span class="text-amber-500 text-xs">◆</span
+									>
+									<h3
+										class="text-sm font-bold tracking-tight text-neutral-200"
+									>
+										EXP_01: WebGL Canvas Shader Sandbox
+									</h3>
+								</div>
+								<span
+									class="text-[9px] font-mono text-neutral-500 uppercase"
+									>// NODE_01</span
+								>
+							</div>
+
+							<!-- Decorative Canvas Preview Placeholder -->
+							<div
+								class="h-40 w-full rounded-lg bg-neutral-950/60 border border-dashed border-neutral-800/80 flex flex-col items-center justify-center relative overflow-hidden group/canvas"
+							>
+								<!-- Blueprint Matrix Accent -->
+								<div
+									class="absolute inset-0 opacity-15"
+									style="background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 15px 15px;"
+								>
+								</div>
+
+								<!-- Under Construction Spinning Badge -->
+								<div
+									class="relative z-10 flex flex-col items-center gap-2"
+								>
+									<div
+										class="w-9 h-9 rounded-full border border-neutral-800 bg-neutral-900 flex items-center justify-center text-amber-500 text-sm group-hover/canvas:rotate-45 transition-transform duration-500"
+									>
+										⚙️
+									</div>
+									<span
+										class="text-[10px] font-mono text-neutral-400"
+										>WebGL Shader pipeline offline</span
+									>
+									<span
+										class="text-[8px] font-mono text-neutral-500"
+										>[Click to stage pipeline simulation]</span
+									>
+								</div>
+							</div>
+
+							<div
+								class="flex items-center justify-between text-xs mt-1"
+							>
+								<span
+									class="text-neutral-400 text-[11px] leading-relaxed max-w-[80%]"
+								>
+									Designed to parse raw fragments and compile
+									GLSL shader calculations directly on the
+									graphics card.
+								</span>
+								<div
+									class="px-2 py-0.5 bg-neutral-800 text-[9px] font-mono text-neutral-400 border border-neutral-700/60 rounded"
+								>
+									GLSL / WebGL
+								</div>
+							</div>
+						</div>
+
+						<!-- Card 2: Interactive Vector Particle Stream -->
+						<div
+							id="sandbox-node-2"
+							class="sandbox-card border border-neutral-800 bg-neutral-900/10 hover:bg-neutral-900/20 rounded-xl p-6 system-card flex flex-col gap-4 relative overflow-hidden cursor-pointer select-none transition-all"
+						>
+							<div
+								class="flex items-center justify-between border-b border-neutral-800/50 pb-3"
+							>
+								<div class="flex items-center gap-2">
+									<span class="text-amber-500 text-xs">◆</span
+									>
+									<h3
+										class="text-sm font-bold tracking-tight text-neutral-200"
+									>
+										EXP_02: Vector Field Particle Stream
+									</h3>
+								</div>
+								<span
+									class="text-[9px] font-mono text-neutral-500 uppercase"
+									>// NODE_02</span
+								>
+							</div>
+
+							<!-- Decorative Canvas Preview Placeholder -->
+							<div
+								class="h-40 w-full rounded-lg bg-neutral-950/60 border border-dashed border-neutral-800/80 flex flex-col items-center justify-center relative overflow-hidden group/canvas"
+							>
+								<div
+									class="absolute inset-0 opacity-15"
+									style="background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 15px 15px;"
+								>
+								</div>
+
+								<div
+									class="relative z-10 flex flex-col items-center gap-2"
+								>
+									<div
+										class="w-9 h-9 rounded-full border border-neutral-800 bg-neutral-900 flex items-center justify-center text-amber-500 text-sm group-hover/canvas:scale-110 transition-transform duration-300"
+									>
+										〰️
+									</div>
+									<span
+										class="text-[10px] font-mono text-neutral-400"
+										>Particle vectors uninitialized</span
+									>
+									<span
+										class="text-[8px] font-mono text-neutral-500"
+										>[Click to stage particle stream
+										simulation]</span
+									>
+								</div>
+							</div>
+
+							<div
+								class="flex items-center justify-between text-xs mt-1"
+							>
+								<span
+									class="text-neutral-400 text-[11px] leading-relaxed max-w-[80%]"
+								>
+									Mathematical fluid simulation utilizing
+									velocity vector fields to render 10,000
+									active nodes on browser frames.
+								</span>
+								<div
+									class="px-2 py-0.5 bg-neutral-800 text-[9px] font-mono text-neutral-400 border border-neutral-700/60 rounded"
+								>
+									HTML Canvas
+								</div>
+							</div>
+						</div>
+
+						<!-- Card 3: Advanced Relational Schema Graph -->
+						<div
+							id="sandbox-node-3"
+							class="sandbox-card border border-neutral-800 bg-neutral-900/10 hover:bg-neutral-900/20 rounded-xl p-6 system-card flex flex-col gap-4 relative overflow-hidden cursor-pointer select-none transition-all"
+						>
+							<div
+								class="flex items-center justify-between border-b border-neutral-800/50 pb-3"
+							>
+								<div class="flex items-center gap-2">
+									<span class="text-amber-500 text-xs">◆</span
+									>
+									<h3
+										class="text-sm font-bold tracking-tight text-neutral-200"
+									>
+										EXP_03: Relational Graph Schema Mapper
+									</h3>
+								</div>
+								<span
+									class="text-[9px] font-mono text-neutral-500 uppercase"
+									>// NODE_03</span
+								>
+							</div>
+
+							<!-- Decorative Canvas Preview Placeholder -->
+							<div
+								class="h-40 w-full rounded-lg bg-neutral-950/60 border border-dashed border-neutral-800/80 flex flex-col items-center justify-center relative overflow-hidden group/canvas"
+							>
+								<div
+									class="absolute inset-0 opacity-15"
+									style="background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 15px 15px;"
+								>
+								</div>
+
+								<div
+									class="relative z-10 flex flex-col items-center gap-2"
+								>
+									<div
+										class="w-9 h-9 rounded-full border border-neutral-800 bg-neutral-900 flex items-center justify-center text-amber-500 text-sm group-hover/canvas:rotate-90 transition-transform duration-500"
+									>
+										📊
+									</div>
+									<span
+										class="text-[10px] font-mono text-neutral-400"
+										>Relational schema mapping standby</span
+									>
+									<span
+										class="text-[8px] font-mono text-neutral-500"
+										>[Click to stage database node
+										visualization]</span
+									>
+								</div>
+							</div>
+
+							<div
+								class="flex items-center justify-between text-xs mt-1"
+							>
+								<span
+									class="text-neutral-400 text-[11px] leading-relaxed max-w-[80%]"
+								>
+									Node-based structural diagram renderer to
+									visualize schema configurations,
+									connections, and relational integrity.
+								</span>
+								<div
+									class="px-2 py-0.5 bg-neutral-800 text-[9px] font-mono text-neutral-400 border border-neutral-700/60 rounded"
+								>
+									D3.js / SVG
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- RIGHT COLUMN: Console & Telemetry (Spans 4 columns) -->
+				<aside
+					id="engine-metrics-card"
+					class="lg:col-span-4 border border-neutral-800 bg-neutral-900/10 rounded-xl p-5 font-mono text-[11px] flex flex-col gap-4 rigid-card lg:sticky lg:top-16 backdrop-blur-sm cursor-pointer select-none system-card"
+				>
+					<div
+						class="flex items-center justify-between border-b border-neutral-800/60 pb-2 text-neutral-400"
+					>
+						<span>// SANDBOX_METRICS</span>
+						<span class="h-2 w-2 engine-status-active"></span>
+					</div>
+
+					<div class="flex flex-col gap-2">
+						<div class="flex justify-between text-neutral-500">
+							<span>ENV_WORKSPACE:</span>
+							<span class="text-neutral-300">STAGED_SANDBOX</span>
+						</div>
+						<div class="flex justify-between text-neutral-500">
+							<span>ROUTING_TARGET:</span>
+							<span class="text-neutral-300"
+								>/projects/ongoing-project</span
+							>
+						</div>
+						<div class="flex justify-between text-neutral-500">
+							<span>SYSTEM_MODE:</span>
+							<span class="text-amber-500 font-bold uppercase"
+								>UNDER_CONSTRUCTION</span
+							>
+						</div>
+					</div>
+
+					<hr class="border-neutral-800/60" />
+
+					<!-- Telemetry Stream Logs -->
+					<div
+						id="telemetry-widget"
+						class="border border-neutral-800/80 rounded-lg p-4 bg-neutral-950/60 text-stone-200 font-mono text-[11px] leading-relaxed shadow-inner mt-2"
+					>
+						<div
+							class="flex items-center justify-between text-neutral-500 border-b border-neutral-900/60 pb-2 mb-2"
+						>
+							<span>// SIMULATION_SOCKET</span>
+							<span
+								id="telemetry-live-indicator"
+								class="text-neutral-500 text-[9px] flex items-center gap-1 font-bold"
+								>● STANDBY</span
+							>
+						</div>
+
+						<div
+							id="telemetry-log-stream"
+							class="space-y-1.5 min-h-[160px] max-h-[220px] overflow-y-auto"
+						>
+							<div class="text-neutral-500 italic">
+								Awaiting sandbox card interaction. Click any
+								experimental node container to verify telemetry
+								response loop.
+							</div>
+						</div>
+					</div>
+				</aside>
+			</main>
+		</div>
+
+		<script is:inline>
+			window.addEventListener("DOMContentLoaded", () => {
+				// Theme Toggle Script
+				const themeToggleBtns =
+					document.querySelectorAll(".theme-toggle-btn");
+
+				function updateThemeUI(isLight) {
+					themeToggleBtns.forEach((btn) => {
+						const textSpan = btn.querySelector("span");
+						if (isLight) {
+							document.documentElement.classList.add("light");
+							btn.innerHTML = textSpan
+								? `<span>THEME: BEIGE_MODE</span><span id="theme-icon">☾</span>`
+								: "☾";
+						} else {
+							document.documentElement.classList.remove("light");
+							btn.innerHTML = textSpan
+								? `<span>THEME: DEFAULT (DARK)</span><span id="theme-icon">☼</span>`
+								: "☼";
+						}
+					});
+				}
+
+				// Initialize UI theme state
+				const isCurrentlyLight =
+					document.documentElement.classList.contains("light");
+				updateThemeUI(isCurrentlyLight);
+
+				themeToggleBtns.forEach((btn) => {
+					btn.addEventListener("click", () => {
+						const isLight =
+							document.documentElement.classList.toggle("light");
+						localStorage.setItem(
+							"theme",
+							isLight ? "light" : "dark",
+						);
+						updateThemeUI(isLight);
+					});
+				});
+
+				// Mobile Drawer Menu Script
+				const menuToggle = document.getElementById("menu-toggle");
+				const mobileMenu = document.getElementById("mobile-menu");
+				const mobileNavLinks =
+					document.querySelectorAll(".mobile-nav-link");
+
+				if (menuToggle && mobileMenu) {
+					menuToggle.addEventListener("click", () => {
+						const isOpen = menuToggle.classList.toggle("open");
+						if (isOpen) {
+							mobileMenu.classList.remove(
+								"-translate-y-full",
+								"opacity-0",
+								"pointer-events-none",
+							);
+						} else {
+							mobileMenu.classList.add(
+								"-translate-y-full",
+								"opacity-0",
+								"pointer-events-none",
+							);
+						}
+					});
+
+					mobileNavLinks.forEach((link) => {
+						link.addEventListener("click", () => {
+							menuToggle.classList.remove("open");
+							mobileMenu.classList.add(
+								"-translate-y-full",
+								"opacity-0",
+								"pointer-events-none",
+							);
+						});
+					});
+				}
+
+				// Telemetry Logger Logic for Card Interaction
+				const cards = document.querySelectorAll(".sandbox-card");
+				const logStream = document.getElementById(
+					"telemetry-log-stream",
+				);
+				const liveIndicator = document.getElementById(
+					"telemetry-live-indicator",
+				);
+
+				let logQueue = [];
+				let isLogging = false;
+
+				function pushLogs(logsList) {
+					logQueue.push(...logsList);
+					if (!isLogging) {
+						processLogQueue();
+					}
+				}
+
+				function processLogQueue() {
+					if (logQueue.length === 0) {
+						isLogging = false;
+						liveIndicator.className =
+							"text-neutral-500 text-[9px] flex items-center gap-1 font-bold animate-none";
+						liveIndicator.textContent = "● STANDBY";
+						return;
+					}
+
+					isLogging = true;
+					liveIndicator.className =
+						"text-emerald-500 text-[9px] flex items-center gap-1 font-bold animate-pulse";
+					liveIndicator.textContent = "● ACTIVE";
+
+					const item = logQueue.shift();
+
+					// Clear default notice
+					if (logStream.querySelector(".italic")) {
+						logStream.innerHTML = "";
+					}
+
+					const entry = document.createElement("div");
+					let badge = `<span class="text-neutral-500">[SYS]</span>`;
+					if (item.type === "OK")
+						badge = `<span class="text-emerald-400">[ OK ]</span>`;
+					if (item.type === "WARN")
+						badge = `<span class="text-amber-400">[WARN]</span>`;
+					if (item.type === "ERR")
+						badge = `<span class="text-red-500">[FAIL]</span>`;
+					if (item.type === "CONN")
+						badge = `<span class="text-sky-400">[CONN]</span>`;
+
+					const timeStr = new Date().toLocaleTimeString();
+					entry.innerHTML = `<span class="text-[9px] text-neutral-500 font-mono">[${timeStr}]</span> ${badge} <span class="text-neutral-300 font-mono text-[10px]">${item.text}</span>`;
+					entry.className =
+						"opacity-0 transform translate-y-0.5 transition-all duration-300";
+
+					logStream.appendChild(entry);
+
+					// Force layout recalculation and trigger transition
+					setTimeout(() => {
+						entry.classList.remove("opacity-0", "translate-y-0.5");
+					}, 10);
+
+					logStream.scrollTop = logStream.scrollHeight;
+
+					// Natural random stepping delay
+					setTimeout(processLogQueue, Math.random() * 300 + 200);
+				}
+
+				cards.forEach((card) => {
+					card.addEventListener("click", () => {
+						const nodeId = card.id;
+
+						// Flash yellow border on card highlight
+						card.classList.add("under-construction-border");
+						setTimeout(() => {
+							card.classList.remove("under-construction-border");
+						}, 1200);
+
+						let sequence = [];
+						if (nodeId === "sandbox-node-1") {
+							sequence = [
+								{
+									type: "CONN",
+									text: "Establishing socket stream connection with WebGL compiler...",
+								},
+								{
+									type: "SYS",
+									text: "Staging shader buffers in GPU memory register...",
+								},
+								{
+									type: "WARN",
+									text: "Initialization warning: GLSL fragment shader files missing source links.",
+								},
+								{
+									type: "ERR",
+									text: "Staging failed: Canvas rendering context returned null.",
+								},
+								{
+									type: "SYS",
+									text: "Workspace is under construction. Aborting socket linkage.█",
+								},
+							];
+						} else if (nodeId === "sandbox-node-2") {
+							sequence = [
+								{
+									type: "CONN",
+									text: "Probing coordinates array for vector physics bounds...",
+								},
+								{
+									type: "SYS",
+									text: "Initializing 10,000 particle points buffer...",
+								},
+								{
+									type: "WARN",
+									text: "Vector collision equations returned uninitialized parameters.",
+								},
+								{
+									type: "ERR",
+									text: "Stream aborted: Core calculations in standalone component files are under construction.",
+								},
+								{
+									type: "SYS",
+									text: "Restructuring particle registry... Connection dropped.█",
+								},
+							];
+						} else if (nodeId === "sandbox-node-3") {
+							sequence = [
+								{
+									type: "CONN",
+									text: "Scanning relational database indices for node schemas...",
+								},
+								{
+									type: "SYS",
+									text: "Mapping nodes: Intake_Core, Spatial_Ecom, E_Learning...",
+								},
+								{
+									type: "WARN",
+									text: "Graph linkage error: Target endpoints for Ongoing_Project unresolved.",
+								},
+								{
+									type: "OK",
+									text: "Staged database layout mapping verified. Connections cached.",
+								},
+								{
+									type: "SYS",
+									text: "Visualization session terminated. Ready to customize schema.█",
+								},
+							];
+						}
+
+						pushLogs(sequence);
+					});
+				});
+			});
+		</script>
+	</body>
+</html>

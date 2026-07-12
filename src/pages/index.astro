@@ -92,7 +92,9 @@ import "../styles/global.css";
 						GB
 					</div>
 					<div>
-						<h2 class="text-xs font-semibold text-neutral-200 tracking-tight">
+						<h2
+							class="text-xs font-semibold text-neutral-200 tracking-tight"
+						>
 							Gerard Baldo
 						</h2>
 						<p class="text-[9px] text-neutral-500 font-mono">
@@ -123,9 +125,20 @@ import "../styles/global.css";
 							stroke-linecap="round"
 							stroke-linejoin="round"
 						>
-							<line x1="4" y1="12" x2="20" y2="12" id="menu-line-1"></line>
-							<line x1="4" y1="6" x2="20" y2="6" id="menu-line-2"></line>
-							<line x1="4" y1="18" x2="20" y2="18" id="menu-line-3"></line>
+							<line
+								x1="4"
+								y1="12"
+								x2="20"
+								y2="12"
+								id="menu-line-1"></line>
+							<line x1="4" y1="6" x2="20" y2="6" id="menu-line-2"
+							></line>
+							<line
+								x1="4"
+								y1="18"
+								x2="20"
+								y2="18"
+								id="menu-line-3"></line>
 						</svg>
 					</button>
 				</div>
@@ -197,9 +210,9 @@ import "../styles/global.css";
 							stroke-linejoin="round"
 							class="text-neutral-600 group-hover:text-neutral-400 transition-colors"
 							><rect width="18" height="18" x="3" y="3" rx="2"
-							></rect><path d="M9 3v18"></path><path
-								d="M15 3v18"></path><path d="M3 9h18"
-							></path><path d="M3 15h18"></path></svg
+							></rect><path d="M9 3v18"></path><path d="M15 3v18"
+							></path><path d="M3 9h18"></path><path d="M3 15h18"
+							></path></svg
 						>
 						03. CAPABILITIES
 					</a>
@@ -220,14 +233,16 @@ import "../styles/global.css";
 							class="text-neutral-600 group-hover:text-neutral-400 transition-colors"
 							><path d="m7.5 4.27 9 5.15"></path><path
 								d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"
-							></path><path d="m3.3 7 8.7 5 8.7-5"
-							></path><path d="M12 22V12"></path></svg
+							></path><path d="m3.3 7 8.7 5 8.7-5"></path><path
+								d="M12 22V12"></path></svg
 						>
 						04. PROJECTS_AREA
 					</a>
 				</nav>
 
-				<div class="flex flex-col gap-4 mt-8 pt-4 border-t border-neutral-800">
+				<div
+					class="flex flex-col gap-4 mt-8 pt-4 border-t border-neutral-800"
+				>
 					<div
 						class="text-[10px] text-neutral-500 font-mono flex items-center gap-2 tracking-tight"
 					>
@@ -441,7 +456,9 @@ import "../styles/global.css";
 							class="relative z-10 w-full lg:pl-[308px] flex flex-col h-full justify-between gap-6"
 						>
 							<!-- Profile Metadata -->
-							<div class="flex flex-row items-center justify-between gap-4">
+							<div
+								class="flex flex-row items-center justify-between gap-4"
+							>
 								<div class="flex-1">
 									<h2
 										class="text-2xl lg:text-3xl font-extrabold text-neutral-100 [.light_&]:text-[#2d2a24] tracking-tight"
@@ -462,9 +479,15 @@ import "../styles/global.css";
 								</div>
 
 								<!-- Mobile-only premium avatar -->
-								<div class="lg:hidden flex-shrink-0 relative select-none pointer-events-none">
-									<div class="relative w-20 h-20 rounded-lg border border-neutral-800 [.light_&]:border-[#d2c9b1] bg-neutral-950/40 p-1">
-										<div class="w-full h-full rounded-md overflow-hidden relative">
+								<div
+									class="lg:hidden flex-shrink-0 relative select-none pointer-events-none"
+								>
+									<div
+										class="relative w-20 h-20 rounded-lg border border-neutral-800 [.light_&]:border-[#d2c9b1] bg-neutral-950/40 p-1"
+									>
+										<div
+											class="w-full h-full rounded-md overflow-hidden relative"
+										>
 											<img
 												src="/profile.jpg"
 												alt="Gerard Dominic Baldo"
@@ -473,9 +496,15 @@ import "../styles/global.css";
 										</div>
 									</div>
 									<!-- Micro-Status Indicator badge -->
-									<span class="absolute -top-1 -right-1 flex h-2.5 w-2.5">
-										<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-										<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+									<span
+										class="absolute -top-1 -right-1 flex h-2.5 w-2.5"
+									>
+										<span
+											class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+										></span>
+										<span
+											class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"
+										></span>
 									</span>
 								</div>
 							</div>
@@ -826,6 +855,105 @@ import "../styles/global.css";
 							Projects Area
 						</h2>
 
+						<!-- Project Tabs Selector -->
+						<div
+							class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-2"
+							id="project-tabs"
+						>
+							<button
+								data-tab="ecommerce"
+								class="project-tab-btn flex flex-col items-start text-left border border-neutral-800 bg-neutral-900/10 hover:bg-neutral-900/30 text-neutral-400 hover:text-neutral-200 transition-all duration-200 rounded-xl p-4 cursor-pointer select-none group"
+							>
+								<span
+									class="text-[9px] font-mono text-neutral-500 group-hover:text-neutral-400 mb-1 transition-colors"
+									>// INTERACTIVE 3D PLATFORM</span
+								>
+								<span
+									class="text-sm font-bold text-neutral-300 group-hover:text-neutral-100 transition-colors"
+									>Spatial E-Commerce Engine</span
+								>
+								<div class="flex gap-1.5 mt-2">
+									<span
+										class="px-2 py-0.5 bg-neutral-800 text-[9px] font-mono text-neutral-400 border border-neutral-700/60 rounded"
+										>Vue.js</span
+									>
+									<span
+										class="px-2 py-0.5 bg-neutral-800 text-[9px] font-mono text-neutral-400 border border-neutral-700/60 rounded"
+										>WebGL</span
+									>
+								</div>
+							</button>
+
+							<button
+								data-tab="intake"
+								class="project-tab-btn flex flex-col items-start text-left border border-neutral-800 bg-neutral-900/10 hover:bg-neutral-900/30 text-neutral-400 hover:text-neutral-200 transition-all duration-200 rounded-xl p-4 cursor-pointer select-none group"
+							>
+								<span
+									class="text-[9px] font-mono text-neutral-500 group-hover:text-neutral-400 mb-1 transition-colors"
+									>// RELATIONAL GIS MAPPING</span
+								>
+								<span
+									class="text-sm font-bold text-neutral-300 group-hover:text-neutral-100 transition-colors"
+									>Unified Intake & Spatial Mapping</span
+								>
+								<div class="flex gap-1.5 mt-2">
+									<span
+										class="px-2 py-0.5 bg-neutral-800 text-[9px] font-mono text-neutral-400 border border-neutral-700/60 rounded"
+										>Leaflet.js</span
+									>
+									<span
+										class="px-2 py-0.5 bg-neutral-800 text-[9px] font-mono text-neutral-400 border border-neutral-700/60 rounded"
+										>Vanilla JS</span
+									>
+								</div>
+							</button>
+						</div>
+
+						<!-- Placeholder Panel (when no project is selected) -->
+						<div
+							id="project-placeholder-panel"
+							class="border border-dashed border-neutral-800 bg-neutral-950/20 rounded-xl p-8 text-center flex flex-col items-center justify-center min-h-[260px]"
+						>
+							<div
+								class="h-12 w-12 rounded-full border border-neutral-800/80 bg-neutral-900/40 flex items-center justify-center mb-3 text-neutral-400"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="animate-pulse text-neutral-400"
+									><rect
+										x="3"
+										y="3"
+										width="18"
+										height="18"
+										rx="2"
+										ry="2"></rect><line
+										x1="9"
+										y1="9"
+										x2="15"
+										y2="15"></line><line
+										x1="15"
+										y1="9"
+										x2="9"
+										y2="15"></line></svg
+								>
+							</div>
+							<p
+								class="text-xs text-neutral-400 max-w-xs leading-relaxed"
+							>
+								Select a project tab above to explore the
+								interactive showcase, case study documentation,
+								and live systems.
+							</p>
+						</div>
+
 						<!-- Capstone Project Card: Spatial E-Commerce Engine -->
 						<div
 							class="border border-neutral-800 bg-neutral-900/10 rounded-xl p-6 system-card project-card w-full"
@@ -961,7 +1089,8 @@ import "../styles/global.css";
 												class="flex items-center gap-2"
 											>
 												<span
-													>// GPU_RENDER_VIEWPORT</span
+													class="text-neutral-400 font-sans font-medium"
+													>3D Model Viewer</span
 												>
 												<button
 													id="toggle-expand-btn"
@@ -981,8 +1110,9 @@ import "../styles/global.css";
 											class="flex flex-wrap items-center gap-1 mb-3 font-mono text-[9px]"
 											id="model-selector-container"
 										>
-											<span class="text-neutral-500 mr-1"
-												>// MODEL:</span
+											<span
+												class="text-neutral-450 mr-1 font-sans font-medium"
+												>Select Model:</span
 											>
 											<button
 												data-model="HeartRing.glb"
@@ -1019,16 +1149,38 @@ import "../styles/global.css";
 												id="boot-canvas-btn"
 												class="absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-neutral-900/80 hover:bg-neutral-800/50 transition-all duration-200 text-neutral-400 font-mono text-[10px] gap-1 z-10"
 											>
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="1.5"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													class="w-10 h-10 text-neutral-300 animate-pulse"
+												>
+													<path
+														d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+													></path>
+													<polyline
+														points="3.27 6.96 12 12.01 20.73 6.96"
+													></polyline>
+													<line
+														x1="12"
+														y1="22.08"
+														x2="12"
+														y2="12"></line>
+												</svg>
 												<span
 													class="font-bold tracking-wider text-neutral-200"
 													>[ INITIALIZE GRAPHICS
 													SUBSYSTEM ]</span
 												>
 												<span
-													class="text-[9px] text-neutral-500 font-sans"
-													>Click to compile shader
-													pipelines and mount 3D
-													spatial matrix</span
+													class="text-[10px] text-neutral-450 font-sans px-6 text-center leading-normal"
+													>Click anywhere inside this
+													viewport to load and rotate
+													the 3D model</span
 												>
 											</button>
 										</div>
@@ -1038,8 +1190,8 @@ import "../styles/global.css";
 										id="canvas-console-msg"
 										class="text-neutral-500 italic mt-2 border-t border-neutral-800/40 pt-2"
 									>
-										System idling. Awaiting graphics context
-										initialization request...
+										Interactive viewer is offline. Click the
+										viewport above to load the model.
 									</div>
 								</div>
 							</div>
@@ -1138,9 +1290,7 @@ import "../styles/global.css";
 								>
 							</summary>
 
-							<div
-								class="p-6 border-t border-neutral-800 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-neutral-950/20"
-							>
+							<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 								<div
 									class="lg:col-span-5 flex flex-col gap-4 text-xs md:text-sm text-neutral-400 leading-relaxed"
 								>
@@ -1567,17 +1717,22 @@ import "../styles/global.css";
 				});
 
 				// Theme Toggle Logic
-				const themeToggleBtns = document.querySelectorAll(".theme-toggle-btn");
+				const themeToggleBtns =
+					document.querySelectorAll(".theme-toggle-btn");
 
 				function updateThemeUI(isLight) {
-					themeToggleBtns.forEach(btn => {
+					themeToggleBtns.forEach((btn) => {
 						const textSpan = btn.querySelector("span");
 						if (isLight) {
 							document.documentElement.classList.add("light");
-							btn.innerHTML = textSpan ? `<span>THEME: BEIGE_MODE</span><span id="theme-icon">☾</span>` : "☾";
+							btn.innerHTML = textSpan
+								? `<span>THEME: BEIGE_MODE</span><span id="theme-icon">☾</span>`
+								: "☾";
 						} else {
 							document.documentElement.classList.remove("light");
-							btn.innerHTML = textSpan ? `<span>THEME: DEFAULT (DARK)</span><span id="theme-icon">☼</span>` : "☼";
+							btn.innerHTML = textSpan
+								? `<span>THEME: DEFAULT (DARK)</span><span id="theme-icon">☼</span>`
+								: "☼";
 						}
 					});
 				}
@@ -1587,11 +1742,14 @@ import "../styles/global.css";
 					document.documentElement.classList.contains("light");
 				updateThemeUI(isCurrentlyLight);
 
-				themeToggleBtns.forEach(btn => {
+				themeToggleBtns.forEach((btn) => {
 					btn.addEventListener("click", () => {
 						const isLight =
 							document.documentElement.classList.toggle("light");
-						localStorage.setItem("theme", isLight ? "light" : "dark");
+						localStorage.setItem(
+							"theme",
+							isLight ? "light" : "dark",
+						);
 						updateThemeUI(isLight);
 					});
 				});
@@ -1599,22 +1757,35 @@ import "../styles/global.css";
 				// Mobile Menu Toggle Logic
 				const menuToggle = document.getElementById("menu-toggle");
 				const mobileMenu = document.getElementById("mobile-menu");
-				const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+				const mobileNavLinks =
+					document.querySelectorAll(".mobile-nav-link");
 
 				if (menuToggle && mobileMenu) {
 					menuToggle.addEventListener("click", () => {
 						const isOpen = menuToggle.classList.toggle("open");
 						if (isOpen) {
-							mobileMenu.classList.remove("-translate-y-full", "opacity-0", "pointer-events-none");
+							mobileMenu.classList.remove(
+								"-translate-y-full",
+								"opacity-0",
+								"pointer-events-none",
+							);
 						} else {
-							mobileMenu.classList.add("-translate-y-full", "opacity-0", "pointer-events-none");
+							mobileMenu.classList.add(
+								"-translate-y-full",
+								"opacity-0",
+								"pointer-events-none",
+							);
 						}
 					});
 
-					mobileNavLinks.forEach(link => {
+					mobileNavLinks.forEach((link) => {
 						link.addEventListener("click", () => {
 							menuToggle.classList.remove("open");
-							mobileMenu.classList.add("-translate-y-full", "opacity-0", "pointer-events-none");
+							mobileMenu.classList.add(
+								"-translate-y-full",
+								"opacity-0",
+								"pointer-events-none",
+							);
 						});
 					});
 				}
@@ -2119,10 +2290,105 @@ import "../styles/global.css";
 							statusText.innerText = "❌ ERROR";
 							statusText.className = "text-red-500";
 							consoleMsg.innerText =
-								"WebGL Engine boot sequence failure.";
+								"Failed to initialize 3D viewer. WebGL may be unsupported.";
 						}
 					});
 				}
+				// --- PROJECT TABS VIEW CONTROLLER ---
+				const tabButtons =
+					document.querySelectorAll(".project-tab-btn");
+				const projectPanels =
+					document.querySelectorAll(".project-panel");
+				const placeholderPanel = document.getElementById(
+					"project-placeholder-panel",
+				);
+
+				tabButtons.forEach((tabBtn) => {
+					tabBtn.addEventListener("click", () => {
+						const selectedTab = tabBtn.getAttribute("data-tab");
+						const isActive =
+							tabBtn.classList.contains("bg-neutral-200");
+
+						// 1. Reset all tab button styles to inactive
+						tabButtons.forEach((btn) => {
+							btn.classList.remove(
+								"bg-neutral-200",
+								"text-neutral-950",
+								"border-neutral-200",
+							);
+							btn.classList.add(
+								"border-neutral-800",
+								"bg-neutral-900/10",
+								"text-neutral-400",
+								"hover:text-neutral-200",
+								"hover:border-neutral-700",
+							);
+							const labelSpan =
+								btn.querySelector("span:nth-child(2)");
+							if (labelSpan) {
+								labelSpan.classList.remove("text-neutral-950");
+								labelSpan.classList.add("text-neutral-300");
+							}
+						});
+
+						// 2. Hide all project panels
+						projectPanels.forEach((panel) => {
+							panel.classList.add("hidden");
+							panel.classList.remove("animate-fade-in");
+						});
+
+						if (isActive) {
+							// If active was clicked, collapse it so both are closed
+							placeholderPanel.classList.remove("hidden");
+							placeholderPanel.classList.add("animate-fade-in");
+						} else {
+							// Style the clicked button as active
+							tabBtn.classList.remove(
+								"border-neutral-800",
+								"bg-neutral-900/10",
+								"text-neutral-400",
+								"hover:text-neutral-200",
+								"hover:border-neutral-700",
+							);
+							tabBtn.classList.add(
+								"bg-neutral-200",
+								"text-neutral-950",
+								"border-neutral-200",
+							);
+							const labelSpan =
+								tabBtn.querySelector("span:nth-child(2)");
+							if (labelSpan) {
+								labelSpan.classList.remove("text-neutral-300");
+								labelSpan.classList.add("text-neutral-950");
+							}
+
+							// Reveal selected panel
+							placeholderPanel.classList.add("hidden");
+							const targetPanel = document.getElementById(
+								`project-panel-${selectedTab}`,
+							);
+							if (targetPanel) {
+								targetPanel.classList.remove("hidden");
+								targetPanel.classList.add("animate-fade-in");
+							}
+
+							// Handle Map Initialization & resize invalidation on click
+							if (selectedTab === "intake") {
+								if (
+									window.initializeMapEngine &&
+									!window.mapInitialized
+								) {
+									window.initializeMapEngine();
+								}
+								if (window.mapInstance) {
+									setTimeout(() => {
+										window.mapInstance.invalidateSize();
+									}, 100);
+								}
+							}
+						}
+					});
+				});
 			});
 		</script>
 
