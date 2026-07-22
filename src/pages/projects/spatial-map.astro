@@ -9,27 +9,37 @@ import "../../styles/global.css";
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Gerard Baldo | Spatial Map Case Study</title>
-		
-		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-		<script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+			integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+			crossorigin=""
+		/>
+		<script
+			is:inline
+			src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+			integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+			crossorigin=""></script>
 
 		<script is:inline>
-			(function() {
-				const savedTheme = localStorage.getItem('theme');
-				if (savedTheme === 'light') {
-					document.documentElement.classList.add('light');
+			(function () {
+				const savedTheme = localStorage.getItem("theme");
+				if (savedTheme === "light") {
+					document.documentElement.classList.add("light");
 				} else {
-					document.documentElement.classList.remove('light');
+					document.documentElement.classList.remove("light");
 				}
 			})();
 		</script>
 
 		<style>
 			#interactive-simulation-card {
-				transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
-				            border-color 0.7s ease, 
-				            box-shadow 0.7s ease,
-				            background-color 0.25s ease;
+				transition:
+					width 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+					border-color 0.7s ease,
+					box-shadow 0.7s ease,
+					background-color 0.25s ease;
 				width: 100%;
 				max-width: none;
 			}
@@ -45,8 +55,9 @@ import "../../styles/global.css";
 			@media (min-width: 1024px) {
 				#interactive-simulation-card.expanded {
 					width: calc(100vw - 16rem - 8rem);
-					box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.9), 
-					            0 0 35px -5px rgba(16, 185, 129, 0.15);
+					box-shadow:
+						0 20px 40px -15px rgba(0, 0, 0, 0.9),
+						0 0 35px -5px rgba(16, 185, 129, 0.15);
 				}
 			}
 
@@ -56,17 +67,37 @@ import "../../styles/global.css";
 				border-color: rgba(16, 185, 129, 0.4);
 				box-shadow: 0 20px 40px -15px rgba(130, 120, 100, 0.12);
 			}
-			:global(.light) #interactive-simulation-card .bg-neutral-950 { background-color: #fdfdfc; border-color: #e6e0d2; }
-			:global(.light) #interactive-simulation-card .bg-neutral-900 { background-color: #f3eee0; border-color: #ddd7c9; }
-			:global(.light) #interactive-simulation-card input, 
-			:global(.light) #interactive-simulation-card select { color: #2a2822; background-color: #f3eee0; border-color: #ddd7c9; }
+			:global(.light) #interactive-simulation-card .bg-neutral-950 {
+				background-color: #fdfdfc;
+				border-color: #e6e0d2;
+			}
+			:global(.light) #interactive-simulation-card .bg-neutral-900 {
+				background-color: #f3eee0;
+				border-color: #ddd7c9;
+			}
+			:global(.light) #interactive-simulation-card input,
+			:global(.light) #interactive-simulation-card select {
+				color: #2a2822;
+				background-color: #f3eee0;
+				border-color: #ddd7c9;
+			}
 			:global(.light) #interactive-simulation-card .text-neutral-100,
 			:global(.light) #interactive-simulation-card .text-neutral-200,
-			:global(.light) #interactive-simulation-card .text-neutral-300 { color: #2a2822; }
+			:global(.light) #interactive-simulation-card .text-neutral-300 {
+				color: #2a2822;
+			}
 			:global(.light) #interactive-simulation-card .text-neutral-400,
-			:global(.light) #interactive-simulation-card .text-neutral-500 { color: #7d7766; }
-			:global(.light) #sim-api-console { background-color: #f3eee0; border-color: #ddd7c9; color: #5c574a; }
-			:global(.light) #sim-payload-json { color: #047857; }
+			:global(.light) #interactive-simulation-card .text-neutral-500 {
+				color: #7d7766;
+			}
+			:global(.light) #sim-api-console {
+				background-color: #f3eee0;
+				border-color: #ddd7c9;
+				color: #5c574a;
+			}
+			:global(.light) #sim-payload-json {
+				color: #047857;
+			}
 		</style>
 	</head>
 	<body
@@ -84,7 +115,9 @@ import "../../styles/global.css";
 						GB
 					</div>
 					<div>
-						<h2 class="text-xs font-semibold text-neutral-200 tracking-tight">
+						<h2
+							class="text-xs font-semibold text-neutral-200 tracking-tight"
+						>
 							Gerard Baldo
 						</h2>
 						<p class="text-[9px] text-neutral-500 font-mono">
@@ -115,9 +148,20 @@ import "../../styles/global.css";
 							stroke-linecap="round"
 							stroke-linejoin="round"
 						>
-							<line x1="4" y1="12" x2="20" y2="12" id="menu-line-1"></line>
-							<line x1="4" y1="6" x2="20" y2="6" id="menu-line-2"></line>
-							<line x1="4" y1="18" x2="20" y2="18" id="menu-line-3"></line>
+							<line
+								x1="4"
+								y1="12"
+								x2="20"
+								y2="12"
+								id="menu-line-1"></line>
+							<line x1="4" y1="6" x2="20" y2="6" id="menu-line-2"
+							></line>
+							<line
+								x1="4"
+								y1="18"
+								x2="20"
+								y2="18"
+								id="menu-line-3"></line>
 						</svg>
 					</button>
 				</div>
@@ -137,7 +181,9 @@ import "../../styles/global.css";
 					</a>
 				</nav>
 
-				<div class="flex flex-col gap-4 mt-8 pt-4 border-t border-neutral-800">
+				<div
+					class="flex flex-col gap-4 mt-8 pt-4 border-t border-neutral-800"
+				>
 					<div
 						class="text-[10px] text-neutral-500 font-mono flex items-center gap-2 tracking-tight"
 					>
@@ -205,277 +251,542 @@ import "../../styles/global.css";
 			>
 				<!-- LEFT COLUMN: Content Column (Spans 8 of 12 columns) -->
 				<div class="lg:col-span-8 flex flex-col gap-8">
-				<a href="/" class="text-xs font-mono text-neutral-500 hover:text-neutral-300 transition-colors self-start">
-					// BACK_TO_DASHBOARD
-				</a>
-
-				<section class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-8 backdrop-blur-sm rigid-card system-card">
-					<div
-						class="flex items-center justify-between border-b border-neutral-800/60 pb-3 mb-5 font-mono text-[10px] text-neutral-500"
+					<a
+						href="/"
+						class="text-xs font-mono text-neutral-500 hover:text-neutral-300 transition-colors self-start"
 					>
-						<div class="flex items-center gap-1.5">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="11"
-								height="11"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2.5"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								class="text-emerald-500"
-								><polyline points="4 17 10 11 4 5"
-								></polyline><line
-									x1="12"
-									y1="19"
-									x2="20"
-									y2="19"></line></svg
-							>
-							<span class="terminal-path">~/case_study/unified_intake_spatial_mapping.md</span>
-						</div>
-						<span>[STABLE]</span>
-					</div>
-					<span class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">// Case Study</span>
-					<h1 class="text-3xl font-bold mt-2 mb-4 tracking-tight text-neutral-100">
-						Unified Intake & Spatial Mapping Engine
-					</h1>
-					<p class="text-neutral-400 leading-relaxed text-sm md:text-base">
-						A complete restructuring of a legacy government profiling form into a dynamic relational intake system featuring zero-friction GIS coordinate mapping.
-					</p>
+						// BACK_TO_DASHBOARD
+					</a>
 
-					<div class="flex flex-wrap gap-2 mt-6">
-						<span class="px-2 py-1 text-xs font-mono rounded bg-neutral-900 text-neutral-400 border border-neutral-800">Leaflet.js</span>
-						<span class="px-2 py-1 text-xs font-mono rounded bg-neutral-900 text-neutral-400 border border-neutral-800">Dynamic DOM Repeater</span>
-						<span class="px-2 py-1 text-xs font-mono rounded bg-neutral-900 text-neutral-400 border border-neutral-800">Vanilla JS State</span>
-						<span class="px-2 py-1 text-xs font-mono rounded bg-neutral-900 text-neutral-400 border border-neutral-800">DSWD Pag Abot</span>
-					</div>
-				</section>
-
-				<section class="border border-neutral-800 bg-neutral-900/10 rounded-xl p-8 flex flex-col gap-6 rigid-card system-card">
-					<div
-						class="flex items-center justify-between border-b border-neutral-800/60 pb-3 mb-1 font-mono text-[10px] text-neutral-500"
+					<section
+						class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-8 backdrop-blur-sm rigid-card system-card"
 					>
-						<div class="flex items-center gap-1.5">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="11"
-								height="11"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2.5"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								class="text-blue-500/90"
-								><rect
-									width="20"
-									height="16"
-									x="2"
-									y="4"
-									rx="2"></rect><path d="M6 8h.01"
-								></path><path d="M10 8h.01"></path><path
-									d="M14 8h.01"></path></svg
+						<div
+							class="flex items-center justify-between border-b border-neutral-800/60 pb-3 mb-5 font-mono text-[10px] text-neutral-500"
+						>
+							<div class="flex items-center gap-1.5">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="11"
+									height="11"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="text-emerald-500"
+									><polyline points="4 17 10 11 4 5"
+									></polyline><line
+										x1="12"
+										y1="19"
+										x2="20"
+										y2="19"></line></svg
+								>
+								<span class="terminal-path"
+									>~/case_study/unified_intake_spatial_mapping.md</span
+								>
+							</div>
+							<span>[STABLE]</span>
+						</div>
+						<span
+							class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest"
+							>// Case Study</span
+						>
+						<h1
+							class="text-3xl font-bold mt-2 mb-4 tracking-tight text-neutral-100"
+						>
+							Unified Intake & Spatial Mapping Engine
+						</h1>
+						<p
+							class="text-neutral-400 leading-relaxed text-sm md:text-base"
+						>
+							A complete restructuring of a legacy government
+							profiling form into a dynamic relational intake
+							system featuring zero-friction GIS coordinate
+							mapping.
+						</p>
+
+						<div class="flex flex-wrap gap-2 mt-6">
+							<span
+								class="px-2 py-1 text-xs font-mono rounded bg-neutral-900 text-neutral-400 border border-neutral-800"
+								>Leaflet.js</span
 							>
-							<span class="terminal-path">~/case_study/bottleneck_analysis.md</span>
+							<span
+								class="px-2 py-1 text-xs font-mono rounded bg-neutral-900 text-neutral-400 border border-neutral-800"
+								>Dynamic DOM Repeater</span
+							>
+							<span
+								class="px-2 py-1 text-xs font-mono rounded bg-neutral-900 text-neutral-400 border border-neutral-800"
+								>Vanilla JS State</span
+							>
+							<span
+								class="px-2 py-1 text-xs font-mono rounded bg-neutral-900 text-neutral-400 border border-neutral-800"
+								>DSWD Pag Abot</span
+							>
 						</div>
-						<span>[ANALYZED]</span>
-					</div>
-					<div>
-						<h2 class="text-lg font-bold text-neutral-200 mb-3 tracking-tight">// THE BOTTLENECK & THE TASK</h2>
-						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
-							The Pag Abot Program targets individuals and families in street situations (FISS), providing critical social rescue and long-term reintegration. When field operations deployed, operators faced massive frictional gridlock caused by their core data-collection tool: <strong>the legacy intake form was rigid and address-dependent.</strong>
-						</p>
-						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
-							Because beneficiaries are frequently located under overpasses, on street corners, or near landmarks with zero structured physical addresses, traditional text logging broke. Furthermore, processing entire family structures was highly inefficient—the old interface could not scale fluidly to account for multiple family members encountered together on-site.
-						</p>
-						<p class="text-neutral-400 text-sm leading-relaxed">
-							Prior development teams stalled trying to implement coordinate tracking and dynamic layouts. My supervisors handed me the task from scratch: refactor the entire collection component to introduce seamless, high-velocity profiling and multi-member data integrity within a unified workspace.
-						</p>
-					</div>
+					</section>
 
-					<hr class="border-neutral-800/80" />
-
-					<div>
-						<h2 class="text-lg font-bold text-neutral-200 mb-3 tracking-tight">// INTENTIONALLY ENGINEERED ARCHITECTURE</h2>
-						
-						<h3 class="text-xs font-mono text-neutral-300 uppercase tracking-wider mb-2 mt-4">1. Relational Intake Form & Dynamic Sub-Form Repeater</h3>
-						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
-							To maximize field intake speed, I re-engineered the legacy fill-up form into a responsive, clean DOM controller. I integrated a specific classification toggle that allowed operators to instantly flag an individual's location context (e.g., street-level environment vs. structured shelter).
-						</p>
-						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
-							To map families cohabiting in these environments, I engineered a **dynamic nested sub-form repeater**. Instead of routing operators through complex secondary pages, a single button click instantly instantiates and injects a clean, secondary family intake container directly into the active view. Each sub-form automatically tracks relational data—binding the family member directly to the primary beneficiary node while maintaining field validation arrays on the client side.
-						</p>
-
-						<h3 class="text-xs font-mono text-neutral-300 uppercase tracking-wider mb-2 mt-4">2. Zero-Friction GIS Isolation: Leaflet over Google</h3>
-						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
-							When adding the cartographic tracking layer, the mainstream solution was Google Maps API. However, this presented organizational friction: it required billing profiles, API key bindings, and permanent account setups. Because I was developing this as an intern, tying critical infrastructure to temporary profiles risked severe deployment issues later.
-						</p>
-						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
-							Prioritizing a **seamless, frictionless corporate handoff**, I integrated <strong>Leaflet.js</strong>. It was light, fast, customizable, and ran entirely token-free, allowing the team to adopt the code base instantly with absolute zero authentication management or billing configuration overhead.
-						</p>
-
-						<h3 class="text-xs font-mono text-neutral-300 uppercase tracking-wider mb-2 mt-4">3. Reclaiming Dormant Database Schemas</h3>
-						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
-							Completed in a rapid 3-to-4 day development cycle, my prototype was wired straight into the application's underlying submission pipeline. During my analysis of the core application layout, I discovered that the existing database schema and system API already possessed unmapped, dormant spatial coordinate columns that were sitting completely unused. 
-						</p>
-						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
-							I calibrated the dynamic form's payload format to feed latitude/longitude data directly into those exact waiting structures, passing data safely through the pre-configured backend API guardrails without needing any server-side database refactoring.
-						</p>
-
-						<h3 class="text-xs font-mono text-neutral-300 uppercase tracking-wider mb-2 mt-4">4. Defeating the Leaflet Container Trap</h3>
-						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
-							Embedding this new layout inside our clean, accordion-style project tracking dashboard introduced a layout failure: initializing a Leaflet instance inside a hidden element (`display: none`) strips its capability to calculate real layout widths. When expanded, the map would render corrupted tiles and shattered boundaries.
-						</p>
-						<p class="text-neutral-400 text-sm leading-relaxed mb-4">
-							I resolved this defensively by listening exclusively to the container card's `'toggle'` event. The GIS layer only initializes when physical heights are accurately computed in the DOM:
-						</p>
-
-						<div class="bg-neutral-950 border border-neutral-800 rounded-lg p-4 font-mono text-xs text-neutral-300 overflow-x-auto leading-relaxed mb-6">
-							<span class="text-neutral-500">// Initialize GIS layer only when accordion actively opens to preserve layout heights</span><br />
-							card.addEventListener(<span class="text-emerald-400">'toggle'</span>, () =&gt; &#123;<br />
-							&nbsp;&nbsp;<span class="text-amber-400">if</span> (card.open && !mapInitialized) &#123;<br />
-							&nbsp;&nbsp;&nbsp;&nbsp;initializeMapEngine();<br />
-							&nbsp;&nbsp;&#125;<br />
-							&#125;);
-						</div>
-					</div>
-				</section>
-
-				<section id="interactive-simulation-card" class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-6 md:p-8 flex flex-col gap-6 rigid-card system-card">
-					<div
-						class="flex items-center justify-between border-b border-neutral-800/60 pb-3 mb-1 font-mono text-[10px] text-neutral-500"
+					<section
+						class="border border-neutral-800 bg-neutral-900/10 rounded-xl p-8 flex flex-col gap-6 rigid-card system-card"
 					>
-						<div class="flex items-center gap-1.5">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="11"
-								height="11"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2.5"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								class="text-amber-500/90"
-								><path
-									d="m12 3-1.912 5.886h6.224z"
-								></path><path
-									d="m12 21 1.912-5.886H7.676z"
-								></path><path
-									d="m3 12 5.886 1.912V7.676z"
-								></path><path
-									d="m21 12-5.886-1.912v6.224z"
-								></path></svg
-							>
-							<span class="terminal-path">~/case_study/system_simulation.exe</span>
+						<div
+							class="flex items-center justify-between border-b border-neutral-800/60 pb-3 mb-1 font-mono text-[10px] text-neutral-500"
+						>
+							<div class="flex items-center gap-1.5">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="11"
+									height="11"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="text-blue-500/90"
+									><rect
+										width="20"
+										height="16"
+										x="2"
+										y="4"
+										rx="2"></rect><path d="M6 8h.01"
+									></path><path d="M10 8h.01"></path><path
+										d="M14 8h.01"></path></svg
+								>
+								<span class="terminal-path"
+									>~/case_study/bottleneck_analysis.md</span
+								>
+							</div>
+							<span>[ANALYZED]</span>
 						</div>
-						<span>[SANDBOX_READY]</span>
-					</div>
-					<div class="flex flex-col gap-1.5">
-						<div class="flex items-center justify-between">
-							<div class="flex items-center gap-2">
-								<span id="sim-status-pulse" class="h-1.5 w-1.5 rounded-full bg-neutral-700 transition-all duration-700"></span>
-								<span id="sim-status-text" class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest transition-all duration-700">// Sandbox Environment: Standby</span>
+						<div>
+							<h2
+								class="text-lg font-bold text-neutral-200 mb-3 tracking-tight"
+							>
+								// THE BOTTLENECK & THE TASK
+							</h2>
+							<p
+								class="text-neutral-400 text-sm leading-relaxed mb-4"
+							>
+								The Pag Abot Program targets individuals and
+								families in street situations (FISS), providing
+								critical social rescue and long-term
+								reintegration. When field operations deployed,
+								operators faced massive frictional gridlock
+								caused by their core data-collection tool: <strong
+									>the legacy intake form was rigid and
+									address-dependent.</strong
+								>
+							</p>
+							<p
+								class="text-neutral-400 text-sm leading-relaxed mb-4"
+							>
+								Because beneficiaries are frequently located
+								under overpasses, on street corners, or near
+								landmarks with zero structured physical
+								addresses, traditional text logging broke.
+								Furthermore, processing entire family structures
+								was highly inefficient—the old interface could
+								not scale fluidly to account for multiple family
+								members encountered together on-site.
+							</p>
+							<p class="text-neutral-400 text-sm leading-relaxed">
+								Prior development teams stalled trying to
+								implement coordinate tracking and dynamic
+								layouts. My supervisors handed me the task from
+								scratch: refactor the entire collection
+								component to introduce seamless, high-velocity
+								profiling and multi-member data integrity within
+								a unified workspace.
+							</p>
+						</div>
+
+						<hr class="border-neutral-800/80" />
+
+						<div>
+							<h2
+								class="text-lg font-bold text-neutral-200 mb-3 tracking-tight"
+							>
+								// INTENTIONALLY ENGINEERED ARCHITECTURE
+							</h2>
+
+							<h3
+								class="text-xs font-mono text-neutral-300 uppercase tracking-wider mb-2 mt-4"
+							>
+								1. Relational Intake Form & Dynamic Sub-Form
+								Repeater
+							</h3>
+							<p
+								class="text-neutral-400 text-sm leading-relaxed mb-4"
+							>
+								To maximize field intake speed, I re-engineered
+								the legacy fill-up form into a responsive, clean
+								DOM controller. I integrated a specific
+								classification toggle that allowed operators to
+								instantly flag an individual's location context
+								(e.g., street-level environment vs. structured
+								shelter).
+							</p>
+							<p
+								class="text-neutral-400 text-sm leading-relaxed mb-4"
+							>
+								To map families cohabiting in these
+								environments, I engineered a **dynamic nested
+								sub-form repeater**. Instead of routing
+								operators through complex secondary pages, a
+								single button click instantly instantiates and
+								injects a clean, secondary family intake
+								container directly into the active view. Each
+								sub-form automatically tracks relational
+								data—binding the family member directly to the
+								primary beneficiary node while maintaining field
+								validation arrays on the client side.
+							</p>
+
+							<h3
+								class="text-xs font-mono text-neutral-300 uppercase tracking-wider mb-2 mt-4"
+							>
+								2. Zero-Friction GIS Isolation: Leaflet over
+								Google
+							</h3>
+							<p
+								class="text-neutral-400 text-sm leading-relaxed mb-4"
+							>
+								When adding the cartographic tracking layer, the
+								mainstream solution was Google Maps API.
+								However, this presented organizational friction:
+								it required billing profiles, API key bindings,
+								and permanent account setups. Because I was
+								developing this as an intern, tying critical
+								infrastructure to temporary profiles risked
+								severe deployment issues later.
+							</p>
+							<p
+								class="text-neutral-400 text-sm leading-relaxed mb-4"
+							>
+								Prioritizing a **seamless, frictionless
+								corporate handoff**, I integrated <strong
+									>Leaflet.js</strong
+								>. It was light, fast, customizable, and ran
+								entirely token-free, allowing the team to adopt
+								the code base instantly with absolute zero
+								authentication management or billing
+								configuration overhead.
+							</p>
+
+							<h3
+								class="text-xs font-mono text-neutral-300 uppercase tracking-wider mb-2 mt-4"
+							>
+								3. Reclaiming Dormant Database Schemas
+							</h3>
+							<p
+								class="text-neutral-400 text-sm leading-relaxed mb-4"
+							>
+								Completed in a rapid 3-to-4 day development
+								cycle, my prototype was wired straight into the
+								application's underlying submission pipeline.
+								During my analysis of the core application
+								layout, I discovered that the existing database
+								schema and system API already possessed
+								unmapped, dormant spatial coordinate columns
+								that were sitting completely unused.
+							</p>
+							<p
+								class="text-neutral-400 text-sm leading-relaxed mb-4"
+							>
+								I calibrated the dynamic form's payload format
+								to feed latitude/longitude data directly into
+								those exact waiting structures, passing data
+								safely through the pre-configured backend API
+								guardrails without needing any server-side
+								database refactoring.
+							</p>
+
+							<h3
+								class="text-xs font-mono text-neutral-300 uppercase tracking-wider mb-2 mt-4"
+							>
+								4. Defeating the Leaflet Container Trap
+							</h3>
+							<p
+								class="text-neutral-400 text-sm leading-relaxed mb-4"
+							>
+								Embedding this new layout inside our clean,
+								accordion-style project tracking dashboard
+								introduced a layout failure: initializing a
+								Leaflet instance inside a hidden element
+								(`display: none`) strips its capability to
+								calculate real layout widths. When expanded, the
+								map would render corrupted tiles and shattered
+								boundaries.
+							</p>
+							<p
+								class="text-neutral-400 text-sm leading-relaxed mb-4"
+							>
+								I resolved this defensively by listening
+								exclusively to the container card's `'toggle'`
+								event. The GIS layer only initializes when
+								physical heights are accurately computed in the
+								DOM:
+							</p>
+
+							<div
+								class="bg-neutral-950 border border-neutral-800 rounded-lg p-4 font-mono text-xs text-neutral-300 overflow-x-auto leading-relaxed mb-6"
+							>
+								<span class="text-neutral-500"
+									>// Initialize GIS layer only when accordion
+									actively opens to preserve layout heights</span
+								><br />
+								card.addEventListener(<span
+									class="text-emerald-400">'toggle'</span
+								>, () =&gt; &#123;<br />
+								&nbsp;&nbsp;<span class="text-amber-400"
+									>if</span
+								> (card.open && !mapInitialized) &#123;<br />
+								&nbsp;&nbsp;&nbsp;&nbsp;initializeMapEngine();<br
+								/>
+								&nbsp;&nbsp;&#125;<br />
+								&#125;);
 							</div>
 						</div>
-						<h2 class="text-lg font-bold text-neutral-200 tracking-tight">// INTERACTIVE SYSTEM SIMULATION</h2>
-						<p class="text-neutral-400 text-xs mt-1 leading-relaxed">
-							A standalone reconstruction of the operational workspace originally built with Vue.js. Interact with the form parameters, expand family units, and drop map markers to monitor structural payload mutations live.
-						</p>
-					</div>
+					</section>
 
-					<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-						<div class="lg:col-span-7 border border-neutral-800/80 bg-neutral-950 rounded-xl p-5 flex flex-col gap-4">
-							<div class="flex items-center justify-between border-b border-neutral-800 pb-3">
-								<span class="text-xs font-mono font-bold tracking-tight text-neutral-300">PRIMARY_INTAKE_CONTROLLER</span>
+					<section
+						id="interactive-simulation-card"
+						class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-6 md:p-8 flex flex-col gap-6 rigid-card system-card"
+					>
+						<div
+							class="flex items-center justify-between border-b border-neutral-800/60 pb-3 mb-1 font-mono text-[10px] text-neutral-500"
+						>
+							<div class="flex items-center gap-1.5">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="11"
+									height="11"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="text-amber-500/90"
+									><path d="m12 3-1.912 5.886h6.224z"
+									></path><path d="m12 21 1.912-5.886H7.676z"
+									></path><path d="m3 12 5.886 1.912V7.676z"
+									></path><path d="m21 12-5.886-1.912v6.224z"
+									></path></svg
+								>
+								<span class="terminal-path"
+									>~/case_study/system_simulation.exe</span
+								>
+							</div>
+							<span>[SANDBOX_READY]</span>
+						</div>
+						<div class="flex flex-col gap-1.5">
+							<div class="flex items-center justify-between">
 								<div class="flex items-center gap-2">
-									<label class="text-[10px] font-mono text-neutral-500 uppercase">Street Context:</label>
-									<button id="sim-context-toggle" class="px-2 py-0.5 text-[10px] font-mono font-bold rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 hover:bg-amber-500/20 transition-all select-none cursor-pointer">
-										STREET_SITUATION
-									</button>
+									<span
+										id="sim-status-pulse"
+										class="h-1.5 w-1.5 rounded-full bg-neutral-700 transition-all duration-700"
+									></span>
+									<span
+										id="sim-status-text"
+										class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest transition-all duration-700"
+										>// Sandbox Environment: Standby</span
+									>
 								</div>
 							</div>
-
-							<div class="grid grid-cols-2 gap-3 text-xs">
-								<div class="flex flex-col gap-1">
-									<label class="font-mono text-[10px] text-neutral-500">BENEFICIARY_NAME</label>
-									<input id="sim-input-name" type="text" value="Gerard Dominic" class="bg-neutral-900 border border-neutral-800 text-neutral-200 rounded px-2.5 py-1.5 focus:outline-none focus:border-neutral-700 font-mono text-xs" />
-								</div>
-								<div class="flex flex-col gap-1">
-									<label class="font-mono text-[10px] text-neutral-500">CAPTURED_COORDINATES</label>
-									<div class="grid grid-cols-2 gap-1 font-mono text-[11px]">
-										<div class="bg-neutral-900 border border-neutral-800 text-neutral-400 px-2 py-1.5 rounded flex justify-between">
-											<span class="text-neutral-600">LAT:</span><span id="sim-lat">14.654</span>
-										</div>
-										<div class="bg-neutral-900 border border-neutral-800 text-neutral-400 px-2 py-1.5 rounded flex justify-between">
-											<span class="text-neutral-600">LNG:</span><span id="sim-lng">121.049</span>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="flex flex-col gap-2 mt-2">
-								<div class="flex items-center justify-between">
-									<span class="font-mono text-[10px] text-neutral-400 tracking-wider">// RELATED_DEPENDENTS_REGISTRY</span>
-									<button id="sim-add-member-btn" class="px-2 py-1 text-[10px] font-mono rounded bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 hover:border-neutral-700 text-neutral-300 transition-all cursor-pointer">
-										+ Add Family Member Node
-									</button>
-								</div>
-								<div id="sim-dependents-wrapper" class="flex flex-col gap-2.5 max-h-[190px] overflow-y-auto pr-1">
-									</div>
-							</div>
-						</div>
-
-						<div class="lg:col-span-5 flex flex-col gap-4 w-full">
-							<div class="border border-neutral-800 rounded-xl overflow-hidden h-[280px] bg-neutral-950 relative z-10 w-full" id="sim-map-canvas">
-								</div>
-							
-							<div class="border border-neutral-800 bg-neutral-950 rounded-xl p-4 font-mono text-[10px] flex flex-col gap-2">
-								<span class="text-neutral-500 tracking-wider">// REAL-TIME PAYLOAD OBJECT STREAM (STAGED SCHEMA)</span>
-								<pre id="sim-payload-json" class="text-emerald-400 leading-normal max-h-[120px] overflow-y-auto text-left"></pre>
-								
-								<div class="border-t border-neutral-800/80 pt-2.5 mt-1 flex flex-col gap-2">
-									<button id="sim-submit-btn" class="w-full bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 hover:border-emerald-500/50 text-emerald-400 font-mono text-[10px] py-1.5 rounded transition-all cursor-pointer select-none">
-										SUBMIT_PAYLOAD_TO_API
-									</button>
-									<div id="sim-api-console" class="bg-neutral-900 border border-neutral-800/80 rounded p-2 text-neutral-500 text-[9px] min-h-[45px] max-h-[70px] overflow-y-auto leading-relaxed">
-										Console: Idle. Ready for payload submission...
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<section class="border border-neutral-800 bg-neutral-900/10 rounded-xl p-8 flex flex-col gap-6 rigid-card system-card">
-					<div
-						class="flex items-center justify-between border-b border-neutral-800/60 pb-3 mb-1 font-mono text-[10px] text-neutral-500"
-					>
-						<div class="flex items-center gap-1.5">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="11"
-								height="11"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2.5"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								class="text-emerald-500/90"
-								><path d="M12 2v20"></path><path
-									d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
-								></path></svg
+							<h2
+								class="text-lg font-bold text-neutral-200 tracking-tight"
 							>
-							<span class="terminal-path">~/case_study/data_flow_map.dot</span>
+								// INTERACTIVE SYSTEM SIMULATION
+							</h2>
+							<p
+								class="text-neutral-400 text-xs mt-1 leading-relaxed"
+							>
+								A standalone reconstruction of the operational
+								workspace originally built with Vue.js. Interact
+								with the form parameters, expand family units,
+								and drop map markers to monitor structural
+								payload mutations live.
+							</p>
 						</div>
-						<span>[COMPILED]</span>
-					</div>
-					<h2 class="text-lg font-bold text-neutral-200 tracking-tight">// SYSTEM DATA FLOW</h2>
-					
-					<div class="bg-neutral-950 border border-neutral-800 rounded-lg p-6 font-mono text-xs text-neutral-400 leading-relaxed overflow-x-auto">
-<pre class="leading-normal">
+
+						<div
+							class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start"
+						>
+							<div
+								class="lg:col-span-7 border border-neutral-800/80 bg-neutral-950 rounded-xl p-5 flex flex-col gap-4"
+							>
+								<div
+									class="flex items-center justify-between border-b border-neutral-800 pb-3"
+								>
+									<span
+										class="text-xs font-mono font-bold tracking-tight text-neutral-300"
+										>PRIMARY_INTAKE_CONTROLLER</span
+									>
+									<div class="flex items-center gap-2">
+										<label
+											class="text-[10px] font-mono text-neutral-500 uppercase"
+											>Street Context:</label
+										>
+										<button
+											id="sim-context-toggle"
+											class="px-2 py-0.5 text-[10px] font-mono font-bold rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 hover:bg-amber-500/20 transition-all select-none cursor-pointer"
+										>
+											STREET_SITUATION
+										</button>
+									</div>
+								</div>
+
+								<div class="grid grid-cols-2 gap-3 text-xs">
+									<div class="flex flex-col gap-1">
+										<label
+											class="font-mono text-[10px] text-neutral-500"
+											>BENEFICIARY_NAME</label
+										>
+										<input
+											id="sim-input-name"
+											type="text"
+											value="Gerard Dominic"
+											class="bg-neutral-900 border border-neutral-800 text-neutral-200 rounded px-2.5 py-1.5 focus:outline-none focus:border-neutral-700 font-mono text-xs"
+										/>
+									</div>
+									<div class="flex flex-col gap-1">
+										<label
+											class="font-mono text-[10px] text-neutral-500"
+											>CAPTURED_COORDINATES</label
+										>
+										<div
+											class="grid grid-cols-2 gap-1 font-mono text-[11px]"
+										>
+											<div
+												class="bg-neutral-900 border border-neutral-800 text-neutral-400 px-2 py-1.5 rounded flex justify-between"
+											>
+												<span class="text-neutral-600"
+													>LAT:</span
+												><span id="sim-lat">14.654</span
+												>
+											</div>
+											<div
+												class="bg-neutral-900 border border-neutral-800 text-neutral-400 px-2 py-1.5 rounded flex justify-between"
+											>
+												<span class="text-neutral-600"
+													>LNG:</span
+												><span id="sim-lng"
+													>121.049</span
+												>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="flex flex-col gap-2 mt-2">
+									<div
+										class="flex items-center justify-between"
+									>
+										<span
+											class="font-mono text-[10px] text-neutral-400 tracking-wider"
+											>// RELATED_DEPENDENTS_REGISTRY</span
+										>
+										<button
+											id="sim-add-member-btn"
+											class="px-2 py-1 text-[10px] font-mono rounded bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 hover:border-neutral-700 text-neutral-300 transition-all cursor-pointer"
+										>
+											+ Add Family Member Node
+										</button>
+									</div>
+									<div
+										id="sim-dependents-wrapper"
+										class="flex flex-col gap-2.5 max-h-[190px] overflow-y-auto pr-1"
+									>
+									</div>
+								</div>
+							</div>
+
+							<div
+								class="lg:col-span-5 flex flex-col gap-4 w-full"
+							>
+								<div
+									class="border border-neutral-800 rounded-xl overflow-hidden h-[280px] bg-neutral-950 relative z-10 w-full"
+									id="sim-map-canvas"
+								>
+								</div>
+
+								<div
+									class="border border-neutral-800 bg-neutral-950 rounded-xl p-4 font-mono text-[10px] flex flex-col gap-2"
+								>
+									<span
+										class="text-neutral-500 tracking-wider"
+										>// REAL-TIME PAYLOAD OBJECT STREAM
+										(STAGED SCHEMA)</span
+									>
+									<pre
+										id="sim-payload-json"
+										class="text-emerald-400 leading-normal max-h-[120px] overflow-y-auto text-left">
+									</pre>
+
+									<div
+										class="border-t border-neutral-800/80 pt-2.5 mt-1 flex flex-col gap-2"
+									>
+										<button
+											id="sim-submit-btn"
+											class="w-full bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 hover:border-emerald-500/50 text-emerald-400 font-mono text-[10px] py-1.5 rounded transition-all cursor-pointer select-none"
+										>
+											SUBMIT_PAYLOAD_TO_API
+										</button>
+										<div
+											id="sim-api-console"
+											class="bg-neutral-900 border border-neutral-800/80 rounded p-2 text-neutral-500 text-[9px] min-h-[45px] max-h-[70px] overflow-y-auto leading-relaxed"
+										>
+											Console: Idle. Ready for payload
+											submission...
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section
+						class="border border-neutral-800 bg-neutral-900/10 rounded-xl p-8 flex flex-col gap-6 rigid-card system-card"
+					>
+						<div
+							class="flex items-center justify-between border-b border-neutral-800/60 pb-3 mb-1 font-mono text-[10px] text-neutral-500"
+						>
+							<div class="flex items-center gap-1.5">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="11"
+									height="11"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="text-emerald-500/90"
+									><path d="M12 2v20"></path><path
+										d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+									></path></svg
+								>
+								<span class="terminal-path"
+									>~/case_study/data_flow_map.dot</span
+								>
+							</div>
+							<span>[COMPILED]</span>
+						</div>
+						<h2
+							class="text-lg font-bold text-neutral-200 tracking-tight"
+						>
+							// SYSTEM DATA FLOW
+						</h2>
+
+						<div
+							class="bg-neutral-950 border border-neutral-800 rounded-lg p-6 font-mono text-xs text-neutral-400 leading-relaxed overflow-x-auto"
+						>
+							<pre
+								class="leading-normal">
  [Unified Intake Controller] ───► [Street Classification Toggle: ACTIVE]
               │
               ├─► [Add Family Member] ──► [Inject Dynamic Relational Form Node]
@@ -494,8 +805,8 @@ import "../../styles/global.css";
              [Staged Payload Assembly]
              (Populating Dormant Spatial DB Columns)
 </pre>
-					</div>
-				</section>
+						</div>
+					</section>
 				</div>
 
 				<!-- RIGHT COLUMN: Fills that plain empty whitespace void (Spans 4 of 12 columns) -->
@@ -540,7 +851,9 @@ import "../../styles/global.css";
 						>
 							<div class="flex items-center gap-2">
 								<span class="text-emerald-500">✓</span>
-								<span>Freshservice Advanced Product Certification</span>
+								<span
+									>Freshservice Advanced Product Certification</span
+								>
 							</div>
 						</div>
 					</div>
@@ -557,24 +870,38 @@ import "../../styles/global.css";
 							class="bg-neutral-950 border border-neutral-900 p-3 rounded font-mono text-[10px] flex flex-col gap-2.5 leading-relaxed text-neutral-400"
 						>
 							<div class="flex items-start gap-1.5">
-								<span class="text-emerald-500 font-bold">01.</span>
+								<span class="text-emerald-500 font-bold"
+									>01.</span
+								>
 								<div>
-									<span class="text-neutral-200 font-bold">Astro Core:</span>
-									Pre-renders pages to static HTML, shipping zero client JS.
+									<span class="text-neutral-200 font-bold"
+										>Astro Core:</span
+									>
+									Pre-renders pages to static HTML, shipping zero
+									client JS.
 								</div>
 							</div>
 							<div class="flex items-start gap-1.5">
-								<span class="text-emerald-500 font-bold">02.</span>
+								<span class="text-emerald-500 font-bold"
+									>02.</span
+								>
 								<div>
-									<span class="text-neutral-200 font-bold">Tailwind compilation:</span>
+									<span class="text-neutral-200 font-bold"
+										>Tailwind compilation:</span
+									>
 									Utility classes bundle to minimal static stylesheet.
 								</div>
 							</div>
 							<div class="flex items-start gap-1.5">
-								<span class="text-emerald-500 font-bold">03.</span>
+								<span class="text-emerald-500 font-bold"
+									>03.</span
+								>
 								<div>
-									<span class="text-neutral-200 font-bold">Vanilla JS State:</span>
-									Coordinates and maps load and bind on element initialization.
+									<span class="text-neutral-200 font-bold"
+										>Vanilla JS State:</span
+									>
+									Coordinates and maps load and bind on element
+									initialization.
 								</div>
 							</div>
 							<div
@@ -589,30 +916,40 @@ import "../../styles/global.css";
 		</div>
 
 		<script is:inline>
-			window.addEventListener('DOMContentLoaded', () => {
+			window.addEventListener("DOMContentLoaded", () => {
 				// 1. Core Portfolio Theme Toggle Logic
-				const themeToggleBtns = document.querySelectorAll(".theme-toggle-btn");
+				const themeToggleBtns =
+					document.querySelectorAll(".theme-toggle-btn");
 
 				function updateThemeUI(isLight) {
-					themeToggleBtns.forEach(btn => {
+					themeToggleBtns.forEach((btn) => {
 						const textSpan = btn.querySelector("span");
 						if (isLight) {
 							document.documentElement.classList.add("light");
-							btn.innerHTML = textSpan ? `<span>THEME: BEIGE_MODE</span><span id="theme-icon">☾</span>` : "☾";
+							btn.innerHTML = textSpan
+								? `<span>THEME: BEIGE_MODE</span><span id="theme-icon">☾</span>`
+								: "☾";
 						} else {
 							document.documentElement.classList.remove("light");
-							btn.innerHTML = textSpan ? `<span>THEME: DEFAULT (DARK)</span><span id="theme-icon">☼</span>` : "☼";
+							btn.innerHTML = textSpan
+								? `<span>THEME: DEFAULT (DARK)</span><span id="theme-icon">☼</span>`
+								: "☼";
 						}
 					});
 				}
 
-				const isCurrentlyLight = document.documentElement.classList.contains('light');
+				const isCurrentlyLight =
+					document.documentElement.classList.contains("light");
 				updateThemeUI(isCurrentlyLight);
 
-				themeToggleBtns.forEach(btn => {
-					btn.addEventListener('click', () => {
-						const isLight = document.documentElement.classList.toggle('light');
-						localStorage.setItem('theme', isLight ? 'light' : 'dark');
+				themeToggleBtns.forEach((btn) => {
+					btn.addEventListener("click", () => {
+						const isLight =
+							document.documentElement.classList.toggle("light");
+						localStorage.setItem(
+							"theme",
+							isLight ? "light" : "dark",
+						);
 						updateThemeUI(isLight);
 					});
 				});
@@ -620,22 +957,35 @@ import "../../styles/global.css";
 				// Mobile Menu Toggle Logic
 				const menuToggle = document.getElementById("menu-toggle");
 				const mobileMenu = document.getElementById("mobile-menu");
-				const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+				const mobileNavLinks =
+					document.querySelectorAll(".mobile-nav-link");
 
 				if (menuToggle && mobileMenu) {
 					menuToggle.addEventListener("click", () => {
 						const isOpen = menuToggle.classList.toggle("open");
 						if (isOpen) {
-							mobileMenu.classList.remove("-translate-y-full", "opacity-0", "pointer-events-none");
+							mobileMenu.classList.remove(
+								"-translate-y-full",
+								"opacity-0",
+								"pointer-events-none",
+							);
 						} else {
-							mobileMenu.classList.add("-translate-y-full", "opacity-0", "pointer-events-none");
+							mobileMenu.classList.add(
+								"-translate-y-full",
+								"opacity-0",
+								"pointer-events-none",
+							);
 						}
 					});
 
-					mobileNavLinks.forEach(link => {
+					mobileNavLinks.forEach((link) => {
 						link.addEventListener("click", () => {
 							menuToggle.classList.remove("open");
-							mobileMenu.classList.add("-translate-y-full", "opacity-0", "pointer-events-none");
+							mobileMenu.classList.add(
+								"-translate-y-full",
+								"opacity-0",
+								"pointer-events-none",
+							);
 						});
 					});
 				}
@@ -645,41 +995,52 @@ import "../../styles/global.css";
 					location_context: "STREET_SITUATION",
 					primary_beneficiary: "Gerard Dominic",
 					coordinates: { lat: 14.6542, lng: 121.0496 },
-					dependents: []
+					dependents: [],
 				};
 
 				let dependentIdCounter = 0;
 				let sandboxMap = null;
 				let currentMarker = null;
 
-				const contextToggle = document.getElementById('sim-context-toggle');
-				const nameInput = document.getElementById('sim-input-name');
-				const latLabel = document.getElementById('sim-lat');
-				const lngLabel = document.getElementById('sim-lng');
-				const dependentsWrapper = document.getElementById('sim-dependents-wrapper');
-				const addMemberBtn = document.getElementById('sim-add-member-btn');
-				const payloadDisplay = document.getElementById('sim-payload-json');
+				const contextToggle =
+					document.getElementById("sim-context-toggle");
+				const nameInput = document.getElementById("sim-input-name");
+				const latLabel = document.getElementById("sim-lat");
+				const lngLabel = document.getElementById("sim-lng");
+				const dependentsWrapper = document.getElementById(
+					"sim-dependents-wrapper",
+				);
+				const addMemberBtn =
+					document.getElementById("sim-add-member-btn");
+				const payloadDisplay =
+					document.getElementById("sim-payload-json");
 
 				function updatePayloadView() {
-					payloadDisplay.textContent = JSON.stringify(sandboxState, null, 2);
+					payloadDisplay.textContent = JSON.stringify(
+						sandboxState,
+						null,
+						2,
+					);
 				}
 
 				// Synchronize Toggle Changes
-				contextToggle.addEventListener('click', () => {
+				contextToggle.addEventListener("click", () => {
 					if (sandboxState.location_context === "STREET_SITUATION") {
 						sandboxState.location_context = "STRUCTURED_SHELTER";
 						contextToggle.textContent = "STRUCTURED_SHELTER";
-						contextToggle.className = "px-2 py-0.5 text-[10px] font-mono font-bold rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition-all select-none cursor-pointer";
+						contextToggle.className =
+							"px-2 py-0.5 text-[10px] font-mono font-bold rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition-all select-none cursor-pointer";
 					} else {
 						sandboxState.location_context = "STREET_SITUATION";
 						contextToggle.textContent = "STREET_SITUATION";
-						contextToggle.className = "px-2 py-0.5 text-[10px] font-mono font-bold rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 hover:bg-amber-500/20 transition-all select-none cursor-pointer";
+						contextToggle.className =
+							"px-2 py-0.5 text-[10px] font-mono font-bold rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 hover:bg-amber-500/20 transition-all select-none cursor-pointer";
 					}
 					updatePayloadView();
 				});
 
 				// Sync Primary Name Input
-				nameInput.addEventListener('input', (e) => {
+				nameInput.addEventListener("input", (e) => {
 					sandboxState.primary_beneficiary = e.target.value;
 					updatePayloadView();
 				});
@@ -688,15 +1049,20 @@ import "../../styles/global.css";
 				function createDependentSubform() {
 					dependentIdCounter++;
 					const id = dependentIdCounter;
-					
+
 					// Push fresh node registry entry into memory array
-					const defaultNode = { id: id, name: "Dependent Node", relationship: "Child" };
+					const defaultNode = {
+						id: id,
+						name: "Dependent Node",
+						relationship: "Child",
+					};
 					sandboxState.dependents.push(defaultNode);
 
 					// Inject clean HTML template block directly into wrapper container
-					const subform = document.createElement('div');
+					const subform = document.createElement("div");
 					subform.id = `dep-node-${id}`;
-					subform.className = "grid grid-cols-12 gap-2 bg-neutral-900 border border-neutral-800/60 rounded-lg p-2.5 items-center animation-fade-in";
+					subform.className =
+						"grid grid-cols-12 gap-2 bg-neutral-900 border border-neutral-800/60 rounded-lg p-2.5 items-center animation-fade-in";
 					subform.innerHTML = `
 						<div class="col-span-6 flex flex-col gap-0.5">
 							<input type="text" placeholder="Dependent Name" value="Dependent Node" class="dep-name bg-neutral-950 border border-neutral-800 text-neutral-300 rounded px-2 py-1 font-mono text-[11px] focus:outline-none focus:border-neutral-700" />
@@ -718,54 +1084,66 @@ import "../../styles/global.css";
 					updatePayloadView();
 
 					// Event Listeners for inner subform mutation
-					const nameField = subform.querySelector('.dep-name');
-					const relationField = subform.querySelector('.dep-relation');
-					const deleteBtn = subform.querySelector('.dep-delete-btn');
+					const nameField = subform.querySelector(".dep-name");
+					const relationField =
+						subform.querySelector(".dep-relation");
+					const deleteBtn = subform.querySelector(".dep-delete-btn");
 
-					nameField.addEventListener('input', (e) => {
-						const match = sandboxState.dependents.find(d => d.id === id);
+					nameField.addEventListener("input", (e) => {
+						const match = sandboxState.dependents.find(
+							(d) => d.id === id,
+						);
 						if (match) match.name = e.target.value;
 						updatePayloadView();
 					});
 
-					relationField.addEventListener('change', (e) => {
-						const match = sandboxState.dependents.find(d => d.id === id);
+					relationField.addEventListener("change", (e) => {
+						const match = sandboxState.dependents.find(
+							(d) => d.id === id,
+						);
 						if (match) match.relationship = e.target.value;
 						updatePayloadView();
 					});
 
-					deleteBtn.addEventListener('click', () => {
-						sandboxState.dependents = sandboxState.dependents.filter(d => d.id !== id);
+					deleteBtn.addEventListener("click", () => {
+						sandboxState.dependents =
+							sandboxState.dependents.filter((d) => d.id !== id);
 						subform.remove();
 						updatePayloadView();
 					});
 				}
 
-				addMemberBtn.addEventListener('click', createDependentSubform);
+				addMemberBtn.addEventListener("click", createDependentSubform);
 
 				// Initialize Leaflet Interactive Canvas Workspace
 				function initSandboxMapEngine() {
 					if (sandboxMap) return; // Prevent double mounts
 
 					// Mount base coordinates targeting an operational sector
-					sandboxMap = L.map('sim-map-canvas', {
+					sandboxMap = L.map("sim-map-canvas", {
 						center: [14.6542, 121.0496],
 						zoom: 13,
-						zoomControl: false
+						zoomControl: false,
 					});
 
 					// Load standard colorful OpenStreetMap tiles
-					L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-						attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
-					}).addTo(sandboxMap);
+					L.tileLayer(
+						"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+						{
+							attribution:
+								'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors',
+						},
+					).addTo(sandboxMap);
 
 					// Set Initial Pin configuration
-					currentMarker = L.marker([14.6542, 121.0496]).addTo(sandboxMap);
+					currentMarker = L.marker([14.6542, 121.0496]).addTo(
+						sandboxMap,
+					);
 
 					// Coordinate Capture Vector Stream Listener
-					sandboxMap.on('click', (event) => {
+					sandboxMap.on("click", (event) => {
 						const { lat, lng } = event.latlng;
-						
+
 						// Lock down floating system decimals to a clean 6-digit precision standard
 						const lockedLat = parseFloat(lat.toFixed(6));
 						const lockedLng = parseFloat(lng.toFixed(6));
@@ -777,7 +1155,7 @@ import "../../styles/global.css";
 						// Mutate System Memory State and update the UI View
 						sandboxState.coordinates.lat = lockedLat;
 						sandboxState.coordinates.lng = lockedLng;
-						
+
 						latLabel.textContent = lockedLat;
 						lngLabel.textContent = lockedLng;
 
@@ -787,23 +1165,23 @@ import "../../styles/global.css";
 
 				// Execute core payload visualization stream on initialization
 				updatePayloadView();
-				
+
 				// Standard initialization loop execution
 				setTimeout(() => {
 					initSandboxMapEngine();
 				}, 100);
 
 				// 2.5 Submit Action & Validation Guardrails
-				const submitBtn = document.getElementById('sim-submit-btn');
-				const apiConsole = document.getElementById('sim-api-console');
+				const submitBtn = document.getElementById("sim-submit-btn");
+				const apiConsole = document.getElementById("sim-api-console");
 
-				submitBtn.addEventListener('click', () => {
+				submitBtn.addEventListener("click", () => {
 					const lat = sandboxState.coordinates.lat;
 					const lng = sandboxState.coordinates.lng;
 					const name = sandboxState.primary_beneficiary.trim();
 
 					apiConsole.innerHTML = "";
-					
+
 					if (!name) {
 						apiConsole.innerHTML = `<span class="text-rose-500 font-bold">[VALIDATION_FAILURE]</span> <span class="text-rose-400">Primary beneficiary field is empty. Ingestion aborted.</span>`;
 						return;
@@ -815,7 +1193,12 @@ import "../../styles/global.css";
 					const minLng = 116.0;
 					const maxLng = 127.0;
 
-					if (lat < minLat || lat > maxLat || lng < minLng || lng > maxLng) {
+					if (
+						lat < minLat ||
+						lat > maxLat ||
+						lng < minLng ||
+						lng > maxLng
+					) {
 						apiConsole.innerHTML = `<span class="text-rose-500 font-bold">[VALIDATION_FAILURE]</span> <span class="text-rose-400">Coordinates [${lat}, ${lng}] are outside the administrative borders of the Philippines (${minLat}° to ${maxLat}° N, ${minLng}° to ${maxLng}° E). Ingestion aborted.</span>`;
 					} else {
 						apiConsole.innerHTML = `<span class="text-emerald-500 font-bold">[API_SUCCESS]</span> <span class="text-emerald-400">Ingestion successful! Staged schema committed to dormant database columns. Staging 1 primary node ("${name}") and ${sandboxState.dependents.length} dependent nodes.</span>`;
@@ -823,47 +1206,60 @@ import "../../styles/global.css";
 				});
 
 				// 3. Intersection Observer for Dynamic Breakout Layout
-				const simCard = document.getElementById('interactive-simulation-card');
-				const statusPulse = document.getElementById('sim-status-pulse');
-				const statusText = document.getElementById('sim-status-text');
+				const simCard = document.getElementById(
+					"interactive-simulation-card",
+				);
+				const statusPulse = document.getElementById("sim-status-pulse");
+				const statusText = document.getElementById("sim-status-text");
 
-				const observer = new IntersectionObserver((entries) => {
-					entries.forEach(entry => {
-						if (entry.isIntersecting) {
-							simCard.classList.add('expanded');
-							statusPulse.className = "h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse transition-all duration-700";
-							statusText.className = "text-[10px] font-mono text-emerald-400 uppercase tracking-widest transition-all duration-700";
-							statusText.textContent = "// Sandbox Environment: Active Workspace";
-							let count = 0;
-							const interval = setInterval(() => {
-								if (sandboxMap) {
-									sandboxMap.invalidateSize();
-								}
-								count++;
-								if (count > 35) clearInterval(interval);
-							}, 20);
-						} else {
-							simCard.classList.remove('expanded');
-							statusPulse.className = "h-1.5 w-1.5 rounded-full bg-neutral-700 transition-all duration-700";
-							statusText.className = "text-[10px] font-mono text-neutral-500 uppercase tracking-widest transition-all duration-700";
-							statusText.textContent = "// Sandbox Environment: Standby";
-							let count = 0;
-							const interval = setInterval(() => {
-								if (sandboxMap) {
-									sandboxMap.invalidateSize();
-								}
-								count++;
-								if (count > 35) clearInterval(interval);
-							}, 20);
-						}
-					});
-				}, {
-					threshold: 0.15
-				});
+				const observer = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (entry.isIntersecting) {
+								simCard.classList.add("expanded");
+								statusPulse.className =
+									"h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse transition-all duration-700";
+								statusText.className =
+									"text-[10px] font-mono text-emerald-400 uppercase tracking-widest transition-all duration-700";
+								statusText.textContent =
+									"// Sandbox Environment: Active Workspace";
+								let count = 0;
+								const interval = setInterval(() => {
+									if (sandboxMap) {
+										sandboxMap.invalidateSize();
+									}
+									count++;
+									if (count > 35) clearInterval(interval);
+								}, 20);
+							} else {
+								simCard.classList.remove("expanded");
+								statusPulse.className =
+									"h-1.5 w-1.5 rounded-full bg-neutral-700 transition-all duration-700";
+								statusText.className =
+									"text-[10px] font-mono text-neutral-500 uppercase tracking-widest transition-all duration-700";
+								statusText.textContent =
+									"// Sandbox Environment: Standby";
+								let count = 0;
+								const interval = setInterval(() => {
+									if (sandboxMap) {
+										sandboxMap.invalidateSize();
+									}
+									count++;
+									if (count > 35) clearInterval(interval);
+								}, 20);
+							}
+						});
+					},
+					{
+						threshold: 0.15,
+					},
+				);
 				observer.observe(simCard);
 
 				// Walkthrough Console Toggle
-				const engineCard = document.getElementById("engine-metrics-card");
+				const engineCard = document.getElementById(
+					"engine-metrics-card",
+				);
 				const walkthroughConsole = document.getElementById(
 					"walkthrough-console",
 				);
