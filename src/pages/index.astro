@@ -857,7 +857,7 @@ import "../styles/global.css";
 
 						<!-- Project Tabs Selector -->
 						<div
-							class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-2"
+							class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-2"
 							id="project-tabs"
 						>
 							<button
@@ -904,6 +904,30 @@ import "../styles/global.css";
 									<span
 										class="px-2 py-0.5 bg-neutral-800 text-[9px] font-mono text-neutral-400 border border-neutral-700/60 rounded"
 										>Vanilla JS</span
+									>
+								</div>
+							</button>
+
+							<button
+								data-tab="ongoing"
+								class="project-tab-btn flex flex-col items-start text-left border border-neutral-800 bg-neutral-900/10 hover:bg-neutral-900/30 text-neutral-400 hover:text-neutral-200 transition-all duration-200 rounded-xl p-4 cursor-pointer select-none group"
+							>
+								<span
+									class="text-[9px] font-mono text-neutral-500 group-hover:text-neutral-400 mb-1 transition-colors"
+									>// WORKSPACE SANDBOX</span
+								>
+								<span
+									class="text-sm font-bold text-neutral-300 group-hover:text-neutral-100 transition-colors"
+									>Ongoing Project Sandbox</span
+								>
+								<div class="flex gap-1.5 mt-2">
+									<span
+										class="px-2 py-0.5 bg-neutral-800 text-[9px] font-mono text-amber-400 border border-neutral-700/60 rounded"
+										>Staged WIP</span
+									>
+									<span
+										class="px-2 py-0.5 bg-neutral-800 text-[9px] font-mono text-neutral-400 border border-neutral-700/60 rounded"
+										>Experimental</span
 									>
 								</div>
 							</button>
@@ -956,7 +980,8 @@ import "../styles/global.css";
 
 						<!-- Capstone Project Card: Spatial E-Commerce Engine -->
 						<div
-							class="border border-neutral-800 bg-neutral-900/10 rounded-xl p-6 system-card project-card w-full"
+							id="project-panel-ecommerce"
+							class="project-panel hidden border border-neutral-800 bg-neutral-900/10 rounded-xl p-6 system-card project-card w-full"
 						>
 							<div
 								class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-neutral-800/60 pb-4"
@@ -1197,111 +1222,51 @@ import "../styles/global.css";
 							</div>
 						</div>
 
-						<details
-							id="map-project-card"
-							name="portfolio-projects"
-							class="group border border-neutral-800 bg-neutral-900/10 rounded-xl overflow-hidden transition-all duration-300 open:bg-neutral-900/40 open:border-neutral-700 rigid-card system-card"
+						<!-- Project 2 Card: Unified Intake & Spatial Mapping -->
+						<div
+							id="project-panel-intake"
+							class="project-panel hidden border border-neutral-800 bg-neutral-900/10 rounded-xl p-6 system-card w-full"
 						>
-							<summary
-								class="flex justify-between items-center p-6 cursor-pointer list-none select-none hover:bg-neutral-900/30 transition-colors"
+							<div
+								class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-neutral-800/60 pb-4"
 							>
-								<div
-									class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4"
-								>
+								<div class="flex items-center gap-3">
 									<h3
-										class="font-bold text-neutral-300 tracking-tight group-open:text-neutral-100"
+										class="text-sm font-bold tracking-tight text-neutral-300 font-mono"
 									>
-										Unified Intake & Spatial Mapping Engine
+										// UNIFIED_INTAKE_SPATIAL_MAPPING
 									</h3>
-									<div class="flex gap-1.5">
+									<div
+										class="flex gap-1.5 font-mono text-[10px]"
+									>
 										<span
-											class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-mono rounded bg-neutral-800 text-neutral-400 border border-neutral-700"
+											class="px-2 py-0.5 bg-neutral-800 text-neutral-400 border border-neutral-700 rounded"
+											>Leaflet.js</span
 										>
-											<svg
-												xmlns="http://www.w3.org/2000/svg"
-												width="11"
-												height="11"
-												viewBox="0 0 24 24"
-												fill="none"
-												stroke="currentColor"
-												stroke-width="2.5"
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												class="text-amber-500/90"
-												><path
-													d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
-												></path><circle
-													cx="12"
-													cy="10"
-													r="3"></circle></svg
-											>
-											Leaflet.js
-										</span>
 										<span
-											class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-mono rounded bg-neutral-800 text-neutral-400 border border-neutral-700"
+											class="px-2 py-0.5 bg-neutral-800 text-neutral-400 border border-neutral-700 rounded"
+											>Dynamic DOM Repeater</span
 										>
-											<svg
-												xmlns="http://www.w3.org/2000/svg"
-												width="11"
-												height="11"
-												viewBox="0 0 24 24"
-												fill="none"
-												stroke="currentColor"
-												stroke-width="2.5"
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												class="text-blue-500/90"
-												><rect
-													width="18"
-													height="18"
-													x="3"
-													y="3"
-													rx="2"></rect><path
-													d="M12 8v8"></path><path
-													d="M8 12h8"></path></svg
-											>
-											Dynamic DOM Repeater
-										</span>
 										<span
-											class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-mono rounded bg-neutral-800 text-neutral-400 border border-neutral-700"
+											class="px-2 py-0.5 bg-neutral-800 text-neutral-400 border border-neutral-700 rounded"
+											>Vanilla JS State</span
 										>
-											<svg
-												xmlns="http://www.w3.org/2000/svg"
-												width="11"
-												height="11"
-												viewBox="0 0 24 24"
-												fill="none"
-												stroke="currentColor"
-												stroke-width="2.5"
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												class="text-yellow-500/90"
-												><path d="M12 2v20"></path><path
-													d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
-												></path></svg
-											>
-											Vanilla JS State
-										</span>
 									</div>
 								</div>
-								<span
-									class="text-neutral-500 group-open:rotate-180 transition-transform duration-300 text-xs font-mono"
-									>▼</span
+
+								<a
+									href="/projects/spatial-map"
+									class="inline-flex items-center gap-2 border border-neutral-800 hover:border-neutral-700 bg-neutral-900/10 hover:bg-neutral-900/30 text-neutral-400 hover:text-neutral-200 transition-all rounded px-3 py-1 text-xs font-mono select-none"
 								>
-							</summary>
+									<span>View Case Study</span>
+									<span>➔</span>
+								</a>
+							</div>
 
 							<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 								<div
 									class="lg:col-span-5 flex flex-col gap-4 text-xs md:text-sm text-neutral-400 leading-relaxed"
 								>
-									<a
-										href="/projects/spatial-map"
-										class="inline-flex items-center justify-between w-full border border-neutral-800 hover:border-neutral-700 bg-neutral-900/10 hover:bg-neutral-900/30 text-neutral-400 hover:text-neutral-200 transition-all rounded px-3 py-2 text-xs font-mono select-none"
-									>
-										<span>VIEW_CASE_STUDY</span>
-										<span>➔</span>
-									</a>
-
 									<p>
 										<strong class="text-neutral-300"
 											>The Context:</strong
@@ -1399,7 +1364,87 @@ import "../styles/global.css";
 									</div>
 								</div>
 							</div>
-						</details>
+						</div>
+
+						<!-- Project 3 Card: Ongoing Project Sandbox -->
+						<div
+							id="project-panel-ongoing"
+							class="project-panel hidden border border-neutral-800 bg-neutral-900/10 rounded-xl p-6 system-card w-full"
+						>
+							<div
+								class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-neutral-800/60 pb-4"
+							>
+								<div class="flex items-center gap-3">
+									<h3
+										class="text-sm font-bold tracking-tight text-neutral-300 font-mono"
+									>
+										// ONGOING_PROJECT_SANDBOX
+									</h3>
+									<div
+										class="flex gap-1.5 font-mono text-[10px]"
+									>
+										<span
+											class="px-2 py-0.5 bg-amber-500/10 text-amber-400 border border-amber-500/30 rounded uppercase font-bold"
+											>STAGED_WIP</span
+										>
+										<span
+											class="px-2 py-0.5 bg-neutral-800 text-neutral-400 border border-neutral-700 rounded"
+											>Sandbox</span
+										>
+									</div>
+								</div>
+
+								<a
+									href="/projects/ongoing-project"
+									class="inline-flex items-center gap-2 border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 hover:text-amber-200 transition-all rounded px-3 py-1 text-xs font-mono select-none"
+								>
+									<span>ENTER_SANDBOX</span>
+									<span>➔</span>
+								</a>
+							</div>
+
+							<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+								<div
+									class="lg:col-span-7 flex flex-col gap-4 text-xs md:text-sm text-neutral-400 leading-relaxed"
+								>
+									<p>
+										<strong class="text-neutral-200 block text-[13px] mb-1 font-mono"
+											>Experimental Workspace</strong
+										>
+										An active development sandbox featuring modular hero button containers designed for rapid prototyping of WebGL shader pipelines, particle vector physics engines, and relational graph schemas.
+									</p>
+									<div class="flex items-center gap-3 mt-2">
+										<a
+											href="/projects/ongoing-project"
+											class="inline-flex items-center justify-between w-full sm:w-auto border border-neutral-800 hover:border-neutral-700 bg-neutral-900/30 hover:bg-neutral-900/60 text-neutral-300 hover:text-neutral-100 transition-all rounded px-4 py-2 text-xs font-mono select-none"
+										>
+											<span>Explore Ongoing Project Sandbox</span>
+											<span class="ml-2">➔</span>
+										</a>
+									</div>
+								</div>
+								<div
+									class="lg:col-span-5 border border-neutral-800/80 rounded-xl p-4 bg-neutral-950/40 font-mono text-[10px] text-neutral-400 flex flex-col justify-between min-h-[160px]"
+								>
+									<div
+										class="flex items-center justify-between text-neutral-500 border-b border-neutral-800/60 pb-2 mb-2"
+									>
+										<span>// SANDBOX_STATUS</span>
+										<span class="text-amber-400 font-bold">UNDER_CONSTRUCTION</span>
+									</div>
+									<div class="space-y-2 text-neutral-400">
+										<div>[NODE_01] ──► WebGL Shader Playground</div>
+										<div>[NODE_02] ──► Particle Vector Physics</div>
+										<div>[NODE_03] ──► Relational Node Schema</div>
+									</div>
+									<div
+										class="text-[9px] text-neutral-500 italic mt-3 pt-2 border-t border-neutral-800/40"
+									>
+										Click Enter Sandbox above to interact with live telemetry socket stream logs.
+									</div>
+								</div>
+							</div>
+						</div>
 					</section>
 				</div>
 
@@ -1544,9 +1589,8 @@ import "../styles/global.css";
 		<script is:inline>
 			// Block execution until Leaflet CDN is fully mounted to window scope
 			window.addEventListener("DOMContentLoaded", () => {
-				const card = document.getElementById("map-project-card");
-				let mapInitialized = false;
 				let map, marker;
+				window.mapInitialized = false;
 
 				// DOM Engine Selectors
 				const latInput = document.getElementById("input-lat");
@@ -1560,20 +1604,18 @@ import "../styles/global.css";
 				// Local Array Cache for the Coordinates
 				let savedRegistry = [];
 
-				// DEFENSIVE EXECUTION: Initialize map engine only when the card toggles open
-				card.addEventListener("toggle", () => {
-					if (card.open && !mapInitialized) {
-						initializeMapEngine();
-					}
-				});
-
 				function initializeMapEngine() {
+					if (window.mapInitialized) return;
+					const mapElement = document.getElementById("map");
+					if (!mapElement || typeof L === "undefined") return;
+
 					// 1. Anchor Map view centered over the geographical Philippines
 					map = L.map("map", { zoomControl: false }).setView(
 						[12.8797, 121.774],
 						5,
 					);
-					mapInitialized = true;
+					window.mapInstance = map;
+					window.mapInitialized = true;
 
 					// 2. Inject standard OpenStreetMap light tiles
 					L.tileLayer(
@@ -1588,8 +1630,8 @@ import "../styles/global.css";
 					L.control.zoom({ position: "bottomright" }).addTo(map);
 
 					// 3. Drop base starting marker instance
-					const startLat = parseFloat(latInput.value);
-					const startLng = parseFloat(lngInput.value);
+					const startLat = latInput ? parseFloat(latInput.value) : 12.8797;
+					const startLng = lngInput ? parseFloat(lngInput.value) : 121.7740;
 					marker = L.marker([startLat, startLng], {
 						draggable: true,
 					}).addTo(map);
@@ -1607,27 +1649,33 @@ import "../styles/global.css";
 					});
 
 					// 6. INPUT INTERACTION: Typing values repositions map and pin
-					[latInput, lngInput].forEach((input) => {
-						input.addEventListener("input", () => {
-							const lat = parseFloat(latInput.value);
-							const lng = parseFloat(lngInput.value);
-							if (!isNaN(lat) && !isNaN(lng)) {
-								marker.setLatLng([lat, lng]);
-								map.panTo([lat, lng]);
-							}
+					if (latInput && lngInput) {
+						[latInput, lngInput].forEach((input) => {
+							input.addEventListener("input", () => {
+								const lat = parseFloat(latInput.value);
+								const lng = parseFloat(lngInput.value);
+								if (!isNaN(lat) && !isNaN(lng) && marker && map) {
+									marker.setLatLng([lat, lng]);
+									map.panTo([lat, lng]);
+								}
+							});
 						});
-					});
+					}
 				}
 
+				window.initializeMapEngine = initializeMapEngine;
+
 				function updateSystemPosition(lat, lng) {
-					marker.setLatLng([lat, lng]);
-					map.panTo([lat, lng]);
+					if (marker && map) {
+						marker.setLatLng([lat, lng]);
+						map.panTo([lat, lng]);
+					}
 					updateInputsOnly(lat, lng);
 				}
 
 				function updateInputsOnly(lat, lng) {
-					latInput.value = lat.toFixed(6);
-					lngInput.value = lng.toFixed(6);
+					if (latInput) latInput.value = lat.toFixed(6);
+					if (lngInput) lngInput.value = lng.toFixed(6);
 				}
 
 				// DOM elements for telemetry sandbox sync
@@ -1681,40 +1729,42 @@ import "../styles/global.css";
 				}
 
 				// 7. NEW SPIN LOGIC: Committing and recalling pins from memory registry
-				saveBtn.addEventListener("click", () => {
-					const lat = parseFloat(latInput.value);
-					const lng = parseFloat(lngInput.value);
+				if (saveBtn && latInput && lngInput && savedList) {
+					saveBtn.addEventListener("click", () => {
+						const lat = parseFloat(latInput.value);
+						const lng = parseFloat(lngInput.value);
 
-					if (
-						isNaN(lat) ||
-						(!isNaN(lat) &&
-							(lat < -90 || lat > 90 || lng < -180 || lng > 180))
-					)
-						return;
+						if (
+							isNaN(lat) ||
+							(!isNaN(lat) &&
+								(lat < -90 || lat > 90 || lng < -180 || lng > 180))
+						)
+							return;
 
-					const locationNode = { id: Date.now(), lat, lng };
-					savedRegistry.push(locationNode);
+						const locationNode = { id: Date.now(), lat, lng };
+						savedRegistry.push(locationNode);
 
-					// Remove "Empty" notice upon first database commit
-					if (emptyMsg) emptyMsg.remove();
+						// Remove "Empty" notice upon first database commit
+						if (emptyMsg) emptyMsg.remove();
 
-					// Append clickable text node to interface list
-					const li = document.createElement("li");
-					li.className =
-						"flex justify-between items-center bg-neutral-900/80 border border-neutral-800/60 rounded px-2 py-1 text-neutral-400 font-mono text-[11px] hover:border-neutral-700 hover:text-neutral-200 cursor-pointer transition-all";
-					li.innerHTML = `<span>LOC_${locationNode.id.toString().slice(-4)} ➔ [${lat.toFixed(4)}, ${lng.toFixed(4)}]</span>`;
+						// Append clickable text node to interface list
+						const li = document.createElement("li");
+						li.className =
+							"flex justify-between items-center bg-neutral-900/80 border border-neutral-800/60 rounded px-2 py-1 text-neutral-400 font-mono text-[11px] hover:border-neutral-700 hover:text-neutral-200 cursor-pointer transition-all";
+						li.innerHTML = `<span>LOC_${locationNode.id.toString().slice(-4)} ➔ [${lat.toFixed(4)}, ${lng.toFixed(4)}]</span>`;
 
-					// Clicking the list item recalls coordinate parameters and centers map
-					li.addEventListener("click", () => {
-						updateSystemPosition(
-							locationNode.lat,
-							locationNode.lng,
-						);
+						// Clicking the list item recalls coordinate parameters and centers map
+						li.addEventListener("click", () => {
+							updateSystemPosition(
+								locationNode.lat,
+								locationNode.lng,
+							);
+						});
+
+						savedList.appendChild(li);
+						triggerSandboxLog(lat, lng);
 					});
-
-					savedList.appendChild(li);
-					triggerSandboxLog(lat, lng);
-				});
+				}
 
 				// Theme Toggle Logic
 				const themeToggleBtns =
@@ -2339,8 +2389,10 @@ import "../styles/global.css";
 
 						if (isActive) {
 							// If active was clicked, collapse it so both are closed
-							placeholderPanel.classList.remove("hidden");
-							placeholderPanel.classList.add("animate-fade-in");
+							if (placeholderPanel) {
+								placeholderPanel.classList.remove("hidden");
+								placeholderPanel.classList.add("animate-fade-in");
+							}
 						} else {
 							// Style the clicked button as active
 							tabBtn.classList.remove(
@@ -2363,7 +2415,9 @@ import "../styles/global.css";
 							}
 
 							// Reveal selected panel
-							placeholderPanel.classList.add("hidden");
+							if (placeholderPanel) {
+								placeholderPanel.classList.add("hidden");
+							}
 							const targetPanel = document.getElementById(
 								`project-panel-${selectedTab}`,
 							);
