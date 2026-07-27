@@ -1,22 +1,97 @@
 @import "tailwindcss";
 
+:root {
+	--color-neutral-950: #0a0a0a;
+	--color-neutral-900: #141414;
+	--color-neutral-800: #262626;
+	--color-neutral-700: #404040;
+	--color-neutral-600: #737373;
+	--color-neutral-500: #a3a3a3;
+	--color-neutral-400: #cccccc;
+	--color-neutral-300: #e5e5e5;
+	--color-neutral-200: #f5f5f5;
+	--color-neutral-100: #ffffff;
+}
+
 html.light {
 	--color-neutral-950: #F4F1EA;
 	--color-neutral-900: #EBE7DC;
-	--color-neutral-800: #E3DEC3;
-	--color-neutral-700: #D3CDB3;
-	--color-neutral-600: #A39E8F;
-	--color-neutral-500: #7C776D;
-	--color-neutral-400: #5C5852;
-	--color-neutral-300: #2D2B2A;
-	--color-neutral-200: #1C1A19;
-	--color-neutral-100: #11100F;
+	--color-neutral-800: #DDD6BD;
+	--color-neutral-700: #C7BEA0;
+	--color-neutral-600: #6E6750;
+	--color-neutral-500: #4A4431;
+	--color-neutral-400: #332E1F;
+	--color-neutral-300: #242015;
+	--color-neutral-200: #18150D;
+	--color-neutral-100: #0F0D08;
+}
+
+/* --- THEME CONTRAST & LEGIBILITY OVERRIDES --- */
+
+/* High-contrast subtext & comment labels */
+.text-neutral-500 {
+	color: var(--color-neutral-500);
+}
+
+/* Active Project Tab button contrast styling for Light (Beige) Mode */
+html.light .project-tab-btn.bg-neutral-200 {
+	background-color: #DDD6BD !important;
+	border-color: #C7BEA0 !important;
+	color: #0F0D08 !important;
+}
+
+html.light .project-tab-btn.bg-neutral-200 span {
+	color: #0F0D08 !important;
+}
+
+html.light .project-tab-btn.bg-neutral-200 .bg-neutral-800 {
+	background-color: #C7BEA0 !important;
+	border-color: #B2A785 !important;
+	color: #0F0D08 !important;
+}
+
+/* Tech stack badges in Light Mode */
+html.light .bg-neutral-800 {
+	background-color: #E5DFC8 !important;
+	border-color: #C7BEA0 !important;
+	color: #242015 !important;
 }
 
 /* Set a light background for the Leaflet map container to match light tiles */
 #map {
 	background-color: #e5e5e5 !important;
 }
+
+/* --- AMBER & ORANGE LIGHT MODE HIGH CONTRAST OVERRIDES --- */
+html.light .text-amber-400,
+html.light .text-amber-500,
+html.light .text-amber-300,
+html.light .text-orange-400,
+html.light .text-orange-500,
+html.light .text-amber-500\/90 {
+	color: #9a3412 !important; /* Deep rich burnt orange/amber for 7.5:1+ contrast on beige */
+}
+
+html.light .bg-amber-500\/10,
+html.light .bg-amber-500\/20 {
+	background-color: rgba(180, 83, 9, 0.12) !important;
+}
+
+html.light .border-amber-500\/30,
+html.light .border-amber-500\/40,
+html.light .border-amber-500\/20,
+html.light .border-amber-500\/50 {
+	border-color: rgba(180, 83, 9, 0.35) !important;
+}
+
+html.light .bg-amber-500 {
+	background-color: #b45309 !important;
+}
+
+html.light div[style*="repeating-linear-gradient"] {
+	background: repeating-linear-gradient(45deg, #b45309, #b45309 10px, #18150D 10px, #18150D 20px) !important;
+}
+
 
 /* --- SYSTEM MICRO-ANIMATIONS --- */
 
@@ -62,7 +137,7 @@ html.light {
 	content: "█";
 	margin-left: 4px;
 	animation: terminal-blink 1s step-end infinite;
-	color: #a3a3a3;
+	color: var(--color-neutral-500);
 	/* Matches your muted comment syntax */
 	font-size: 0.9em;
 }
@@ -73,13 +148,13 @@ html.light {
 }
 
 .system-card:hover {
-	border-color: rgba(163, 158, 143, 0.3); /* Subtle light-up of the border in dark mode */
+	border-color: var(--color-neutral-700); /* Subtle light-up of the border in dark mode */
 	background-color: rgba(30, 30, 30, 0.4); /* Dark mode subtle background shift */
 	box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3);
 }
 
 html.light .system-card:hover {
-	border-color: #d3cdb3; /* Lights up light mode border */
+	border-color: #C7BEA0; /* Lights up light mode border */
 	background-color: rgba(235, 231, 220, 0.6); /* Warm beige mode subtle background shift */
 	box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
 }
