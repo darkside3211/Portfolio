@@ -68,6 +68,72 @@ import "../../styles/global.css";
 			.under-construction-border {
 				animation: borderPulse 2s infinite ease-in-out;
 			}
+
+			/* EXP_01 Enlarge / Theater Fullscreen Mode */
+			#card-canvas-container {
+				transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+			}
+
+			#card-canvas-container .enlarged-hud {
+				display: none;
+			}
+
+			#card-canvas-container.is-enlarged {
+				position: fixed !important;
+				inset: 0 !important;
+				z-index: 100 !important;
+				width: 100vw !important;
+				height: 100vh !important;
+				max-width: 100vw !important;
+				max-height: 100vh !important;
+				border-radius: 0 !important;
+				border: none !important;
+				padding: 1rem !important;
+				background-color: rgba(9, 9, 11, 0.98) !important;
+				backdrop-filter: blur(24px) !important;
+				-webkit-backdrop-filter: blur(24px) !important;
+				display: flex !important;
+				flex-direction: column !important;
+				gap: 0.75rem !important;
+				box-shadow: none !important;
+			}
+
+			@media (min-width: 640px) {
+				#card-canvas-container.is-enlarged {
+					padding: 1.25rem !important;
+					gap: 0.875rem !important;
+				}
+			}
+
+			#card-canvas-container.is-enlarged .standard-hud {
+				display: none !important;
+			}
+
+			#card-canvas-container.is-enlarged .enlarged-hud {
+				display: flex !important;
+			}
+
+			/* Light Mode Overrides for Enlarged View */
+			:global(.light) #card-canvas-container.is-enlarged {
+				background-color: rgba(244, 241, 234, 0.98) !important;
+			}
+
+			:global(.light) #card-canvas-container.is-enlarged .text-neutral-100,
+			:global(.light) #card-canvas-container.is-enlarged .text-neutral-200 {
+				color: #0F0D08 !important;
+			}
+
+			:global(.light) #card-canvas-container.is-enlarged .text-neutral-400,
+			:global(.light) #card-canvas-container.is-enlarged .text-neutral-500 {
+				color: #6E6750 !important;
+			}
+
+			:global(.light) #card-canvas-container.is-enlarged .bg-neutral-900\/90,
+			:global(.light) #card-canvas-container.is-enlarged .bg-neutral-900\/80 {
+				background-color: rgba(235, 231, 220, 0.95) !important;
+				border-color: #DDD6BD !important;
+				color: #0F0D08 !important;
+			}
 		</style>
 	</head>
 	<body
@@ -277,57 +343,144 @@ import "../../styles/global.css";
 
 					<!-- Sandbox Grid: The 3 Hero Placeholders -->
 					<div class="grid grid-cols-1 gap-6">
-						<!-- Card 1: WebGL Shader Playground -->
+						<!-- Card 1: 3D Playing Card Physics Sandbox -->
 						<div
 							id="sandbox-node-1"
-							class="sandbox-card border border-neutral-800 bg-neutral-900/10 hover:bg-neutral-900/20 rounded-xl p-6 system-card flex flex-col gap-4 relative overflow-hidden cursor-pointer select-none transition-all"
+							class="sandbox-card border border-neutral-800 bg-neutral-900/10 hover:bg-neutral-900/20 rounded-xl p-6 system-card flex flex-col gap-4 relative overflow-hidden select-none transition-all"
 						>
 							<div
 								class="flex items-center justify-between border-b border-neutral-800/50 pb-3"
 							>
 								<div class="flex items-center gap-2">
-									<span class="text-amber-500 text-xs">◆</span
-									>
+									<span class="text-amber-500 text-xs">◆</span>
 									<h3
-										class="text-sm font-bold tracking-tight text-neutral-200"
+										class="text-sm font-bold tracking-tight text-neutral-200 font-mono"
 									>
-										EXP_01: WebGL Canvas Shader Sandbox
+										EXP_01: 3D Playing Cards Physics (Rapier3D + ThreeJS)
 									</h3>
 								</div>
-								<span
-									class="text-[9px] font-mono text-neutral-500 uppercase"
-									>// NODE_01</span
-								>
+								<div class="flex items-center gap-2 font-mono text-[9px]">
+									<span
+										class="px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded font-bold uppercase animate-pulse"
+										>● 4 CARDS ACTIVE</span
+									>
+									<button
+										id="header-enlarge-btn"
+										class="px-2 py-0.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 [.light_&]:text-[#9a3412] border border-amber-500/30 rounded font-bold uppercase cursor-pointer transition-all flex items-center gap-1"
+										title="Enlarge screen for better viewing experience"
+									>
+										<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg>
+										<span>ENLARGE</span>
+									</button>
+									<span class="text-neutral-500">// NODE_01</span>
+								</div>
 							</div>
 
-							<!-- Decorative Canvas Preview Placeholder -->
+							<!-- 3D Physics Interactive Canvas Container (Supports Enlarge/Theater Mode) -->
 							<div
-								class="h-40 w-full rounded-lg bg-neutral-950/60 border border-dashed border-neutral-800/80 flex flex-col items-center justify-center relative overflow-hidden group/canvas"
+								id="card-canvas-container"
+								class="h-64 sm:h-72 w-full rounded-lg bg-neutral-950/80 border border-neutral-800 relative overflow-hidden group/canvas shadow-inner"
 							>
-								<!-- Blueprint Matrix Accent -->
+								<!-- Enlarged Top HUD Bar (Visible only in enlarged mode) -->
 								<div
-									class="absolute inset-0 opacity-15"
-									style="background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 15px 15px;"
+									class="enlarged-hud w-full items-center justify-between pointer-events-auto pb-2 border-b border-neutral-800/80 font-mono"
 								>
+									<div class="flex items-center gap-3">
+										<span class="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+										<div>
+											<h2 class="text-xs md:text-sm font-bold text-neutral-100 flex items-center gap-2">
+												<span>EXP_01: 3D Playing Cards Physics Sandbox</span>
+												<span class="text-[9px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">THEATER_EXPANDED</span>
+											</h2>
+											<p class="text-[10px] text-neutral-400 font-mono hidden sm:block">Rapier3D WebAssembly • Rigid Body Physics • Three.js WebGL</p>
+										</div>
+									</div>
+									<div class="flex items-center gap-2">
+										<button
+											id="enlarged-respawn-btn"
+											class="px-3 py-1.5 bg-neutral-900/90 hover:bg-neutral-800 border border-neutral-700 hover:border-neutral-500 text-neutral-200 hover:text-white rounded backdrop-blur-md text-[11px] font-bold transition-all cursor-pointer select-none flex items-center gap-1.5 shadow"
+										>
+											<span>↻ RESPAWN CARDS</span>
+										</button>
+										<button
+											id="toggle-fullscreen-btn"
+											class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-neutral-900/90 hover:bg-neutral-800 border border-neutral-700 hover:border-neutral-500 text-neutral-200 hover:text-white rounded backdrop-blur-md text-[11px] font-bold transition-all cursor-pointer select-none shadow"
+											title="Toggle Hardware Fullscreen"
+										>
+											<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+											<span>FULLSCREEN</span>
+										</button>
+										<button
+											id="close-enlarge-btn"
+											class="px-3 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/50 hover:border-amber-400 text-amber-300 [.light_&]:text-[#9a3412] hover:text-amber-100 rounded backdrop-blur-md text-[11px] font-bold transition-all cursor-pointer select-none flex items-center gap-1.5 shadow"
+											title="Exit Enlarge View (ESC)"
+										>
+											<span>✕ MINIMIZE [ESC]</span>
+										</button>
+									</div>
 								</div>
 
-								<!-- Under Construction Spinning Badge -->
-								<div
-									class="relative z-10 flex flex-col items-center gap-2"
-								>
+								<!-- Central Canvas Viewport Area -->
+								<div class="relative flex-1 w-full h-full min-h-0 overflow-hidden rounded-lg">
+									<canvas
+										id="card-physics-canvas"
+										class="w-full h-full block cursor-grab active:cursor-grabbing"
+									></canvas>
+
+									<!-- Standard Physics Control Bar Overlay (Normal Mode) -->
 									<div
-										class="w-9 h-9 rounded-full border border-neutral-800 bg-neutral-900 flex items-center justify-center text-amber-500 text-sm group-hover/canvas:rotate-45 transition-transform duration-500"
+										class="standard-hud absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none z-10"
 									>
-										⚙️
+										<div
+											class="px-2.5 py-1 bg-neutral-900/90 border border-neutral-800 rounded backdrop-blur-md font-mono text-[9px] text-neutral-400 flex items-center gap-2"
+										>
+											<span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+											<span>RAPIER3D_WASM ENGINE</span>
+										</div>
+										<div class="flex items-center gap-2 pointer-events-auto">
+											<button
+												id="reset-cards-btn"
+												class="px-2.5 py-1 bg-neutral-900/90 hover:bg-neutral-800 border border-neutral-700 hover:border-neutral-500 text-neutral-200 hover:text-white rounded backdrop-blur-md font-mono text-[9px] transition-all cursor-pointer select-none font-bold"
+												title="Respawn all cards at center"
+											>
+												[ ↻ RESPAWN ]
+											</button>
+											<button
+												id="enlarge-cards-btn"
+												class="px-2.5 py-1 bg-neutral-900/90 hover:bg-neutral-800 border border-amber-500/40 hover:border-amber-400 text-amber-300 [.light_&]:text-[#9a3412] hover:text-amber-100 rounded backdrop-blur-md font-mono text-[9px] transition-all cursor-pointer select-none font-bold flex items-center gap-1.5"
+												title="Enlarge screen for better viewing experience"
+											>
+												<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg>
+												<span>[ ⛶ ENLARGE ]</span>
+											</button>
+										</div>
 									</div>
-									<span
-										class="text-[10px] font-mono text-neutral-400"
-										>WebGL Shader pipeline offline</span
+
+									<!-- Standard Instruction Pill (Normal Mode) -->
+									<div
+										class="standard-hud absolute bottom-3 left-3 right-3 flex justify-center pointer-events-none z-10"
 									>
-									<span
-										class="text-[8px] font-mono text-neutral-500"
-										>[Click to stage pipeline simulation]</span
-									>
+										<div
+											class="px-3 py-1 bg-neutral-950/80 border border-neutral-800/80 rounded-full backdrop-blur-md font-mono text-[9px] text-neutral-400 flex items-center gap-1.5 shadow-lg"
+										>
+											<span class="text-amber-400">🖐</span>
+											<span>CLICK & DRAG to pick up, lift, or toss cards in 3D physics</span>
+										</div>
+									</div>
+								</div>
+
+								<!-- Enlarged Bottom Status Bar (Visible only in enlarged mode) -->
+								<div
+									class="enlarged-hud w-full items-center justify-between pt-2 border-t border-neutral-800/80 text-neutral-400 font-mono text-[10px] sm:text-xs pointer-events-auto"
+								>
+									<div class="flex items-center gap-2">
+										<span class="text-amber-400">🖐</span>
+										<span>CLICK & DRAG to pick up, flip, or toss cards in 3D space with momentum.</span>
+									</div>
+									<div class="flex items-center gap-3">
+										<span class="px-2 py-0.5 rounded bg-neutral-900/90 border border-neutral-800 text-neutral-400 font-mono text-[10px]">[ESC] EXIT</span>
+										<span class="px-2 py-0.5 rounded bg-neutral-900/90 border border-neutral-800 text-neutral-400 font-mono text-[10px]">[R] RESPAWN</span>
+									</div>
 								</div>
 							</div>
 
@@ -335,16 +488,19 @@ import "../../styles/global.css";
 								class="flex items-center justify-between text-xs mt-1"
 							>
 								<span
-									class="text-neutral-400 text-[11px] leading-relaxed max-w-[80%]"
+									class="text-neutral-400 text-[11px] leading-relaxed max-w-[78%]"
 								>
-									Designed to parse raw fragments and compile
-									GLSL shader calculations directly on the
-									graphics card.
+									Real-time rigid body simulation featuring 4 procedural playing cards (Ace of Spades, King of Hearts, Queen of Diamonds, Jack of Clubs) with gravity, collision detection, and mouse raycast pick-up.
 								</span>
-								<div
-									class="px-2 py-0.5 bg-neutral-800 text-[9px] font-mono text-neutral-400 border border-neutral-700/60 rounded"
-								>
-									GLSL / WebGL
+								<div class="flex gap-1.5 font-mono text-[9px]">
+									<span
+										class="px-2 py-0.5 bg-neutral-800 text-neutral-300 border border-neutral-700/60 rounded"
+										>Rapier3D WASM</span
+									>
+									<span
+										class="px-2 py-0.5 bg-neutral-800 text-neutral-300 border border-neutral-700/60 rounded"
+										>ThreeJS</span
+									>
 								</div>
 							</div>
 						</div>
@@ -702,6 +858,8 @@ import "../../styles/global.css";
 					setTimeout(processLogQueue, Math.random() * 300 + 200);
 				}
 
+				window.pushTelemetryLogs = pushLogs;
+
 				cards.forEach((card) => {
 					card.addEventListener("click", () => {
 						const nodeId = card.id;
@@ -717,23 +875,15 @@ import "../../styles/global.css";
 							sequence = [
 								{
 									type: "CONN",
-									text: "Establishing socket stream connection with WebGL compiler...",
+									text: "Physics socket linked: Rapier3D WASM & ThreeJS WebGL pipeline.",
 								},
 								{
 									type: "SYS",
-									text: "Staging shader buffers in GPU memory register...",
+									text: "Rigid body registry: 4 procedural card colliders active.",
 								},
 								{
-									type: "WARN",
-									text: "Initialization warning: GLSL fragment shader files missing source links.",
-								},
-								{
-									type: "ERR",
-									text: "Staging failed: Canvas rendering context returned null.",
-								},
-								{
-									type: "SYS",
-									text: "Workspace is under construction. Aborting socket linkage.█",
+									type: "OK",
+									text: "Raycasting listener active. Click & drag cards or toggle Enlarge view.",
 								},
 							];
 						} else if (nodeId === "sandbox-node-2") {
@@ -787,6 +937,583 @@ import "../../styles/global.css";
 						pushLogs(sequence);
 					});
 				});
+			});
+		</script>
+
+		<!-- Rapier 3D + ThreeJS Physics Script -->
+		<script>
+			import RAPIER from "@dimforge/rapier3d-compat";
+			import * as THREE from "three";
+
+			document.addEventListener("DOMContentLoaded", async () => {
+				const canvas = document.getElementById("card-physics-canvas");
+				if (!canvas) return;
+
+				// Initialize Rapier WebAssembly Engine
+				await RAPIER.init();
+
+				const container = canvas.parentElement;
+				let width = container.clientWidth || 600;
+				let height = container.clientHeight || 300;
+
+				// Scene Setup
+				const scene = new THREE.Scene();
+				scene.background = new THREE.Color(0x0a0a0c);
+
+				const camera = new THREE.PerspectiveCamera(
+					42,
+					width / height,
+					0.1,
+					100,
+				);
+				camera.position.set(0, 3.8, 5.8);
+				camera.lookAt(0, 0, 0);
+
+				const renderer = new THREE.WebGLRenderer({
+					canvas,
+					antialias: true,
+					alpha: true,
+				});
+				renderer.setSize(width, height);
+				renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+				renderer.shadowMap.enabled = true;
+				renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+				// Lighting Setup
+				const ambientLight = new THREE.AmbientLight(0xffffff, 0.85);
+				scene.add(ambientLight);
+
+				const dirLight = new THREE.DirectionalLight(0xfff5ea, 1.5);
+				dirLight.position.set(4, 8, 5);
+				dirLight.castShadow = true;
+				dirLight.shadow.mapSize.width = 1024;
+				dirLight.shadow.mapSize.height = 1024;
+				dirLight.shadow.camera.near = 0.5;
+				dirLight.shadow.camera.far = 20;
+				dirLight.shadow.camera.left = -5;
+				dirLight.shadow.camera.right = 5;
+				dirLight.shadow.camera.top = 5;
+				dirLight.shadow.camera.bottom = -5;
+				dirLight.shadow.bias = -0.0005;
+				scene.add(dirLight);
+
+				const fillLight = new THREE.DirectionalLight(0x3b82f6, 0.45);
+				fillLight.position.set(-4, 3, -4);
+				scene.add(fillLight);
+
+				// Procedural Canvas Texture Generator for Playing Cards
+				function createFrontTexture(rank, suit, suitColor, suitSymbol) {
+					const cv = document.createElement("canvas");
+					cv.width = 512;
+					cv.height = 768;
+					const ctx = cv.getContext("2d");
+
+					// Base card background
+					ctx.fillStyle = "#fcfbf7";
+					ctx.fillRect(0, 0, 512, 768);
+
+					// Card inner border lines
+					ctx.strokeStyle = "#d9d4c7";
+					ctx.lineWidth = 6;
+					ctx.strokeRect(16, 16, 480, 736);
+
+					ctx.strokeStyle = "#e8e3d5";
+					ctx.lineWidth = 2;
+					ctx.strokeRect(24, 24, 464, 720);
+
+					// Corner values & suits
+					ctx.fillStyle = suitColor;
+					ctx.font = "bold 56px sans-serif";
+					ctx.textAlign = "center";
+
+					// Top Left
+					ctx.fillText(rank, 54, 76);
+					ctx.font = "44px sans-serif";
+					ctx.fillText(suitSymbol, 54, 122);
+
+					// Bottom Right (Rotated 180 deg)
+					ctx.save();
+					ctx.translate(458, 692);
+					ctx.rotate(Math.PI);
+					ctx.font = "bold 56px sans-serif";
+					ctx.fillText(rank, 0, 0);
+					ctx.font = "44px sans-serif";
+					ctx.fillText(suitSymbol, 0, 46);
+					ctx.restore();
+
+					// Center emblem / suit design
+					ctx.font = "165px sans-serif";
+					ctx.textAlign = "center";
+					ctx.textBaseline = "middle";
+					ctx.fillText(suitSymbol, 256, 384);
+
+					// Rank watermark label
+					ctx.font = "bold 20px monospace";
+					ctx.fillStyle = "#78716c";
+					ctx.fillText(`${rank} OF ${suit.toUpperCase()}`, 256, 575);
+
+					return new THREE.CanvasTexture(cv);
+				}
+
+				function createBackTexture() {
+					const cv = document.createElement("canvas");
+					cv.width = 512;
+					cv.height = 768;
+					const ctx = cv.getContext("2d");
+
+					// Dark brutalist back background
+					ctx.fillStyle = "#121214";
+					ctx.fillRect(0, 0, 512, 768);
+
+					// Golden border accent
+					ctx.strokeStyle = "#d97706";
+					ctx.lineWidth = 12;
+					ctx.strokeRect(20, 20, 472, 728);
+
+					ctx.strokeStyle = "#eab308";
+					ctx.lineWidth = 4;
+					ctx.strokeRect(32, 32, 448, 704);
+
+					// Geometric grid pattern
+					ctx.strokeStyle = "rgba(234, 179, 8, 0.12)";
+					ctx.lineWidth = 2;
+					for (let i = 40; i < 512; i += 32) {
+						ctx.beginPath();
+						ctx.moveTo(i, 40);
+						ctx.lineTo(i, 728);
+						ctx.stroke();
+					}
+					for (let j = 40; j < 768; j += 32) {
+						ctx.beginPath();
+						ctx.moveTo(40, j);
+						ctx.lineTo(472, j);
+						ctx.stroke();
+					}
+
+					// Center emblem box
+					ctx.fillStyle = "#1c1917";
+					ctx.fillRect(116, 264, 280, 240);
+					ctx.strokeStyle = "#eab308";
+					ctx.lineWidth = 3;
+					ctx.strokeRect(116, 264, 280, 240);
+
+					ctx.fillStyle = "#f59e0b";
+					ctx.font = "bold 26px monospace";
+					ctx.textAlign = "center";
+					ctx.fillText("GERARD BALDO", 256, 335);
+					ctx.fillStyle = "#d4d4d8";
+					ctx.font = "bold 16px monospace";
+					ctx.fillText("EXP_01 // SANDBOX", 256, 375);
+
+					ctx.fillStyle = "#10b981";
+					ctx.font = "bold 15px monospace";
+					ctx.fillText("● RAPIER3D ACTIVE", 256, 435);
+
+					return new THREE.CanvasTexture(cv);
+				}
+
+				const cardBackTex = createBackTexture();
+
+				const cardDefs = [
+					{ rank: "A", suit: "Spades", color: "#18181b", symbol: "♠" },
+					{ rank: "K", suit: "Hearts", color: "#dc2626", symbol: "♥" },
+					{ rank: "Q", suit: "Diamonds", color: "#ea580c", symbol: "♦" },
+					{ rank: "J", suit: "Clubs", color: "#18181b", symbol: "♣" },
+				];
+
+				// Rapier Physics World Initialization
+				const gravity = { x: 0.0, y: -9.81, z: 0.0 };
+				const world = new RAPIER.World(gravity);
+
+				// Ground Physics & Mesh
+				const floorY = -1.25;
+				const floorBodyDesc = RAPIER.RigidBodyDesc.fixed().setTranslation(
+					0,
+					floorY - 0.1,
+					0,
+				);
+				const floorBody = world.createRigidBody(floorBodyDesc);
+				const floorColliderDesc = RAPIER.ColliderDesc.cuboid(10.0, 0.1, 10.0)
+					.setFriction(0.7)
+					.setRestitution(0.2);
+				world.createCollider(floorColliderDesc, floorBody);
+
+				// Floor Mesh
+				const floorGeo = new THREE.PlaneGeometry(32, 32);
+				const floorMat = new THREE.MeshStandardMaterial({
+					color: 0x111115,
+					roughness: 0.8,
+					metalness: 0.2,
+				});
+				const floorMesh = new THREE.Mesh(floorGeo, floorMat);
+				floorMesh.rotation.x = -Math.PI / 2;
+				floorMesh.position.y = floorY;
+				floorMesh.receiveShadow = true;
+				scene.add(floorMesh);
+
+				// Subtle grid helper
+				const gridHelper = new THREE.GridHelper(32, 32, 0xeab308, 0x27272a);
+				gridHelper.position.y = floorY + 0.001;
+				scene.add(gridHelper);
+
+				// Invisible Physics Wall Boundaries
+				const createWall = (x, y, z, hx, hy, hz) => {
+					const wallDesc = RAPIER.RigidBodyDesc.fixed().setTranslation(
+						x,
+						y,
+						z,
+					);
+					const wallBody = world.createRigidBody(wallDesc);
+					const wallCol = RAPIER.ColliderDesc.cuboid(
+						hx,
+						hy,
+						hz,
+					)
+						.setFriction(0.4)
+						.setRestitution(0.3);
+					world.createCollider(wallCol, wallBody);
+				};
+				createWall(-4.5, 2, 0, 0.1, 5, 8); // Left wall
+				createWall(4.5, 2, 0, 0.1, 5, 8); // Right wall
+				createWall(0, 2, -4.0, 8, 5, 0.1); // Back wall
+				createWall(0, 2, 4.0, 8, 5, 0.1); // Front wall
+
+				// Spawn 4 Dynamic Physics Cards
+				const cardObjects = [];
+				const edgeMaterial = new THREE.MeshStandardMaterial({
+					color: 0xedebe4,
+					roughness: 0.8,
+				});
+				const cardGeo = new THREE.BoxGeometry(1.4, 2.0, 0.02);
+
+				function spawnCards() {
+					// Clean up previous card objects if re-spawning
+					cardObjects.forEach((item) => {
+						scene.remove(item.mesh);
+						world.removeRigidBody(item.body);
+					});
+					cardObjects.length = 0;
+
+					cardDefs.forEach((def, index) => {
+						const frontTex = createFrontTexture(
+							def.rank,
+							def.suit,
+							def.color,
+							def.symbol,
+						);
+						const frontMat = new THREE.MeshStandardMaterial({
+							map: frontTex,
+							roughness: 0.3,
+						});
+						const backMat = new THREE.MeshStandardMaterial({
+							map: cardBackTex,
+							roughness: 0.3,
+						});
+
+						const materials = [
+							edgeMaterial,
+							edgeMaterial,
+							edgeMaterial,
+							edgeMaterial,
+							frontMat,
+							backMat,
+						];
+						const mesh = new THREE.Mesh(cardGeo, materials);
+						mesh.castShadow = true;
+						mesh.receiveShadow = true;
+						scene.add(mesh);
+
+						// Stagger spawn coordinates & initial rotational velocity
+						const posX = (index - 1.5) * 1.05 + (Math.random() - 0.5) * 0.2;
+						const posY = 1.6 + index * 0.55;
+						const posZ = (Math.random() - 0.5) * 0.4;
+
+						const q = new THREE.Quaternion();
+						q.setFromEuler(
+							new THREE.Euler(
+								(Math.random() - 0.5) * 0.5,
+								(Math.random() - 0.5) * 1.2,
+								(Math.random() - 0.5) * 0.6,
+							),
+						);
+
+						const bodyDesc = RAPIER.RigidBodyDesc.dynamic()
+							.setTranslation(posX, posY, posZ)
+							.setRotation({ x: q.x, y: q.y, z: q.z, w: q.w })
+							.setLinearDamping(0.4)
+							.setAngularDamping(0.6);
+
+						const body = world.createRigidBody(bodyDesc);
+						const colliderDesc = RAPIER.ColliderDesc.cuboid(
+							0.7,
+							1.0,
+							0.01,
+						)
+							.setRestitution(0.35)
+							.setFriction(0.65)
+							.setDensity(1.5);
+						world.createCollider(colliderDesc, body);
+
+						body.applyTorqueImpulse(
+							{
+								x: (Math.random() - 0.5) * 0.04,
+								y: (Math.random() - 0.5) * 0.06,
+								z: (Math.random() - 0.5) * 0.04,
+							},
+							true,
+						);
+
+						cardObjects.push({ mesh, body, def });
+					});
+				}
+
+				spawnCards();
+
+				// Bind Reset / Respawn Buttons (Standard + Enlarged HUD)
+				const resetBtn = document.getElementById("reset-cards-btn");
+				if (resetBtn) {
+					resetBtn.addEventListener("click", (e) => {
+						e.stopPropagation();
+						spawnCards();
+					});
+				}
+
+				const enlargedRespawnBtn = document.getElementById("enlarged-respawn-btn");
+				if (enlargedRespawnBtn) {
+					enlargedRespawnBtn.addEventListener("click", (e) => {
+						e.stopPropagation();
+						spawnCards();
+					});
+				}
+
+				// Enlarge / Theater Fullscreen Mode Controller
+				const cardContainer = document.getElementById("card-canvas-container");
+				const enlargeBtn = document.getElementById("enlarge-cards-btn");
+				const headerEnlargeBtn = document.getElementById("header-enlarge-btn");
+				const closeEnlargeBtn = document.getElementById("close-enlarge-btn");
+				const toggleFullscreenBtn = document.getElementById("toggle-fullscreen-btn");
+
+				function setEnlargeMode(enlarge) {
+					if (!cardContainer) return;
+					if (enlarge) {
+						cardContainer.classList.add("is-enlarged");
+						document.body.style.overflow = "hidden";
+						if (typeof window.pushTelemetryLogs === "function") {
+							window.pushTelemetryLogs([
+								{
+									type: "OK",
+									text: "EXP_01 Canvas Viewport Enlarged: Theater mode active.",
+								},
+							]);
+						}
+					} else {
+						cardContainer.classList.remove("is-enlarged");
+						document.body.style.overflow = "";
+						if (document.fullscreenElement) {
+							document.exitFullscreen().catch(() => {});
+						}
+						if (typeof window.pushTelemetryLogs === "function") {
+							window.pushTelemetryLogs([
+								{
+									type: "SYS",
+									text: "EXP_01 Canvas Viewport Restored to dashboard layout.",
+								},
+							]);
+						}
+					}
+
+					// Update canvas layout dimensions smoothly
+					setTimeout(() => {
+						const rect = container.getBoundingClientRect();
+						const w = Math.floor(rect.width) || 600;
+						const h = Math.floor(rect.height) || 300;
+						camera.aspect = w / h;
+						camera.updateProjectionMatrix();
+						renderer.setSize(w, h);
+					}, 60);
+				}
+
+				if (enlargeBtn) {
+					enlargeBtn.addEventListener("click", (e) => {
+						e.stopPropagation();
+						setEnlargeMode(true);
+					});
+				}
+
+				if (headerEnlargeBtn) {
+					headerEnlargeBtn.addEventListener("click", (e) => {
+						e.stopPropagation();
+						setEnlargeMode(true);
+					});
+				}
+
+				if (closeEnlargeBtn) {
+					closeEnlargeBtn.addEventListener("click", (e) => {
+						e.stopPropagation();
+						setEnlargeMode(false);
+					});
+				}
+
+				if (toggleFullscreenBtn) {
+					toggleFullscreenBtn.addEventListener("click", (e) => {
+						e.stopPropagation();
+						if (!document.fullscreenElement) {
+							cardContainer.requestFullscreen().catch(() => {});
+						} else {
+							document.exitFullscreen().catch(() => {});
+						}
+					});
+				}
+
+				// Global Keyboard Shortcuts (ESC to close, R to respawn cards)
+				window.addEventListener("keydown", (e) => {
+					if (e.key === "Escape" && cardContainer && cardContainer.classList.contains("is-enlarged")) {
+						setEnlargeMode(false);
+					} else if ((e.key === "r" || e.key === "R") && !e.target.matches("input, textarea, select")) {
+						if (cardContainer && cardContainer.classList.contains("is-enlarged")) {
+							spawnCards();
+						}
+					}
+				});
+
+				// Interactive Mouse / Touch Raycasting & Pick Up Logic
+				const raycaster = new THREE.Raycaster();
+				const mouse = new THREE.Vector2();
+				let draggedCard = null;
+				const dragPlane = new THREE.Plane();
+				const dragIntersection = new THREE.Vector3();
+				const planeNormal = new THREE.Vector3(0, 0, 1);
+				let prevMousePos = { x: 0, y: 0 };
+				let mouseVel = { x: 0, y: 0 };
+
+				function updateMouse(e) {
+					const rect = canvas.getBoundingClientRect();
+					mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+					mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+					mouseVel.x = e.clientX - prevMousePos.x;
+					mouseVel.y = e.clientY - prevMousePos.y;
+					prevMousePos = { x: e.clientX, y: e.clientY };
+				}
+
+				canvas.addEventListener("pointermove", (e) => {
+					updateMouse(e);
+					raycaster.setFromCamera(mouse, camera);
+
+					if (draggedCard) {
+						raycaster.ray.intersectPlane(dragPlane, dragIntersection);
+						if (dragIntersection) {
+							const currPos = draggedCard.body.translation();
+							const targetX = dragIntersection.x;
+							const targetY = Math.max(
+								dragIntersection.y,
+								floorY + 0.8,
+							);
+							const targetZ = dragIntersection.z;
+
+							const vx = (targetX - currPos.x) * 16;
+							const vy = (targetY - currPos.y) * 16;
+							const vz = (targetZ - currPos.z) * 16;
+
+							draggedCard.body.setLinvel(
+								{ x: vx, y: vy, z: vz },
+								true,
+							);
+							draggedCard.body.wakeUp();
+						}
+						return;
+					}
+
+					const cardMeshes = cardObjects.map((c) => c.mesh);
+					const intersects = raycaster.intersectObjects(cardMeshes);
+
+					if (intersects.length > 0) {
+						canvas.style.cursor = "grab";
+					} else {
+						canvas.style.cursor = "default";
+					}
+				});
+
+				canvas.addEventListener("pointerdown", (e) => {
+					updateMouse(e);
+					raycaster.setFromCamera(mouse, camera);
+
+					const cardMeshes = cardObjects.map((c) => c.mesh);
+					const intersects = raycaster.intersectObjects(cardMeshes);
+
+					if (intersects.length > 0) {
+						const hitMesh = intersects[0].object;
+						draggedCard = cardObjects.find((c) => c.mesh === hitMesh);
+						if (draggedCard) {
+							canvas.style.cursor = "grabbing";
+							const pos = draggedCard.mesh.position;
+							planeNormal.copy(camera.position).sub(pos).normalize();
+							dragPlane.setFromNormalAndCoplanarPoint(
+								planeNormal,
+								pos,
+							);
+
+							draggedCard.body.wakeUp();
+							draggedCard.body.applyImpulse(
+								{ x: 0, y: 0.15, z: 0 },
+								true,
+							);
+						}
+					}
+				});
+
+				const releaseCard = () => {
+					if (draggedCard) {
+						canvas.style.cursor = "default";
+						const tossX = mouseVel.x * 0.015;
+						const tossY = -mouseVel.y * 0.015;
+						draggedCard.body.applyImpulse(
+							{ x: tossX, y: Math.max(tossY, 0), z: 0 },
+							true,
+						);
+						draggedCard.body.applyTorqueImpulse(
+							{
+								x: (Math.random() - 0.5) * 0.05,
+								y: (Math.random() - 0.5) * 0.05,
+								z: (Math.random() - 0.5) * 0.05,
+							},
+							true,
+						);
+						draggedCard = null;
+					}
+				};
+
+				canvas.addEventListener("pointerup", releaseCard);
+				canvas.addEventListener("pointerleave", releaseCard);
+
+				// Responsive Canvas Resize Observer
+				const resizeObserver = new ResizeObserver(() => {
+					const rect = container.getBoundingClientRect();
+					const w = Math.floor(rect.width) || container.clientWidth || 600;
+					const h = Math.floor(rect.height) || container.clientHeight || 300;
+					camera.aspect = w / h;
+					camera.updateProjectionMatrix();
+					renderer.setSize(w, h);
+				});
+				resizeObserver.observe(container);
+
+				// Animation & Physics Stepping Loop
+				function animate() {
+					requestAnimationFrame(animate);
+
+					world.step();
+
+					cardObjects.forEach(({ mesh, body }) => {
+						const pos = body.translation();
+						const rot = body.rotation();
+						mesh.position.set(pos.x, pos.y, pos.z);
+						mesh.quaternion.set(rot.x, rot.y, rot.z, rot.w);
+					});
+
+					renderer.render(scene, camera);
+				}
+
+				animate();
 			});
 		</script>
 	</body>
