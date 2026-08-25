@@ -286,10 +286,10 @@ import "../../styles/global.css";
 
 			<!-- Main Container -->
 			<main
-				class="flex-1 px-4 md:px-8 pt-24 pb-16 lg:ml-64 lg:px-16 lg:py-16 max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
+				class="flex-1 px-4 md:px-8 pt-24 pb-16 lg:ml-64 lg:px-16 lg:py-16 max-w-6xl"
 			>
-				<!-- LEFT COLUMN: Content (Spans 8 columns) -->
-				<div class="lg:col-span-8 flex flex-col gap-8">
+				<!-- Content Column -->
+				<div class="flex flex-col gap-8">
 					<a
 						href="/"
 						class="text-xs font-mono text-neutral-500 hover:text-neutral-300 transition-colors self-start"
@@ -508,7 +508,7 @@ import "../../styles/global.css";
 						<!-- Card 2: Interactive Vector Particle Stream -->
 						<div
 							id="sandbox-node-2"
-							class="sandbox-card border border-neutral-800 bg-neutral-900/10 hover:bg-neutral-900/20 rounded-xl p-6 system-card flex flex-col gap-4 relative overflow-hidden cursor-pointer select-none transition-all"
+							class="sandbox-card border border-neutral-800 bg-neutral-900/10 hover:bg-neutral-900/20 rounded-xl p-6 system-card flex flex-col gap-4 relative overflow-hidden transition-all"
 						>
 							<div
 								class="flex items-center justify-between border-b border-neutral-800/50 pb-3"
@@ -550,11 +550,6 @@ import "../../styles/global.css";
 										class="text-[10px] font-mono text-neutral-400"
 										>Particle vectors uninitialized</span
 									>
-									<span
-										class="text-[8px] font-mono text-neutral-500"
-										>[Click to stage particle stream
-										simulation]</span
-									>
 								</div>
 							</div>
 
@@ -579,7 +574,7 @@ import "../../styles/global.css";
 						<!-- Card 3: Advanced Relational Schema Graph -->
 						<div
 							id="sandbox-node-3"
-							class="sandbox-card border border-neutral-800 bg-neutral-900/10 hover:bg-neutral-900/20 rounded-xl p-6 system-card flex flex-col gap-4 relative overflow-hidden cursor-pointer select-none transition-all"
+							class="sandbox-card border border-neutral-800 bg-neutral-900/10 hover:bg-neutral-900/20 rounded-xl p-6 system-card flex flex-col gap-4 relative overflow-hidden transition-all"
 						>
 							<div
 								class="flex items-center justify-between border-b border-neutral-800/50 pb-3"
@@ -621,11 +616,6 @@ import "../../styles/global.css";
 										class="text-[10px] font-mono text-neutral-400"
 										>Relational schema mapping standby</span
 									>
-									<span
-										class="text-[8px] font-mono text-neutral-500"
-										>[Click to stage database node
-										visualization]</span
-									>
 								</div>
 							</div>
 
@@ -648,69 +638,8 @@ import "../../styles/global.css";
 						</div>
 					</div>
 				</div>
-
-				<!-- RIGHT COLUMN: Console & Telemetry (Spans 4 columns) -->
-				<aside
-					id="engine-metrics-card"
-					class="lg:col-span-4 border border-neutral-800 bg-neutral-900/10 rounded-xl p-5 font-mono text-[11px] flex flex-col gap-4 rigid-card lg:sticky lg:top-16 backdrop-blur-sm cursor-pointer select-none system-card"
-				>
-					<div
-						class="flex items-center justify-between border-b border-neutral-800/60 pb-2 text-neutral-400"
-					>
-						<span>// SANDBOX_METRICS</span>
-						<span class="h-2 w-2 engine-status-active"></span>
-					</div>
-
-					<div class="flex flex-col gap-2">
-						<div class="flex justify-between text-neutral-500">
-							<span>ENV_WORKSPACE:</span>
-							<span class="text-neutral-300">STAGED_SANDBOX</span>
-						</div>
-						<div class="flex justify-between text-neutral-500">
-							<span>ROUTING_TARGET:</span>
-							<span class="text-neutral-300"
-								>/projects/ongoing-project</span
-							>
-						</div>
-						<div class="flex justify-between text-neutral-500">
-							<span>SYSTEM_MODE:</span>
-							<span class="text-amber-500 [.light_&]:text-[#9a3412] font-bold uppercase"
-								>UNDER_CONSTRUCTION</span
-							>
-						</div>
-					</div>
-
-					<hr class="border-neutral-800/60" />
-
-					<!-- Telemetry Stream Logs -->
-					<div
-						id="telemetry-widget"
-						class="border border-neutral-800/80 rounded-lg p-4 bg-neutral-950/60 text-stone-200 font-mono text-[11px] leading-relaxed shadow-inner mt-2"
-					>
-						<div
-							class="flex items-center justify-between text-neutral-500 border-b border-neutral-900/60 pb-2 mb-2"
-						>
-							<span>// SIMULATION_SOCKET</span>
-							<span
-								id="telemetry-live-indicator"
-								class="text-neutral-500 text-[9px] flex items-center gap-1 font-bold"
-								>● STANDBY</span
-							>
-						</div>
-
-						<div
-							id="telemetry-log-stream"
-							class="space-y-1.5 min-h-[160px] max-h-[220px] overflow-y-auto"
-						>
-							<div class="text-neutral-500 italic">
-								Awaiting sandbox card interaction. Click any
-								experimental node container to verify telemetry
-								response loop.
-							</div>
-						</div>
-					</div>
-				</aside>
-			</main>
+			</div>
+		</main>
 		</div>
 
 		<script is:inline>
@@ -788,155 +717,6 @@ import "../../styles/global.css";
 						});
 					});
 				}
-
-				// Telemetry Logger Logic for Card Interaction
-				const cards = document.querySelectorAll(".sandbox-card");
-				const logStream = document.getElementById(
-					"telemetry-log-stream",
-				);
-				const liveIndicator = document.getElementById(
-					"telemetry-live-indicator",
-				);
-
-				let logQueue = [];
-				let isLogging = false;
-
-				function pushLogs(logsList) {
-					logQueue.push(...logsList);
-					if (!isLogging) {
-						processLogQueue();
-					}
-				}
-
-				function processLogQueue() {
-					if (logQueue.length === 0) {
-						isLogging = false;
-						liveIndicator.className =
-							"text-neutral-500 text-[9px] flex items-center gap-1 font-bold animate-none";
-						liveIndicator.textContent = "● STANDBY";
-						return;
-					}
-
-					isLogging = true;
-					liveIndicator.className =
-						"text-emerald-500 text-[9px] flex items-center gap-1 font-bold animate-pulse";
-					liveIndicator.textContent = "● ACTIVE";
-
-					const item = logQueue.shift();
-
-					// Clear default notice
-					if (logStream.querySelector(".italic")) {
-						logStream.innerHTML = "";
-					}
-
-					const entry = document.createElement("div");
-					let badge = `<span class="text-neutral-500">[SYS]</span>`;
-					if (item.type === "OK")
-						badge = `<span class="text-emerald-400">[ OK ]</span>`;
-					if (item.type === "WARN")
-						badge = `<span class="text-amber-400">[WARN]</span>`;
-					if (item.type === "ERR")
-						badge = `<span class="text-red-500">[FAIL]</span>`;
-					if (item.type === "CONN")
-						badge = `<span class="text-sky-400">[CONN]</span>`;
-
-					const timeStr = new Date().toLocaleTimeString();
-					entry.innerHTML = `<span class="text-[9px] text-neutral-500 font-mono">[${timeStr}]</span> ${badge} <span class="text-neutral-300 font-mono text-[10px]">${item.text}</span>`;
-					entry.className =
-						"opacity-0 transform translate-y-0.5 transition-all duration-300";
-
-					logStream.appendChild(entry);
-
-					// Force layout recalculation and trigger transition
-					setTimeout(() => {
-						entry.classList.remove("opacity-0", "translate-y-0.5");
-					}, 10);
-
-					logStream.scrollTop = logStream.scrollHeight;
-
-					// Natural random stepping delay
-					setTimeout(processLogQueue, Math.random() * 300 + 200);
-				}
-
-				window.pushTelemetryLogs = pushLogs;
-
-				cards.forEach((card) => {
-					card.addEventListener("click", () => {
-						const nodeId = card.id;
-
-						// Flash yellow border on card highlight
-						card.classList.add("under-construction-border");
-						setTimeout(() => {
-							card.classList.remove("under-construction-border");
-						}, 1200);
-
-						let sequence = [];
-						if (nodeId === "sandbox-node-1") {
-							sequence = [
-								{
-									type: "CONN",
-									text: "Physics socket linked: Rapier3D WASM & ThreeJS WebGL pipeline.",
-								},
-								{
-									type: "SYS",
-									text: "Rigid body registry: 4 procedural card colliders active.",
-								},
-								{
-									type: "OK",
-									text: "Raycasting listener active. Click & drag cards or toggle Enlarge view.",
-								},
-							];
-						} else if (nodeId === "sandbox-node-2") {
-							sequence = [
-								{
-									type: "CONN",
-									text: "Probing coordinates array for vector physics bounds...",
-								},
-								{
-									type: "SYS",
-									text: "Initializing 10,000 particle points buffer...",
-								},
-								{
-									type: "WARN",
-									text: "Vector collision equations returned uninitialized parameters.",
-								},
-								{
-									type: "ERR",
-									text: "Stream aborted: Core calculations in standalone component files are under construction.",
-								},
-								{
-									type: "SYS",
-									text: "Restructuring particle registry... Connection dropped.█",
-								},
-							];
-						} else if (nodeId === "sandbox-node-3") {
-							sequence = [
-								{
-									type: "CONN",
-									text: "Scanning relational database indices for node schemas...",
-								},
-								{
-									type: "SYS",
-									text: "Mapping nodes: Intake_Core, Spatial_Ecom, E_Learning...",
-								},
-								{
-									type: "WARN",
-									text: "Graph linkage error: Target endpoints for Ongoing_Project unresolved.",
-								},
-								{
-									type: "OK",
-									text: "Staged database layout mapping verified. Connections cached.",
-								},
-								{
-									type: "SYS",
-									text: "Visualization session terminated. Ready to customize schema.█",
-								},
-							];
-						}
-
-						pushLogs(sequence);
-					});
-				});
 			});
 		</script>
 
