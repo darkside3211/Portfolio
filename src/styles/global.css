@@ -1,4 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
 @import "tailwindcss";
+
+@theme {
+	--font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	--font-serif: "Newsreader", Georgia, Cambria, "Times New Roman", Times, serif;
+	--font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Global Typography - Claude Editorial + Zen Modern Blend */
+body {
+	font-family: var(--font-sans);
+}
+
+h1:where(:not(.font-mono):not(.font-sans)),
+h2:where(:not(.font-mono):not(.font-sans)),
+h3:where(:not(.font-mono):not(.font-sans)),
+h4:where(:not(.font-mono):not(.font-sans)) {
+	font-family: var(--font-serif);
+	letter-spacing: -0.015em;
+}
+
+code, pre {
+	font-family: var(--font-mono);
+}
+
+.font-serif {
+	font-family: var(--font-serif);
+}
+
+.font-sans {
+	font-family: var(--font-sans);
+}
+
+.font-mono {
+	font-family: var(--font-mono);
+}
 
 :root {
 	--color-neutral-950: #0a0a0a;
@@ -142,21 +178,81 @@ html.light div[style*="repeating-linear-gradient"] {
 	font-size: 0.9em;
 }
 
-/* 3. Blueprint Border Illumination */
+/* 3. Zen Browser Glassmorphism & Elevation */
+.rigid-card,
 .system-card {
-	transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+	transition:
+		border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+		box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+		background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+		transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.rigid-card:hover,
 .system-card:hover {
-	border-color: var(--color-neutral-700); /* Subtle light-up of the border in dark mode */
-	background-color: rgba(30, 30, 30, 0.4); /* Dark mode subtle background shift */
-	box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3);
+	border-color: rgba(255, 255, 255, 0.2);
+	background-color: rgba(30, 30, 34, 0.6);
+	box-shadow: 0 18px 42px -10px rgba(0, 0, 0, 0.65), 0 0 20px -4px rgba(255, 255, 255, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+	transform: translateY(-2px);
 }
 
+html.light .rigid-card,
+html.light .system-card {
+	border: 1px solid rgba(199, 190, 160, 0.55);
+	background-color: rgba(244, 241, 234, 0.75);
+	box-shadow: 0 10px 28px -8px rgba(42, 40, 34, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.7);
+}
+
+html.light .rigid-card:hover,
 html.light .system-card:hover {
-	border-color: #C7BEA0; /* Lights up light mode border */
-	background-color: rgba(235, 231, 220, 0.6); /* Warm beige mode subtle background shift */
-	box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+	border-color: rgba(178, 167, 133, 0.85);
+	background-color: rgba(235, 231, 220, 0.85);
+	box-shadow: 0 16px 36px -8px rgba(42, 40, 34, 0.12), inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+	transform: translateY(-2px);
+}
+
+/* Prevent fixed/fullscreen child modals from being trapped by containing blocks */
+.system-card:has(.is-enlarged),
+.rigid-card:has(.is-enlarged),
+.has-enlarged-child {
+	backdrop-filter: none !important;
+	-webkit-backdrop-filter: none !important;
+	transform: none !important;
+}
+
+.system-card:has(.is-enlarged):hover,
+.rigid-card:has(.is-enlarged):hover,
+.has-enlarged-child:hover {
+	transform: none !important;
+}
+
+/* Zen Pill Badges & Buttons */
+.zen-pill {
+	border-radius: 9999px;
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	background: rgba(255, 255, 255, 0.04);
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+	transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.zen-pill:hover {
+	border-color: rgba(255, 255, 255, 0.2);
+	background: rgba(255, 255, 255, 0.08);
+}
+
+html.light .zen-pill {
+	border-color: rgba(199, 190, 160, 0.5);
+	background: rgba(221, 214, 189, 0.35);
+}
+
+html.light .zen-pill:hover {
+	border-color: rgba(178, 167, 133, 0.8);
+	background: rgba(221, 214, 189, 0.65);
 }
 
 /* 4. Walkthrough Fade In Animation */

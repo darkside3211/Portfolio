@@ -1,6 +1,7 @@
 ---
 // src/pages/index.astro
 import "../styles/global.css";
+import IntroSection from "../components/sections/IntroSection.astro";
 ---
 
 <!doctype html>
@@ -9,6 +10,12 @@ import "../styles/global.css";
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Gerard Baldo | System-First Engineer</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+			rel="stylesheet"
+		/>
 		<script type="importmap">
 			{
 				"imports": {
@@ -42,25 +49,7 @@ import "../styles/global.css";
 				);
 			}
 
-			/* 2. Rigid Brutalist Shadow Mappings */
-			.rigid-card {
-				box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.5);
-				transition:
-					transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
-					box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-			}
-			.rigid-card:hover {
-				transform: translate(-1px, -1px);
-				box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.6);
-			}
-			:global(.light) .rigid-card {
-				box-shadow: 4px 4px 0px 0px rgba(42, 40, 34, 0.08);
-			}
-			:global(.light) .rigid-card:hover {
-				box-shadow: 5px 5px 0px 0px rgba(42, 40, 34, 0.12);
-			}
-
-			/* 3. Smooth Collapsible Accordion Animations */
+			/* Smooth Collapsible Accordion Animations */
 			@keyframes accordionSlide {
 				from {
 					opacity: 0;
@@ -397,164 +386,7 @@ import "../styles/global.css";
 					id="content-column"
 					class="lg:col-span-8 flex flex-col gap-12 transition-all duration-500 ease-in-out"
 				>
-					<section
-						id="readme"
-						class="border border-neutral-800 [.light_&]:border-[#d2c9b1] bg-neutral-900/30 [.light_&]:bg-[#fdfaf2] rounded-xl p-6 sm:p-8 backdrop-blur-sm scroll-mt-16 relative flex flex-col lg:block overflow-hidden min-h-fit lg:min-h-[340px]"
-					>
-						<!-- Card Header Workspace Controllers -->
-						<div
-							class="flex items-center justify-between mb-5 border-b border-neutral-800/60 [.light_&]:border-b-[#d2c9b1]/50 pb-3 font-mono text-[10px] text-neutral-500 relative z-10"
-						>
-							<div class="flex items-center gap-1.5">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="11"
-									height="11"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2.5"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									class="text-amber-500/90"
-								>
-									<path
-										d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-									></path>
-									<polyline points="14 2 14 8 20 8"
-									></polyline>
-								</svg>
-								<span class="terminal-path"
-									>~/system_config/readme.txt</span
-								>
-							</div>
-							<span>[AUTHOR_INFO]</span>
-						</div>
-
-						<!-- Left-Side Portrait Subsystem: Handles smooth spatial transformations -->
-						<div
-							id="bio-portrait-layer"
-							class="hidden lg:block lg:absolute lg:-left-8 lg:top-0 lg:h-full lg:w-[320px] pointer-events-none select-none z-0"
-						>
-							<img
-								src="/profile.jpg"
-								alt="Gerard Dominic Baldo"
-								class="w-full h-full object-cover object-left-top brightness-[1.02] lg:rounded-none"
-								id="bio-portrait-img"
-							/>
-							<!-- Color Stop Mask Engine -->
-							<div
-								id="bio-gradient-mask"
-								class="absolute inset-0 lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:via-65% lg:via-neutral-950/70 lg:via-80% lg:to-neutral-950 lg:to-95% [.light_&]:lg:from-transparent [.light_&]:lg:via-transparent [.light_&]:lg:via-65% [.light_&]:lg:via-[#fdfaf2]/80 [.light_&]:lg:via-80% [.light_&]:lg:to-[#fdfaf2] [.light_&]:lg:to-95%"
-							>
-							</div>
-						</div>
-
-						<!-- Content Layer: Transitions smoothly from restricted sidebar to a wide multi-column layout -->
-						<div
-							id="bio-content-layer"
-							class="relative z-10 w-full lg:pl-[308px] flex flex-col h-full justify-between gap-6"
-						>
-							<!-- Profile Metadata -->
-							<div
-								class="flex flex-row items-center justify-between gap-4"
-							>
-								<div class="flex-1">
-									<h2
-										class="text-2xl lg:text-3xl font-extrabold text-neutral-100 [.light_&]:text-[#2d2a24] tracking-tight"
-									>
-										Gerard Dominic Baldo
-									</h2>
-									<p
-										class="text-sm text-amber-400 [.light_&]:text-[#9a3412] font-mono font-bold uppercase tracking-wider mt-1"
-									>
-										// System-First Engineer
-									</p>
-									<p
-										class="text-xs text-neutral-500 [.light_&]:text-[#7c7565] font-mono mt-0.5"
-									>
-										Core Tech: Vue.js // Laravel // Astro
-										Architecture
-									</p>
-								</div>
-
-								<!-- Mobile-only premium avatar -->
-								<div
-									class="lg:hidden flex-shrink-0 relative select-none pointer-events-none"
-								>
-									<div
-										class="relative w-20 h-20 rounded-lg border border-neutral-800 [.light_&]:border-[#d2c9b1] bg-neutral-950/40 p-1"
-									>
-										<div
-											class="w-full h-full rounded-md overflow-hidden relative"
-										>
-											<img
-												src="/profile.jpg"
-												alt="Gerard Dominic Baldo"
-												class="w-full h-full object-cover object-left-top brightness-[1.02]"
-											/>
-										</div>
-									</div>
-									<!-- Micro-Status Indicator badge -->
-									<span
-										class="absolute -top-1 -right-1 flex h-2.5 w-2.5"
-									>
-										<span
-											class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
-										></span>
-										<span
-											class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"
-										></span>
-									</span>
-								</div>
-							</div>
-
-							<!-- Layout Divider -->
-							<div
-								id="bio-divider"
-								class="w-full h-[1px] bg-neutral-800 [.light_&]:bg-[#d2c9b1]/50"
-							>
-							</div>
-
-							<!-- Biography Processing Blocks -->
-							<div
-								id="bio-text-grid"
-								class="space-y-4 text-sm leading-relaxed text-neutral-400 [.light_&]:text-[#4a453a] font-medium"
-							>
-								<p>
-									Hey, I'm Gerard. You could call me a nerd or
-									whatever, but I've just always had this
-									thing for computers and figuring out how
-									they actually work. When I build something,
-									whether I'm using Vue.js, Laravel, or Astro,
-									I care a lot about doing it the right way. I
-									like making sure the foundation is solid
-									instead of just hacking things together. I'm
-									constantly turning problems over in my head,
-									I'm that guy who steps away from the
-									keyboard and suddenly figures out the
-									solution to a bug out of nowhere. I just
-									like doing things right, and doing them
-									smart. Lately, I’ve also been doing some QA
-									work, and honestly, intentionally trying to
-									break other people's code is a blast. It
-									feels a little evil, sure, but finding
-									exactly where a system cracks is a massive
-									perk—and it honestly just makes me build my
-									own stuff even tighter.
-								</p>
-								<p
-									class="text-xs text-neutral-500 [.light_&]:text-[#7c7565] font-mono italic"
-								>
-									~ When I need to step away and clear my
-									head, I completely disconnect. I spend most
-									of my free time taking walks, admiring the
-									scenery, and just taking pictures wherever I
-									happen to go.
-								</p>
-							</div>
-						</div>
-					</section>
+					<IntroSection />
 
 					<section
 						id="manifesto"
