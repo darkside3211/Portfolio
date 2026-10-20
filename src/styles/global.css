@@ -271,6 +271,52 @@ html.light .zen-pill:hover {
 	animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* 5. Seamless Alpha Mask for Portrait Bleed */
+.bio-portrait-mask {
+	-webkit-mask-image: linear-gradient(
+		to right,
+		rgba(0, 0, 0, 1) 0%,
+		rgba(0, 0, 0, 1) 52%,
+		rgba(0, 0, 0, 0.55) 74%,
+		rgba(0, 0, 0, 0.15) 88%,
+		rgba(0, 0, 0, 0) 100%
+	);
+	mask-image: linear-gradient(
+		to right,
+		rgba(0, 0, 0, 1) 0%,
+		rgba(0, 0, 0, 1) 52%,
+		rgba(0, 0, 0, 0.55) 74%,
+		rgba(0, 0, 0, 0.15) 88%,
+		rgba(0, 0, 0, 0) 100%
+	);
+}
+
+/* 6. Sidebar Navigation Active State */
+.sidebar-nav-link {
+	position: relative;
+	border: 1px solid transparent;
+}
+
+.sidebar-nav-link.is-active {
+	background-color: rgba(255, 255, 255, 0.05);
+	border-color: rgba(255, 255, 255, 0.1);
+	color: var(--color-neutral-100);
+}
+
+.sidebar-nav-link.is-active svg {
+	color: #f59e0b;
+}
+
+html.light .sidebar-nav-link.is-active {
+	background-color: rgba(199, 190, 160, 0.35);
+	border-color: rgba(178, 167, 133, 0.65);
+	color: #0F0D08;
+}
+
+html.light .sidebar-nav-link.is-active svg {
+	color: #9a3412;
+}
+
 /* --- MOBILE NAVIGATION STYLES --- */
 #menu-toggle svg line {
 	transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
