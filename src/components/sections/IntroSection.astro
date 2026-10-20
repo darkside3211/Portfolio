@@ -4,11 +4,11 @@
 
 <section
 	id="readme"
-	class="border border-neutral-800 [.light_&]:border-[#d2c9b1] bg-neutral-900/30 [.light_&]:bg-[#fdfaf2] rounded-xl p-6 sm:p-8 backdrop-blur-md scroll-mt-16 relative flex flex-col lg:block overflow-hidden min-h-fit lg:min-h-[340px] system-card"
+	class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-6 sm:p-8 backdrop-blur-md scroll-mt-16 relative flex flex-col lg:block overflow-hidden min-h-fit lg:min-h-[360px] rigid-card system-card"
 >
 	<!-- Card Header Workspace Controllers -->
 	<div
-		class="flex items-center justify-between mb-5 border-b border-neutral-800/60 [.light_&]:border-b-[#d2c9b1]/50 pb-3 font-mono text-[10px] text-neutral-500 relative z-10"
+		class="flex items-center justify-between -mx-6 sm:-mx-8 -mt-6 sm:-mt-8 px-6 sm:px-8 pt-4 pb-3 mb-6 bg-neutral-950/65 [.light_&]:bg-[#EBE7DC]/80 backdrop-blur-md border-b border-neutral-800/60 font-mono text-[10px] text-neutral-400 relative z-20"
 	>
 		<div class="flex items-center gap-1.5">
 			<svg
@@ -30,51 +30,55 @@
 			</svg>
 			<span class="terminal-path">~/system_config/readme.txt</span>
 		</div>
-		<span>[AUTHOR_INFO]</span>
+		<span class="px-1.5 py-0.5 rounded bg-neutral-900/70 border border-neutral-800/80 text-[9px] text-neutral-400">[AUTHOR_INFO]</span>
 	</div>
 
-	<!-- Left-Side Portrait Subsystem: Handles smooth spatial transformations -->
+	<!-- Left-Side Portrait Subsystem: Seamless CSS alpha-mask bleed into any card theme/hover state -->
 	<div
 		id="bio-portrait-layer"
-		class="hidden lg:block lg:absolute lg:-left-8 lg:top-0 lg:h-full lg:w-[320px] pointer-events-none select-none z-0"
+		class="hidden lg:block lg:absolute lg:left-0 lg:top-0 lg:h-full lg:w-[310px] pointer-events-none select-none z-0 bio-portrait-mask"
 	>
 		<img
 			src="/profile.jpg"
 			alt="Gerard Dominic Baldo"
-			class="w-full h-full object-cover object-left-top brightness-[1.02] lg:rounded-none"
+			width="620"
+			height="720"
+			class="w-full h-full object-cover object-top brightness-[1.02] contrast-[1.02]"
 			id="bio-portrait-img"
 		/>
-		<!-- Color Stop Mask Engine -->
-		<div
-			id="bio-gradient-mask"
-			class="absolute inset-0 lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:via-65% lg:via-neutral-950/70 lg:via-80% lg:to-neutral-950 lg:to-95% [.light_&]:lg:from-transparent [.light_&]:lg:via-transparent [.light_&]:lg:via-65% [.light_&]:lg:via-[#fdfaf2]/80 [.light_&]:lg:via-80% [.light_&]:lg:to-[#fdfaf2] [.light_&]:lg:to-95%"
-		>
-		</div>
 	</div>
 
-	<!-- Content Layer: Transitions smoothly from restricted sidebar to a wide multi-column layout -->
+	<!-- Content Layer -->
 	<div
 		id="bio-content-layer"
-		class="relative z-10 w-full lg:pl-[308px] flex flex-col h-full justify-between gap-6"
+		class="relative z-10 w-full lg:pl-[288px] flex flex-col h-full justify-between gap-5"
 	>
 		<!-- Profile Metadata -->
 		<div class="flex flex-row items-center justify-between gap-4">
 			<div class="flex-1">
+				<div class="inline-flex items-center gap-2 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 [.light_&]:text-emerald-800 [.light_&]:bg-emerald-600/10 [.light_&]:border-emerald-600/30 font-mono text-[10px] mb-2">
+					<span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+					<span>AVAILABLE FOR ENGINEERING ROLES</span>
+				</div>
 				<h2
-					class="text-2xl lg:text-3xl font-bold font-serif text-neutral-100 [.light_&]:text-[#2d2a24] tracking-tight"
+					class="text-2xl lg:text-3xl font-bold font-serif text-neutral-100 tracking-tight"
 				>
 					Gerard Dominic Baldo
 				</h2>
 				<p
-					class="text-sm text-amber-400 [.light_&]:text-[#9a3412] font-mono font-bold uppercase tracking-wider mt-1"
+					class="text-xs sm:text-sm text-amber-400 font-mono font-bold uppercase tracking-wider mt-1"
 				>
 					// System-First Engineer
 				</p>
-				<p
-					class="text-xs text-neutral-500 [.light_&]:text-[#7c7565] font-mono mt-0.5"
-				>
-					Core Tech: Vue.js // Laravel // Astro Architecture
-				</p>
+				<div class="flex flex-wrap items-center gap-1.5 mt-2.5 font-mono text-[10px]">
+					<span class="px-2 py-0.5 rounded bg-neutral-950/50 border border-neutral-800/80 text-neutral-300">Vue.js</span>
+					<span class="text-neutral-600">//</span>
+					<span class="px-2 py-0.5 rounded bg-neutral-950/50 border border-neutral-800/80 text-neutral-300">PHP Laravel</span>
+					<span class="text-neutral-600">//</span>
+					<span class="px-2 py-0.5 rounded bg-neutral-950/50 border border-neutral-800/80 text-neutral-300">Astro Architecture</span>
+					<span class="text-neutral-600">//</span>
+					<span class="px-2 py-0.5 rounded bg-neutral-950/50 border border-neutral-800/80 text-neutral-300">QA & E2E</span>
+				</div>
 			</div>
 
 			<!-- Mobile-only premium avatar -->
@@ -82,7 +86,7 @@
 				class="lg:hidden flex-shrink-0 relative select-none pointer-events-none"
 			>
 				<div
-					class="relative w-20 h-20 rounded-lg border border-neutral-800 [.light_&]:border-[#d2c9b1] bg-neutral-950/40 p-1"
+					class="relative w-20 h-20 aspect-square rounded-lg border border-neutral-800 bg-neutral-950/40 p-1"
 				>
 					<div
 						class="w-full h-full rounded-md overflow-hidden relative"
@@ -90,7 +94,9 @@
 						<img
 							src="/profile.jpg"
 							alt="Gerard Dominic Baldo"
-							class="w-full h-full object-cover object-left-top brightness-[1.02]"
+							width="160"
+							height="160"
+							class="w-full h-full aspect-square object-cover object-top brightness-[1.02]"
 						/>
 					</div>
 				</div>
@@ -109,14 +115,14 @@
 		<!-- Layout Divider -->
 		<div
 			id="bio-divider"
-			class="w-full h-[1px] bg-neutral-800 [.light_&]:bg-[#d2c9b1]/50"
+			class="w-full h-[1px] bg-neutral-800/70"
 		>
 		</div>
 
 		<!-- Biography Processing Blocks -->
 		<div
 			id="bio-text-grid"
-			class="space-y-4 text-sm leading-relaxed text-neutral-400 [.light_&]:text-[#4a453a] font-medium"
+			class="space-y-4 text-sm leading-relaxed text-neutral-300 font-normal"
 		>
 			<p>
 				Hey, I'm Gerard. You could call me a nerd or whatever, but I've
@@ -134,13 +140,13 @@
 				perk—and it honestly just makes me build my own stuff even
 				tighter.
 			</p>
-			<p
-				class="text-xs text-neutral-500 [.light_&]:text-[#7c7565] font-mono italic"
+			<div
+				class="border-l-2 border-amber-500/40 pl-3.5 py-0.5 text-xs text-neutral-500 font-mono italic"
 			>
 				~ When I need to step away and clear my head, I completely
 				disconnect. I spend most of my free time taking walks, admiring
 				the scenery, and just taking pictures wherever I happen to go.
-			</p>
+			</div>
 		</div>
 	</div>
 </section>

@@ -93,10 +93,10 @@ import IntroSection from "../components/sections/IntroSection.astro";
 				</div>
 				<div class="flex items-center gap-2">
 					<button
-						class="theme-toggle-btn border border-neutral-800 bg-neutral-900/10 text-neutral-400 hover:text-neutral-200 transition-all rounded p-1.5 text-xs font-mono select-none cursor-pointer"
+						class="theme-toggle-btn border border-neutral-800 bg-neutral-900/10 text-neutral-400 hover:text-neutral-200 transition-all rounded p-2 text-xs font-mono select-none cursor-pointer flex items-center justify-center"
 						aria-label="Toggle Theme"
 					>
-						☼
+						<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
 					</button>
 					<button
 						id="menu-toggle"
@@ -138,7 +138,7 @@ import IntroSection from "../components/sections/IntroSection.astro";
 				id="mobile-menu"
 				class="fixed inset-x-0 top-16 bg-neutral-950/95 border-b border-neutral-800 z-40 flex flex-col justify-between p-6 transition-all duration-300 ease-in-out -translate-y-full opacity-0 pointer-events-none lg:hidden"
 			>
-				<nav class="flex flex-col gap-4 text-sm mt-4">
+				<nav class="flex flex-col gap-3 text-sm mt-2">
 					<a
 						href="#readme"
 						class="mobile-nav-link group flex items-center gap-2 text-neutral-400 hover:text-neutral-100 transition-colors py-1.5 font-medium font-mono text-xs tracking-wider"
@@ -230,10 +230,31 @@ import IntroSection from "../components/sections/IntroSection.astro";
 				</nav>
 
 				<div
-					class="flex flex-col gap-4 mt-8 pt-4 border-t border-neutral-800"
+					class="flex flex-col gap-3 mt-6 pt-4 border-t border-neutral-800"
 				>
+					<div class="text-[9px] font-mono text-neutral-500 uppercase tracking-wider">
+						// 05. CHANNELS
+					</div>
+					<div class="flex items-center gap-2 font-mono text-[11px]">
+						<a
+							href="https://github.com"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="px-2.5 py-1 rounded border border-neutral-800 bg-neutral-900/30 text-neutral-400 hover:text-neutral-200 transition-colors"
+						>GitHub ↗</a>
+						<a
+							href="https://linkedin.com"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="px-2.5 py-1 rounded border border-neutral-800 bg-neutral-900/30 text-neutral-400 hover:text-neutral-200 transition-colors"
+						>LinkedIn ↗</a>
+						<a
+							href="mailto:gerard@example.com"
+							class="px-2.5 py-1 rounded border border-neutral-800 bg-neutral-900/30 text-neutral-400 hover:text-neutral-200 transition-colors"
+						>Email ↗</a>
+					</div>
 					<div
-						class="text-[10px] text-neutral-500 font-mono flex items-center gap-2 tracking-tight"
+						class="text-[10px] text-neutral-500 font-mono flex items-center gap-2 tracking-tight pt-1"
 					>
 						<span
 							class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"
@@ -244,12 +265,12 @@ import IntroSection from "../components/sections/IntroSection.astro";
 			</div>
 
 			<aside
-				class="hidden lg:flex fixed top-0 left-0 h-screen w-64 border-r border-neutral-800 bg-neutral-950 p-6 flex-col justify-between z-50"
+				class="hidden lg:flex fixed top-0 left-0 h-screen w-64 border-r border-neutral-800 bg-neutral-950/90 backdrop-blur-md p-6 flex-col justify-between z-50"
 			>
-				<div class="flex flex-col gap-8">
+				<div class="flex flex-col gap-7">
 					<div class="flex flex-col gap-3">
 						<div
-							class="h-14 w-14 rounded-lg bg-neutral-900 border border-neutral-800 flex items-center justify-center text-lg font-bold tracking-tight text-neutral-300"
+							class="h-12 w-12 rounded-lg bg-neutral-900 border border-neutral-800 flex items-center justify-center text-base font-bold tracking-tight text-neutral-200 shadow-inner"
 						>
 							GB
 						</div>
@@ -265,109 +286,175 @@ import IntroSection from "../components/sections/IntroSection.astro";
 						</div>
 					</div>
 
-					<nav class="flex flex-col gap-2 text-sm">
-						<a
-							href="#readme"
-							class="group flex items-center gap-2 text-neutral-400 hover:text-neutral-100 transition-colors py-1.5 font-medium font-mono text-xs tracking-wider"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="13"
-								height="13"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								class="text-neutral-600 group-hover:text-neutral-400 transition-colors"
-								><path
-									d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-								></path><polyline points="14 2 14 8 20 8"
-								></polyline></svg
+					<div class="flex flex-col gap-1.5">
+						<span class="text-[9px] font-mono text-neutral-500 uppercase tracking-widest px-2.5 mb-1">
+							// DIRECTORY_INDEX
+						</span>
+						<nav class="flex flex-col gap-1 text-sm">
+							<a
+								href="#readme"
+								data-section="readme"
+								class="sidebar-nav-link is-active group flex items-center justify-between px-2.5 py-2 rounded-lg text-neutral-400 hover:text-neutral-100 transition-all font-medium font-mono text-xs tracking-wider"
 							>
-							01. README.TXT
-						</a>
-						<a
-							href="#manifesto"
-							class="group flex items-center gap-2 text-neutral-400 hover:text-neutral-100 transition-colors py-1.5 font-medium font-mono text-xs tracking-wider"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="13"
-								height="13"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								class="text-neutral-600 group-hover:text-neutral-400 transition-colors"
-								><path
-									d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
-								></path><polyline points="14 2 14 8 20 8"
-								></polyline></svg
+								<span class="flex items-center gap-2">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="13"
+										height="13"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										class="text-neutral-500 group-hover:text-neutral-300 transition-colors"
+										><path
+											d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+										></path><polyline points="14 2 14 8 20 8"
+										></polyline></svg
+									>
+									01. README.TXT
+								</span>
+								<span class="nav-dot h-1.5 w-1.5 rounded-full bg-amber-500 opacity-100 transition-opacity"></span>
+							</a>
+							<a
+								href="#manifesto"
+								data-section="manifesto"
+								class="sidebar-nav-link group flex items-center justify-between px-2.5 py-2 rounded-lg text-neutral-400 hover:text-neutral-100 transition-all font-medium font-mono text-xs tracking-wider"
 							>
-							02. MANIFESTO
-						</a>
-						<a
-							href="#capabilities"
-							class="group flex items-center gap-2 text-neutral-400 hover:text-neutral-100 transition-colors py-1.5 font-medium font-mono text-xs tracking-wider"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="13"
-								height="13"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								class="text-neutral-600 group-hover:text-neutral-400 transition-colors"
-								><rect width="18" height="18" x="3" y="3" rx="2"
-								></rect><path d="M9 3v18"></path><path
-									d="M15 3v18"></path><path d="M3 9h18"
-								></path><path d="M3 15h18"></path></svg
+								<span class="flex items-center gap-2">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="13"
+										height="13"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										class="text-neutral-500 group-hover:text-neutral-300 transition-colors"
+										><path
+											d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+										></path><polyline points="14 2 14 8 20 8"
+										></polyline></svg
+									>
+									02. MANIFESTO
+								</span>
+								<span class="nav-dot h-1.5 w-1.5 rounded-full bg-amber-500 opacity-0 transition-opacity"></span>
+							</a>
+							<a
+								href="#capabilities"
+								data-section="capabilities"
+								class="sidebar-nav-link group flex items-center justify-between px-2.5 py-2 rounded-lg text-neutral-400 hover:text-neutral-100 transition-all font-medium font-mono text-xs tracking-wider"
 							>
-							03. CAPABILITIES
-						</a>
-						<a
-							href="#projects"
-							class="group flex items-center gap-2 text-neutral-400 hover:text-neutral-100 transition-colors py-1.5 font-medium font-mono text-xs tracking-wider"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="13"
-								height="13"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								class="text-neutral-600 group-hover:text-neutral-400 transition-colors"
-								><path d="m7.5 4.27 9 5.15"></path><path
-									d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"
-								></path><path d="m3.3 7 8.7 5 8.7-5"
-								></path><path d="M12 22V12"></path></svg
+								<span class="flex items-center gap-2">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="13"
+										height="13"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										class="text-neutral-500 group-hover:text-neutral-300 transition-colors"
+										><rect width="18" height="18" x="3" y="3" rx="2"
+										></rect><path d="M9 3v18"></path><path
+											d="M15 3v18"></path><path d="M3 9h18"
+										></path><path d="M3 15h18"></path></svg
+									>
+									03. CAPABILITIES
+								</span>
+								<span class="nav-dot h-1.5 w-1.5 rounded-full bg-amber-500 opacity-0 transition-opacity"></span>
+							</a>
+							<a
+								href="#projects"
+								data-section="projects"
+								class="sidebar-nav-link group flex items-center justify-between px-2.5 py-2 rounded-lg text-neutral-400 hover:text-neutral-100 transition-all font-medium font-mono text-xs tracking-wider"
 							>
-							04. PROJECTS_AREA
-						</a>
-					</nav>
+								<span class="flex items-center gap-2">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="13"
+										height="13"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										class="text-neutral-500 group-hover:text-neutral-300 transition-colors"
+										><path d="m7.5 4.27 9 5.15"></path><path
+											d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"
+										></path><path d="m3.3 7 8.7 5 8.7-5"
+										></path><path d="M12 22V12"></path></svg
+									>
+									04. PROJECTS_AREA
+								</span>
+								<span class="nav-dot h-1.5 w-1.5 rounded-full bg-amber-500 opacity-0 transition-opacity"></span>
+							</a>
+						</nav>
+					</div>
+
+					<!-- 05. CHANNELS / CONNECT -->
+					<div class="flex flex-col gap-2 pt-4 border-t border-neutral-800/70">
+						<span class="text-[9px] font-mono text-neutral-500 uppercase tracking-widest px-2.5">
+							// 05. CHANNELS
+						</span>
+						<div class="flex flex-col gap-1 font-mono text-[11px]">
+							<a
+								href="https://github.com"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="group flex items-center justify-between px-2.5 py-1.5 rounded-md text-neutral-400 hover:text-neutral-100 hover:bg-neutral-900/40 transition-all"
+							>
+								<span class="flex items-center gap-2">
+									<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-neutral-500 group-hover:text-neutral-300"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+									<span>github.sh</span>
+								</span>
+								<span class="text-[10px] text-neutral-600 group-hover:text-neutral-400">↗</span>
+							</a>
+							<a
+								href="https://linkedin.com"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="group flex items-center justify-between px-2.5 py-1.5 rounded-md text-neutral-400 hover:text-neutral-100 hover:bg-neutral-900/40 transition-all"
+							>
+								<span class="flex items-center gap-2">
+									<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-neutral-500 group-hover:text-neutral-300"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+									<span>linkedin.sys</span>
+								</span>
+								<span class="text-[10px] text-neutral-600 group-hover:text-neutral-400">↗</span>
+							</a>
+							<a
+								href="mailto:gerard@example.com"
+								class="group flex items-center justify-between px-2.5 py-1.5 rounded-md text-neutral-400 hover:text-neutral-100 hover:bg-neutral-900/40 transition-all"
+							>
+								<span class="flex items-center gap-2">
+									<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-neutral-500 group-hover:text-neutral-300"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+									<span>dispatch.mail</span>
+								</span>
+								<span class="text-[10px] text-neutral-600 group-hover:text-neutral-400">↗</span>
+							</a>
+						</div>
+					</div>
 				</div>
 
-				<div class="flex flex-col gap-4">
+				<div class="flex flex-col gap-3.5">
 					<button
 						id="theme-toggle"
-						class="theme-toggle-btn flex items-center justify-between w-full border border-neutral-800 hover:border-neutral-700 bg-neutral-900/10 hover:bg-neutral-900/30 text-neutral-400 hover:text-neutral-200 transition-all rounded px-3 py-2 text-xs font-mono select-none cursor-pointer"
+						class="theme-toggle-btn flex items-center justify-between gap-2 w-full border border-neutral-800 hover:border-neutral-700 bg-neutral-900/20 hover:bg-neutral-900/40 text-neutral-400 hover:text-neutral-200 transition-all rounded-lg px-3 py-2 text-[11px] font-mono select-none cursor-pointer"
 					>
-						<span>THEME: DEFAULT (DARK)</span>
-						<span id="theme-icon">☼</span>
+						<span class="truncate">THEME: DEFAULT (DARK)</span>
+						<span id="theme-icon" class="flex-shrink-0 flex items-center justify-center">
+							<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+						</span>
 					</button>
 
 					<div
-						class="text-[10px] text-neutral-500 font-mono flex items-center gap-2 tracking-tight"
+						class="text-[10px] text-neutral-500 font-mono flex items-center gap-2 tracking-tight px-1"
 					>
 						<span
 							class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"
@@ -377,23 +464,24 @@ import IntroSection from "../components/sections/IntroSection.astro";
 				</div>
 			</aside>
 
-			<!-- UPDATED: Wider constraint and asymmetric grid layout -->
-			<main
-				class="flex-1 px-4 md:px-8 pt-24 pb-16 lg:ml-64 lg:px-16 lg:py-16 max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
-			>
+			<!-- Centered Workspace Container inside remaining viewport -->
+			<div class="flex-1 lg:ml-64 w-full">
+				<main
+					class="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-10 xl:px-14 pt-24 pb-16 lg:py-14 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
+				>
 				<!-- LEFT COLUMN: Content Column (Spans 8 of 12 columns) -->
 				<div
 					id="content-column"
-					class="lg:col-span-8 flex flex-col gap-12 transition-all duration-500 ease-in-out"
+					class="lg:col-span-8 flex flex-col gap-10 transition-all duration-500 ease-in-out"
 				>
 					<IntroSection />
 
 					<section
 						id="manifesto"
-						class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-8 backdrop-blur-sm scroll-mt-16 rigid-card system-card"
+						class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-6 sm:p-8 backdrop-blur-sm scroll-mt-16 overflow-hidden rigid-card system-card"
 					>
 						<div
-							class="flex items-center justify-between border-b border-neutral-800/60 pb-3 mb-5 font-mono text-[10px] text-neutral-500"
+							class="flex items-center justify-between -mx-6 sm:-mx-8 -mt-6 sm:-mt-8 px-6 sm:px-8 pt-4 pb-3 mb-6 bg-neutral-950/65 [.light_&]:bg-[#EBE7DC]/80 backdrop-blur-md border-b border-neutral-800/60 font-mono text-[10px] text-neutral-400"
 						>
 							<div class="flex items-center gap-1.5">
 								<svg
@@ -418,69 +506,72 @@ import IntroSection from "../components/sections/IntroSection.astro";
 									>~/manifesto/core_philosophy.md</span
 								>
 							</div>
-							<span>[STABLE]</span>
+							<span class="px-1.5 py-0.5 rounded bg-neutral-900/70 border border-neutral-800/80 text-[9px] text-emerald-400">[STABLE]</span>
 						</div>
 						<span
 							class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest"
 							>// Core Philosophy</span
 						>
 						<h1
-							class="text-2xl font-bold mt-2 mb-4 tracking-tight text-neutral-100"
+							class="text-2xl font-bold mt-1.5 mb-3 tracking-tight text-neutral-100"
 						>
 							System Over Syntax
 						</h1>
-						<!-- De-textified Spec Grid -->
-						<div
-							class="font-mono text-xs space-y-4 border-t border-neutral-800/60 pt-4 mt-6"
-						>
-							<p class="text-neutral-300 leading-relaxed text-sm">
-								Frameworks evolve and syntax can be searched,
-								but robust architecture is foundational. I build
-								platforms prioritizing structural execution,
-								data integrity, and cross-stack logic. My focus
-								is on engineering scalable systems and adapting
-								quickly to whatever tool best solves the
-								problem.
-							</p>
+						<p class="text-neutral-300 leading-relaxed text-sm">
+							Frameworks evolve and syntax can be searched,
+							but robust architecture is foundational. I build
+							platforms prioritizing structural execution,
+							data integrity, and cross-stack logic. My focus
+							is on engineering scalable systems and adapting
+							quickly to whatever tool best solves the
+							problem.
+						</p>
 
-							<div class="space-y-2.5 pt-4">
-								<div
-									class="text-neutral-500 font-bold uppercase text-[9px] tracking-wider"
-								>
-									// OPERATIONAL_CAPABILITIES
+						<!-- 3-Column Operational Pillars Grid -->
+						<div class="border-t border-neutral-800/60 pt-5 mt-6">
+							<div
+								class="text-neutral-500 font-mono font-bold uppercase text-[9px] tracking-wider mb-3.5"
+							>
+								// OPERATIONAL_CAPABILITIES
+							</div>
+							<div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+								<div class="border border-neutral-800/70 bg-neutral-950/40 rounded-lg p-4 flex flex-col gap-2">
+									<div class="flex items-center justify-between font-mono text-[10px]">
+										<span class="text-amber-500 font-bold">[01]</span>
+										<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-neutral-500"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+									</div>
+									<h3 class="font-mono text-xs font-bold text-neutral-200">
+										System Architecture
+									</h3>
+									<p class="text-xs text-neutral-400 leading-relaxed">
+										Designing clean, scalable cross-stack data pipelines and resilient schemas.
+									</p>
 								</div>
-								<div
-									class="flex items-start gap-2 text-neutral-400"
-								>
-									<span class="text-amber-500">■</span>
-									<span
-										><strong class="text-neutral-200"
-											>System Architecture:</strong
-										> Designing clean, scalable cross-stack data
-										pipelines.</span
-									>
+
+								<div class="border border-neutral-800/70 bg-neutral-950/40 rounded-lg p-4 flex flex-col gap-2">
+									<div class="flex items-center justify-between font-mono text-[10px]">
+										<span class="text-amber-500 font-bold">[02]</span>
+										<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-neutral-500"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+									</div>
+									<h3 class="font-mono text-xs font-bold text-neutral-200">
+										Rapid Troubleshooting
+									</h3>
+									<p class="text-xs text-neutral-400 leading-relaxed">
+										Efficient root-cause diagnosis, QA edge-case hunting, and debugging in complex environments.
+									</p>
 								</div>
-								<div
-									class="flex items-start gap-2 text-neutral-400"
-								>
-									<span class="text-amber-500">■</span>
-									<span
-										><strong class="text-neutral-200"
-											>Rapid Troubleshooting:</strong
-										> Efficient root-cause diagnosis and debugging
-										in complex environments.</span
-									>
-								</div>
-								<div
-									class="flex items-start gap-2 text-neutral-400"
-								>
-									<span class="text-amber-500">■</span>
-									<span
-										><strong class="text-neutral-200"
-											>Environment Adaptability:</strong
-										> Quickly deciphering and navigating complex
-										or legacy codebases.</span
-									>
+
+								<div class="border border-neutral-800/70 bg-neutral-950/40 rounded-lg p-4 flex flex-col gap-2">
+									<div class="flex items-center justify-between font-mono text-[10px]">
+										<span class="text-amber-500 font-bold">[03]</span>
+										<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-neutral-500"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+									</div>
+									<h3 class="font-mono text-xs font-bold text-neutral-200">
+										Environment Adaptability
+									</h3>
+									<p class="text-xs text-neutral-400 leading-relaxed">
+										Quickly deciphering, extending, and modernizing complex or legacy codebases.
+									</p>
 								</div>
 							</div>
 						</div>
@@ -488,10 +579,10 @@ import IntroSection from "../components/sections/IntroSection.astro";
 
 					<section
 						id="capabilities"
-						class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-8 backdrop-blur-sm scroll-mt-16 rigid-card system-card"
+						class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-6 sm:p-8 backdrop-blur-sm scroll-mt-16 overflow-hidden rigid-card system-card"
 					>
 						<div
-							class="flex items-center justify-between border-b border-neutral-800/60 pb-3 mb-5 font-mono text-[10px] text-neutral-500"
+							class="flex items-center justify-between -mx-6 sm:-mx-8 -mt-6 sm:-mt-8 px-6 sm:px-8 pt-4 pb-3 mb-6 bg-neutral-950/65 [.light_&]:bg-[#EBE7DC]/80 backdrop-blur-md border-b border-neutral-800/60 font-mono text-[10px] text-neutral-400"
 						>
 							<div class="flex items-center gap-1.5">
 								<svg
@@ -518,155 +609,192 @@ import IntroSection from "../components/sections/IntroSection.astro";
 									>~/workbench/operational_bounds.sys</span
 								>
 							</div>
-							<span>[READY]</span>
+							<span class="px-1.5 py-0.5 rounded bg-neutral-900/70 border border-neutral-800/80 text-[9px] text-sky-400">[READY]</span>
 						</div>
 						<span
 							class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest"
 							>// Operational Bounds</span
 						>
 						<h2
-							class="text-xl font-bold mt-2 mb-4 tracking-tight text-neutral-200"
+							class="text-2xl font-bold mt-1.5 mb-5 tracking-tight text-neutral-100"
 						>
 							The Stack
 						</h2>
 						<div
-							class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm"
+							class="grid grid-cols-1 md:grid-cols-2 gap-5 text-sm"
 						>
 							<!-- Implementation Stack Box -->
 							<div
-								class="border border-neutral-800/60 bg-neutral-950/40 rounded-lg p-5"
+								class="border border-neutral-800/70 bg-neutral-950/40 rounded-lg p-5 flex flex-col gap-3.5"
 							>
-								<h3
-									class="font-semibold text-neutral-300 mb-4 font-mono text-xs uppercase tracking-wider text-neutral-400"
-								>
-									Implementation Stack
-								</h3>
-								<div class="flex flex-wrap gap-2">
+								<div class="flex items-center justify-between border-b border-neutral-800/50 pb-2.5">
+									<h3
+										class="font-semibold font-mono text-xs uppercase tracking-wider text-neutral-300"
+									>
+										Implementation Stack
+									</h3>
+									<span class="font-mono text-[9px] text-neutral-500">CORE_BUILD</span>
+								</div>
+								<div class="flex flex-col gap-2.5">
 									<!-- Vue.js Badge -->
 									<div
-										class="flex items-center gap-2 px-3 py-1.5 bg-neutral-900/30 border border-neutral-800/60 rounded text-xs text-neutral-300 transition-colors hover:border-emerald-500/40 hover:text-emerald-400 select-none cursor-pointer"
+										class="flex items-center justify-between px-3.5 py-2.5 bg-neutral-900/30 border border-neutral-800/60 rounded-lg text-xs text-neutral-300 transition-colors hover:border-emerald-500/40 group"
 									>
-										<svg
-											class="w-4 h-4"
-											viewBox="0 0 24 24"
-											fill="currentColor"
-										>
-											<path
-												d="M24,1.61H14.06L12,5.16,9.94,1.61H0L12,22.39ZM12,14.08,5.16,2.23H9.59L12,6.41l2.41-4.18h4.43Z"
-											></path>
-										</svg>
-										<span class="font-mono">Vue.js</span>
+										<div class="flex items-center gap-3">
+											<svg
+												class="w-4 h-4 text-emerald-500/80 group-hover:text-emerald-400 transition-colors flex-shrink-0"
+												viewBox="0 0 24 24"
+												fill="currentColor"
+											>
+												<path
+													d="M24,1.61H14.06L12,5.16,9.94,1.61H0L12,22.39ZM12,14.08,5.16,2.23H9.59L12,6.41l2.41-4.18h4.43Z"
+												></path>
+											</svg>
+											<div>
+												<div class="font-mono font-semibold text-neutral-200">Vue.js</div>
+												<div class="text-[10px] text-neutral-500 font-mono">Reactive UI & State Management</div>
+											</div>
+										</div>
+										<span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-neutral-950/60 border border-neutral-800 text-neutral-400">FRONTEND</span>
 									</div>
 									<!-- Laravel Badge -->
 									<div
-										class="flex items-center gap-2 px-3 py-1.5 bg-neutral-900/30 border border-neutral-800/60 rounded text-xs text-neutral-300 transition-colors hover:border-rose-500/40 hover:text-rose-400 select-none cursor-pointer"
+										class="flex items-center justify-between px-3.5 py-2.5 bg-neutral-900/30 border border-neutral-800/60 rounded-lg text-xs text-neutral-300 transition-colors hover:border-rose-500/40 group"
 									>
-										<svg
-											class="w-4 h-4"
-											viewBox="0 0 24 24"
-											fill="currentColor"
-										>
-											<path
-												d="M23.642 5.43a.364.364 0 01.014.1v5.149c0 .135-.073.26-.189.326l-4.323 2.49v4.934a.378.378 0 01-.188.326L9.93 23.949a.316.316 0 01-.066.027c-.008.002-.016.008-.024.01a.348.348 0 01-.192 0c-.011-.002-.02-.008-.03-.012-.02-.008-.042-.014-.062-.025L.533 18.755a.376.376 0 01-.189-.326V2.974c0-.033.005-.066.014-.098.003-.012.01-.02.014-.032a.369.369 0 01.023-.058c.004-.013.015-.022.023-.033l.033-.045c.012-.01.025-.018.037-.027.014-.012.027-.024.041-.034H.53L5.043.05a.375.375 0 01.375 0L9.93 2.647h.002c.015.01.027.021.04.033l.038.027c.013.014.02.03.033.045.008.011.02.021.025.033.01.02.017.038.024.058.003.011.01.021.013.032.01.031.014.064.014.098v9.652l3.76-2.164V5.527c0-.033.004-.066.013-.098.003-.01.01-.02.013-.032a.487.487 0 01.024-.059c.007-.012.018-.02.025-.033.012-.015.021-.03.033-.043.012-.012.025-.02.037-.028.014-.01.026-.023.041-.032h.001l4.513-2.598a.375.375 0 01.375 0l4.513 2.598c.016.01.027.021.042.031.012.01.025.018.036.028.013.014.022.03.034.044.008.012.019.021.024.033.011.02.018.04.024.06.006.01.012.021.015.032zm-.74 5.032V6.179l-1.578.908-2.182 1.256v4.283zm-4.51 7.75v-4.287l-2.147 1.225-6.126 3.498v4.325zM1.093 3.624v14.588l8.273 4.761v-4.325l-4.322-2.445-.002-.003H5.04c-.014-.01-.025-.021-.04-.031-.011-.01-.024-.018-.035-.027l-.001-.002c-.013-.012-.021-.025-.031-.04-.01-.011-.021-.022-.028-.036h-.002c-.008-.014-.013-.031-.02-.047-.006-.016-.014-.027-.018-.043a.49.49 0 01-.008-.057c-.002-.014-.006-.027-.006-.041V5.789l-2.18-1.257zM5.23.81L1.47 2.974l3.76 2.164 3.758-2.164zm1.956 13.505l2.182-1.256V3.624l-1.58.91-2.182 1.255v9.435zm11.581-10.95l-3.76 2.163 3.76 2.163 3.759-2.164zm-.376 4.978L16.21 7.087 14.63 6.18v4.283l2.182 1.256 1.58.908zm-8.65 9.654l5.514-3.148 2.756-1.572-3.757-2.163-4.323 2.489-3.941 2.27z"
-											></path>
-										</svg>
-										<span class="font-mono"
-											>PHP Laravel</span
-										>
+										<div class="flex items-center gap-3">
+											<svg
+												class="w-4 h-4 text-rose-500/80 group-hover:text-rose-400 transition-colors flex-shrink-0"
+												viewBox="0 0 24 24"
+												fill="currentColor"
+											>
+												<path
+													d="M23.642 5.43a.364.364 0 01.014.1v5.149c0 .135-.073.26-.189.326l-4.323 2.49v4.934a.378.378 0 01-.188.326L9.93 23.949a.316.316 0 01-.066.027c-.008.002-.016.008-.024.01a.348.348 0 01-.192 0c-.011-.002-.02-.008-.03-.012-.02-.008-.042-.014-.062-.025L.533 18.755a.376.376 0 01-.189-.326V2.974c0-.033.005-.066.014-.098.003-.012.01-.02.014-.032a.369.369 0 01.023-.058c.004-.013.015-.022.023-.033l.033-.045c.012-.01.025-.018.037-.027.014-.012.027-.024.041-.034H.53L5.043.05a.375.375 0 01.375 0L9.93 2.647h.002c.015.01.027.021.04.033l.038.027c.013.014.02.03.033.045.008.011.02.021.025.033.01.02.017.038.024.058.003.011.01.021.013.032.01.031.014.064.014.098v9.652l3.76-2.164V5.527c0-.033.004-.066.013-.098.003-.01.01-.02.013-.032a.487.487 0 01.024-.059c.007-.012.018-.02.025-.033.012-.015.021-.03.033-.043.012-.012.025-.02.037-.028.014-.01.026-.023.041-.032h.001l4.513-2.598a.375.375 0 01.375 0l4.513 2.598c.016.01.027.021.042.031.012.01.025.018.036.028.013.014.022.03.034.044.008.012.019.021.024.033.011.02.018.04.024.06.006.01.012.021.015.032zm-.74 5.032V6.179l-1.578.908-2.182 1.256v4.283zm-4.51 7.75v-4.287l-2.147 1.225-6.126 3.498v4.325zM1.093 3.624v14.588l8.273 4.761v-4.325l-4.322-2.445-.002-.003H5.04c-.014-.01-.025-.021-.04-.031-.011-.01-.024-.018-.035-.027l-.001-.002c-.013-.012-.021-.025-.031-.04-.01-.011-.021-.022-.028-.036h-.002c-.008-.014-.013-.031-.02-.047-.006-.016-.014-.027-.018-.043a.49.49 0 01-.008-.057c-.002-.014-.006-.027-.006-.041V5.789l-2.18-1.257zM5.23.81L1.47 2.974l3.76 2.164 3.758-2.164zm1.956 13.505l2.182-1.256V3.624l-1.58.91-2.182 1.255v9.435zm11.581-10.95l-3.76 2.163 3.76 2.163 3.759-2.164zm-.376 4.978L16.21 7.087 14.63 6.18v4.283l2.182 1.256 1.58.908zm-8.65 9.654l5.514-3.148 2.756-1.572-3.757-2.163-4.323 2.489-3.941 2.27z"
+												></path>
+											</svg>
+											<div>
+												<div class="font-mono font-semibold text-neutral-200">PHP Laravel</div>
+												<div class="text-[10px] text-neutral-500 font-mono">Relational Data & API Pipelines</div>
+											</div>
+										</div>
+										<span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-neutral-950/60 border border-neutral-800 text-neutral-400">BACKEND</span>
 									</div>
 									<!-- Astro Badge -->
 									<div
-										class="flex items-center gap-2 px-3 py-1.5 bg-neutral-900/30 border border-neutral-800/60 rounded text-xs text-neutral-300 transition-colors hover:border-orange-500/40 hover:text-orange-400 select-none cursor-pointer"
+										class="flex items-center justify-between px-3.5 py-2.5 bg-neutral-900/30 border border-neutral-800/60 rounded-lg text-xs text-neutral-300 transition-colors hover:border-orange-500/40 group"
 									>
-										<svg
-											class="w-4 h-4"
-											viewBox="0 0 24 24"
-											fill="currentColor"
-										>
-											<path
-												d="M8.358 20.162c-1.186-1.07-1.532-3.316-1.038-4.944.856 1.026 2.043 1.352 3.272 1.535 1.897.283 3.76.177 5.522-.678.202-.098.388-.229.608-.36.166.473.209.95.151 1.437-.14 1.185-.738 2.1-1.688 2.794-.38.277-.782.525-1.175.787-1.205.804-1.531 1.747-1.078 3.119l.044.148a3.158 3.158 0 0 1-1.407-1.188 3.31 3.31 0 0 1-.544-1.815c-.004-.32-.004-.642-.048-.958-.106-.769-.472-1.113-1.161-1.133-.707-.02-1.267.411-1.415 1.09-.012.053-.028.104-.045.165h.002zm-5.961-4.445s3.24-1.575 6.49-1.575l2.451-7.565c.092-.366.36-.614.662-.614.302 0 .57.248.662.614l2.45 7.565c3.85 0 6.491 1.575 6.491 1.575L16.088.727C15.93.285 15.663 0 15.303 0H8.697c-.36 0-.615.285-.784.727l-5.516 14.99z"
-											></path>
-										</svg>
-										<span class="font-mono">Astro</span>
+										<div class="flex items-center gap-3">
+											<svg
+												class="w-4 h-4 text-orange-500/80 group-hover:text-orange-400 transition-colors flex-shrink-0"
+												viewBox="0 0 24 24"
+												fill="currentColor"
+											>
+												<path
+													d="M8.358 20.162c-1.186-1.07-1.532-3.316-1.038-4.944.856 1.026 2.043 1.352 3.272 1.535 1.897.283 3.76.177 5.522-.678.202-.098.388-.229.608-.36.166.473.209.95.151 1.437-.14 1.185-.738 2.1-1.688 2.794-.38.277-.782.525-1.175.787-1.205.804-1.531 1.747-1.078 3.119l.044.148a3.158 3.158 0 0 1-1.407-1.188 3.31 3.31 0 0 1-.544-1.815c-.004-.32-.004-.642-.048-.958-.106-.769-.472-1.113-1.161-1.133-.707-.02-1.267.411-1.415 1.09-.012.053-.028.104-.045.165h.002zm-5.961-4.445s3.24-1.575 6.49-1.575l2.451-7.565c.092-.366.36-.614.662-.614.302 0 .57.248.662.614l2.45 7.565c3.85 0 6.491 1.575 6.491 1.575L16.088.727C15.93.285 15.663 0 15.303 0H8.697c-.36 0-.615.285-.784.727l-5.516 14.99z"
+												></path>
+											</svg>
+											<div>
+												<div class="font-mono font-semibold text-neutral-200">Astro</div>
+												<div class="text-[10px] text-neutral-500 font-mono">Zero-JS Static Island Architecture</div>
+											</div>
+										</div>
+										<span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-neutral-950/60 border border-neutral-800 text-neutral-400">SYSTEMS</span>
 									</div>
 								</div>
 							</div>
 
 							<!-- Validation Guardrails Box -->
 							<div
-								class="border border-neutral-800/60 bg-neutral-950/40 rounded-lg p-5"
+								class="border border-neutral-800/70 bg-neutral-950/40 rounded-lg p-5 flex flex-col gap-3.5"
 							>
-								<h3
-									class="font-semibold text-neutral-300 mb-4 font-mono text-xs uppercase tracking-wider text-neutral-400"
-								>
-									Validation Guardrails
-								</h3>
-								<div class="flex flex-wrap gap-2">
+								<div class="flex items-center justify-between border-b border-neutral-800/50 pb-2.5">
+									<h3
+										class="font-semibold font-mono text-xs uppercase tracking-wider text-neutral-300"
+									>
+										Validation Guardrails
+									</h3>
+									<span class="font-mono text-[9px] text-neutral-500">QA_AUDIT</span>
+								</div>
+								<div class="flex flex-col gap-2.5">
 									<!-- Cypress Badge -->
 									<div
-										class="flex items-center gap-2 px-3 py-1.5 bg-neutral-900/30 border border-neutral-800/60 rounded text-xs text-neutral-300 transition-colors hover:border-neutral-400/40 hover:text-neutral-200 select-none cursor-pointer"
+										class="flex items-center justify-between px-3.5 py-2.5 bg-neutral-900/30 border border-neutral-800/60 rounded-lg text-xs text-neutral-300 transition-colors hover:border-neutral-400/40 group"
 									>
-										<svg
-											class="w-4 h-4"
-											viewBox="0 0 24 24"
-											fill="currentColor"
-										>
-											<path
-												d="M11.998.0195c-.8642 0-1.6816.1101-2.1445.1934v.002C4.1731 1.2283 0 6.1368 0 12.0018c0 1.1265.1573 2.2328.4648 3.3028.0387.1453.0915.2993.1368.4473 1.607 4.865 6.2245 8.226 11.3925 8.2285.0651 0 .2518-.0003.502-.0118.8564-.0353 1.6228-.5734 1.9512-1.369l.4736-1.1544L20.4258 8.043H18.621l-2.3164 5.871-2.334-5.871h-1.9082l3.2734 8.0117c-.8115 1.9702-1.6252 3.9395-2.4355 5.9101-.0808.1945-.2655.3284-.4727.336-.144.005-.285.0098-.4316.0098-4.5848 0-8.6672-3.0695-9.9277-7.4649a10.3058 10.3058 0 0 1-.3985-2.8437c0-5.0887 3.6521-9.3404 8.6035-10.164.2214-.037.8885-.1446 1.7246-.1446 4.4166 0 8.269 2.732 9.7305 6.8476.0558.144.0977.293.1465.4395.299.9746.4531 1.9887.4531 3.0215 0 4.5696-2.9413 8.5326-7.3164 9.8613l.4863 1.5996c5.085-1.546 8.4995-6.1518 8.502-11.459 0-1.5491-.2983-2.8706-.6504-3.8926-.0432-.1212-.0873-.2422-.1309-.3633h-.002C21.4577 3.0954 17.0444.0195 11.998.0195ZM8.4336 7.8906c-1.1999 0-2.1747.3852-2.9805 1.1758-.8007.7856-1.205 1.7736-1.205 2.9356 0 1.1544.4068 2.1368 1.205 2.9199.8058.7906 1.7806 1.1738 2.9805 1.1738 1.705 0 3.1556-.955 3.7871-2.4883l.0332-.082-1.6289-.5547c-.168.4563-.7552 1.4883-2.1914 1.4883-.6745 0-1.2437-.2344-1.6934-.6992-.4572-.4699-.6875-1.0632-.6875-1.7578 0-.6998.2253-1.2809.6875-1.7735.4522-.4648 1.019-.7012 1.6934-.7012 1.438 0 2.0238 1.0815 2.1934 1.4883l1.627-.5527-.0333-.084c-.629-1.5358-2.082-2.4883-3.7871-2.4883Z"
-											></path>
-										</svg>
-										<span class="font-mono">Cypress</span>
+										<div class="flex items-center gap-3">
+											<svg
+												class="w-4 h-4 text-neutral-300 flex-shrink-0"
+												viewBox="0 0 24 24"
+												fill="currentColor"
+											>
+												<path
+													d="M11.998.0195c-.8642 0-1.6816.1101-2.1445.1934v.002C4.1731 1.2283 0 6.1368 0 12.0018c0 1.1265.1573 2.2328.4648 3.3028.0387.1453.0915.2993.1368.4473 1.607 4.865 6.2245 8.226 11.3925 8.2285.0651 0 .2518-.0003.502-.0118.8564-.0353 1.6228-.5734 1.9512-1.369l.4736-1.1544L20.4258 8.043H18.621l-2.3164 5.871-2.334-5.871h-1.9082l3.2734 8.0117c-.8115 1.9702-1.6252 3.9395-2.4355 5.9101-.0808.1945-.2655.3284-.4727.336-.144.005-.285.0098-.4316.0098-4.5848 0-8.6672-3.0695-9.9277-7.4649a10.3058 10.3058 0 0 1-.3985-2.8437c0-5.0887 3.6521-9.3404 8.6035-10.164.2214-.037.8885-.1446 1.7246-.1446 4.4166 0 8.269 2.732 9.7305 6.8476.0558.144.0977.293.1465.4395.299.9746.4531 1.9887.4531 3.0215 0 4.5696-2.9413 8.5326-7.3164 9.8613l.4863 1.5996c5.085-1.546 8.4995-6.1518 8.502-11.459 0-1.5491-.2983-2.8706-.6504-3.8926-.0432-.1212-.0873-.2422-.1309-.3633h-.002C21.4577 3.0954 17.0444.0195 11.998.0195ZM8.4336 7.8906c-1.1999 0-2.1747.3852-2.9805 1.1758-.8007.7856-1.205 1.7736-1.205 2.9356 0 1.1544.4068 2.1368 1.205 2.9199.8058.7906 1.7806 1.1738 2.9805 1.1738 1.705 0 3.1556-.955 3.7871-2.4883l.0332-.082-1.6289-.5547c-.168.4563-.7552 1.4883-2.1914 1.4883-.6745 0-1.2437-.2344-1.6934-.6992-.4572-.4699-.6875-1.0632-.6875-1.7578 0-.6998.2253-1.2809.6875-1.7735.4522-.4648 1.019-.7012 1.6934-.7012 1.438 0 2.0238 1.0815 2.1934 1.4883l1.627-.5527-.0333-.084c-.629-1.5358-2.082-2.4883-3.7871-2.4883Z"
+												></path>
+											</svg>
+											<div>
+												<div class="font-mono font-semibold text-neutral-200">Cypress</div>
+												<div class="text-[10px] text-neutral-500 font-mono">Component & E2E Flow Testing</div>
+											</div>
+										</div>
+										<span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-neutral-950/60 border border-neutral-800 text-neutral-400">E2E_SPEC</span>
 									</div>
 									<!-- Playwright Badge -->
 									<div
-										class="flex items-center gap-2 px-3 py-1.5 bg-neutral-900/30 border border-neutral-800/60 rounded text-xs text-neutral-300 transition-colors hover:border-green-500/40 hover:text-green-400 select-none cursor-pointer"
+										class="flex items-center justify-between px-3.5 py-2.5 bg-neutral-900/30 border border-neutral-800/60 rounded-lg text-xs text-neutral-300 transition-colors hover:border-green-500/40 group"
 									>
-										<svg
-											class="w-4 h-4"
-											viewBox="0 0 400 400"
-											fill="currentColor"
-										>
-											<path
-												d="M136.444 221.556C123.558 225.213 115.104 231.625 109.535 238.032C114.869 233.364 122.014 229.08 131.652 226.348C141.51 223.554 149.92 223.574 156.869 224.915V219.481C150.941 218.939 144.145 219.371 136.444 221.556ZM108.946 175.876L61.0895 188.484C61.0895 188.484 61.9617 189.716 63.5767 191.36L104.153 180.668C104.153 180.668 103.578 188.077 98.5847 194.705C108.03 187.559 108.946 175.876 108.946 175.876ZM149.005 288.347C81.6582 306.486 46.0272 228.438 35.2396 187.928C30.2556 169.229 28.0799 155.067 27.5 145.928C27.4377 144.979 27.4665 144.179 27.5336 143.446C24.04 143.657 22.3674 145.473 22.7077 150.721C23.2876 159.855 25.4633 174.016 30.4473 192.721C41.2301 233.225 76.8659 311.273 144.213 293.134C158.872 289.185 169.885 281.992 178.152 272.81C170.532 279.692 160.995 285.112 149.005 288.347ZM161.661 128.11V132.903H188.077C187.535 131.206 186.989 129.677 186.447 128.11H161.661Z"
-											></path>
-											<path
-												d="M193.981 167.584C205.861 170.958 212.144 179.287 215.465 186.658L228.711 190.42C228.711 190.42 226.904 164.623 203.57 157.995C181.741 151.793 168.308 170.124 166.674 172.496C173.024 167.972 182.297 164.268 193.981 167.584ZM299.422 186.777C277.573 180.547 264.145 198.916 262.535 201.255C268.89 196.736 278.158 193.031 289.837 196.362C301.698 199.741 307.976 208.06 311.307 215.436L324.572 219.212C324.572 219.212 322.736 193.41 299.422 186.777ZM286.262 254.795L176.072 223.99C176.072 223.99 177.265 230.038 181.842 237.869L274.617 263.805C282.255 259.386 286.262 254.795 286.262 254.795ZM209.867 321.102C122.618 297.71 133.166 186.543 147.284 133.865C153.097 112.156 159.073 96.0203 164.029 85.204C161.072 84.5953 158.623 86.1529 156.203 91.0746C150.941 101.747 144.212 119.124 137.7 143.45C123.586 196.127 113.038 307.29 200.283 330.682C241.406 341.699 273.442 324.955 297.323 298.659C274.655 319.19 245.714 330.701 209.867 321.102Z"
-											></path>
-											<path
-												d="M161.661 262.296V239.863L99.3324 257.537C99.3324 257.537 103.938 230.777 136.444 221.556C146.302 218.762 154.713 218.781 161.661 220.123V128.11H192.869C189.471 117.61 186.184 109.526 183.423 103.909C178.856 94.612 174.174 100.775 163.545 109.665C156.059 115.919 137.139 129.261 108.668 136.933C80.1966 144.61 57.179 142.574 47.5752 140.911C33.9601 138.562 26.8387 135.572 27.5049 145.928C28.0847 155.062 30.2605 169.224 35.2445 187.928C46.0272 228.433 81.663 306.481 149.01 288.342C166.602 283.602 179.019 274.233 187.626 262.291H161.661V262.296ZM61.0848 188.484L108.946 175.876C108.946 175.876 107.551 194.288 89.6087 199.018C71.6614 203.743 61.0848 188.484 61.0848 188.484Z"
-											></path>
-											<path
-												d="M341.786 129.174C329.345 131.355 299.498 134.072 262.612 124.185C225.716 114.304 201.236 97.0224 191.537 88.8994C177.788 77.3834 171.74 69.3802 165.788 81.4857C160.526 92.163 153.797 109.54 147.284 133.866C133.171 186.543 122.623 297.706 209.867 321.098C297.093 344.47 343.53 242.92 357.644 190.238C364.157 165.917 367.013 147.5 367.799 135.625C368.695 122.173 359.455 126.078 341.786 129.174ZM166.497 172.756C166.497 172.756 180.246 151.372 203.565 158C226.899 164.628 228.706 190.425 228.706 190.425L166.497 172.756ZM223.42 268.713C182.403 256.698 176.077 223.99 176.077 223.99L286.262 254.796C286.262 254.791 264.021 280.578 223.42 268.713ZM262.377 201.495C262.377 201.495 276.107 180.126 299.422 186.773C322.736 193.411 324.572 219.208 324.572 219.208L262.377 201.495Z"
-											></path>
-											<path
-												d="M139.88 246.04L99.3324 257.532C99.3324 257.532 103.737 232.44 133.607 222.496L110.647 136.33L108.663 136.933C80.1918 144.611 57.1742 142.574 47.5704 140.911C33.9554 138.563 26.834 135.572 27.5001 145.929C28.08 155.063 30.2557 169.224 35.2397 187.929C46.0225 228.433 81.6583 306.481 149.005 288.342L150.989 287.719L139.88 246.04ZM61.0848 188.485L108.946 175.876C108.946 175.876 107.551 194.288 89.6087 199.018C71.6615 203.743 61.0848 188.485 61.0848 188.485Z"
-											></path>
-											<path
-												d="M225.27 269.163L223.415 268.712C182.398 256.698 176.072 223.99 176.072 223.99L232.89 239.872L262.971 124.281L262.607 124.185C225.711 114.304 201.232 97.0224 191.532 88.8994C177.783 77.3834 171.735 69.3802 165.783 81.4857C160.526 92.163 153.797 109.54 147.284 133.866C133.171 186.543 122.623 297.706 209.867 321.097L211.655 321.5L225.27 269.163ZM166.497 172.756C166.497 172.756 180.246 151.372 203.565 158C226.899 164.628 228.706 190.425 228.706 190.425L166.497 172.756Z"
-											></path>
-											<path
-												d="M141.946 245.451L131.072 248.537C133.641 263.019 138.169 276.917 145.276 289.195C146.513 288.922 147.74 288.687 149 288.342C152.302 287.451 155.364 286.348 158.312 285.145C150.371 273.361 145.118 259.789 141.946 245.451ZM137.7 143.451C132.112 164.307 127.113 194.326 128.489 224.436C130.952 223.367 133.554 222.371 136.444 221.551L138.457 221.101C136.003 188.939 141.308 156.165 147.284 133.866C148.799 128.225 150.318 122.978 151.832 118.085C149.393 119.637 146.767 121.228 143.776 122.867C141.759 129.093 139.722 135.898 137.7 143.451Z"
-											></path>
-										</svg>
-										<span class="font-mono">Playwright</span
-										>
+										<div class="flex items-center gap-3">
+											<svg
+												class="w-4 h-4 text-emerald-500/80 group-hover:text-emerald-400 transition-colors flex-shrink-0"
+												viewBox="0 0 400 400"
+												fill="currentColor"
+											>
+												<path
+													d="M136.444 221.556C123.558 225.213 115.104 231.625 109.535 238.032C114.869 233.364 122.014 229.08 131.652 226.348C141.51 223.554 149.92 223.574 156.869 224.915V219.481C150.941 218.939 144.145 219.371 136.444 221.556ZM108.946 175.876L61.0895 188.484C61.0895 188.484 61.9617 189.716 63.5767 191.36L104.153 180.668C104.153 180.668 103.578 188.077 98.5847 194.705C108.03 187.559 108.946 175.876 108.946 175.876ZM149.005 288.347C81.6582 306.486 46.0272 228.438 35.2396 187.928C30.2556 169.229 28.0799 155.067 27.5 145.928C27.4377 144.979 27.4665 144.179 27.5336 143.446C24.04 143.657 22.3674 145.473 22.7077 150.721C23.2876 159.855 25.4633 174.016 30.4473 192.721C41.2301 233.225 76.8659 311.273 144.213 293.134C158.872 289.185 169.885 281.992 178.152 272.81C170.532 279.692 160.995 285.112 149.005 288.347ZM161.661 128.11V132.903H188.077C187.535 131.206 186.989 129.677 186.447 128.11H161.661Z"
+												></path>
+												<path
+													d="M193.981 167.584C205.861 170.958 212.144 179.287 215.465 186.658L228.711 190.42C228.711 190.42 226.904 164.623 203.57 157.995C181.741 151.793 168.308 170.124 166.674 172.496C173.024 167.972 182.297 164.268 193.981 167.584ZM299.422 186.777C277.573 180.547 264.145 198.916 262.535 201.255C268.89 196.736 278.158 193.031 289.837 196.362C301.698 199.741 307.976 208.06 311.307 215.436L324.572 219.212C324.572 219.212 322.736 193.41 299.422 186.777ZM286.262 254.795L176.072 223.99C176.072 223.99 177.265 230.038 181.842 237.869L274.617 263.805C282.255 259.386 286.262 254.795 286.262 254.795ZM209.867 321.102C122.618 297.71 133.166 186.543 147.284 133.865C153.097 112.156 159.073 96.0203 164.029 85.204C161.072 84.5953 158.623 86.1529 156.203 91.0746C150.941 101.747 144.212 119.124 137.7 143.45C123.586 196.127 113.038 307.29 200.283 330.682C241.406 341.699 273.442 324.955 297.323 298.659C274.655 319.19 245.714 330.701 209.867 321.102Z"
+												></path>
+												<path
+													d="M161.661 262.296V239.863L99.3324 257.537C99.3324 257.537 103.938 230.777 136.444 221.556C146.302 218.762 154.713 218.781 161.661 220.123V128.11H192.869C189.471 117.61 186.184 109.526 183.423 103.909C178.856 94.612 174.174 100.775 163.545 109.665C156.059 115.919 137.139 129.261 108.668 136.933C80.1966 144.61 57.179 142.574 47.5752 140.911C33.9601 138.562 26.8387 135.572 27.5049 145.928C28.0847 155.062 30.2605 169.224 35.2445 187.928C46.0272 228.433 81.663 306.481 149.01 288.342C166.602 283.602 179.019 274.233 187.626 262.291H161.661V262.296ZM61.0848 188.484L108.946 175.876C108.946 175.876 107.551 194.288 89.6087 199.018C71.6614 203.743 61.0848 188.484 61.0848 188.484Z"
+												></path>
+												<path
+													d="M341.786 129.174C329.345 131.355 299.498 134.072 262.612 124.185C225.716 114.304 201.236 97.0224 191.537 88.8994C177.788 77.3834 171.74 69.3802 165.788 81.4857C160.526 92.163 153.797 109.54 147.284 133.866C133.171 186.543 122.623 297.706 209.867 321.098C297.093 344.47 343.53 242.92 357.644 190.238C364.157 165.917 367.013 147.5 367.799 135.625C368.695 122.173 359.455 126.078 341.786 129.174ZM166.497 172.756C166.497 172.756 180.246 151.372 203.565 158C226.899 164.628 228.706 190.425 228.706 190.425L166.497 172.756ZM223.42 268.713C182.403 256.698 176.077 223.99 176.077 223.99L286.262 254.796C286.262 254.791 264.021 280.578 223.42 268.713ZM262.377 201.495C262.377 201.495 276.107 180.126 299.422 186.773C322.736 193.411 324.572 219.208 324.572 219.208L262.377 201.495Z"
+												></path>
+												<path
+													d="M139.88 246.04L99.3324 257.532C99.3324 257.532 103.737 232.44 133.607 222.496L110.647 136.33L108.663 136.933C80.1918 144.611 57.1742 142.574 47.5704 140.911C33.9554 138.563 26.834 135.572 27.5001 145.929C28.08 155.063 30.2557 169.224 35.2397 187.929C46.0225 228.433 81.6583 306.481 149.005 288.342L150.989 287.719L139.88 246.04ZM61.0848 188.485L108.946 175.876C108.946 175.876 107.551 194.288 89.6087 199.018C71.6615 203.743 61.0848 188.485 61.0848 188.485Z"
+												></path>
+												<path
+													d="M225.27 269.163L223.415 268.712C182.398 256.698 176.072 223.99 176.072 223.99L232.89 239.872L262.971 124.281L262.607 124.185C225.711 114.304 201.232 97.0224 191.532 88.8994C177.783 77.3834 171.735 69.3802 165.783 81.4857C160.526 92.163 153.797 109.54 147.284 133.866C133.171 186.543 122.623 297.706 209.867 321.097L211.655 321.5L225.27 269.163ZM166.497 172.756C166.497 172.756 180.246 151.372 203.565 158C226.899 164.628 228.706 190.425 228.706 190.425L166.497 172.756Z"
+												></path>
+												<path
+													d="M141.946 245.451L131.072 248.537C133.641 263.019 138.169 276.917 145.276 289.195C146.513 288.922 147.74 288.687 149 288.342C152.302 287.451 155.364 286.348 158.312 285.145C150.371 273.361 145.118 259.789 141.946 245.451ZM137.7 143.451C132.112 164.307 127.113 194.326 128.489 224.436C130.952 223.367 133.554 222.371 136.444 221.551L138.457 221.101C136.003 188.939 141.308 156.165 147.284 133.866C148.799 128.225 150.318 122.978 151.832 118.085C149.393 119.637 146.767 121.228 143.776 122.867C141.759 129.093 139.722 135.898 137.7 143.451Z"
+												></path>
+											</svg>
+											<div>
+												<div class="font-mono font-semibold text-neutral-200">Playwright</div>
+												<div class="text-[10px] text-neutral-500 font-mono">Cross-Engine Browser Automation</div>
+											</div>
+										</div>
+										<span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-neutral-950/60 border border-neutral-800 text-neutral-400">AUTOMATION</span>
 									</div>
 									<!-- Postman Badge -->
 									<div
-										class="flex items-center gap-2 px-3 py-1.5 bg-neutral-900/30 border border-neutral-800/60 rounded text-xs text-neutral-300 transition-colors hover:border-orange-500/40 hover:text-orange-400 select-none cursor-pointer"
+										class="flex items-center justify-between px-3.5 py-2.5 bg-neutral-900/30 border border-neutral-800/60 rounded-lg text-xs text-neutral-300 transition-colors hover:border-orange-500/40 group"
 									>
-										<svg
-											class="w-4 h-4"
-											viewBox="0 0 24 24"
-											fill="currentColor"
-										>
-											<path
-												d="M13.527.099C6.955-.744.942 3.9.099 10.473c-.843 6.572 3.8 12.584 10.373 13.428 6.573.843 12.587-3.801 13.428-10.374C24.744 6.955 20.101.943 13.527.099zm2.471 7.485a.855.855 0 0 0-.593.25l-4.453 4.453-.307-.307-.643-.643c4.389-4.376 5.18-4.418 5.996-3.753zm-4.863 4.861l4.44-4.44a.62.62 0 1 1 .847.903l-4.699 4.125-.588-.588zm.33.694l-1.1.238a.06.06 0 0 1-.067-.032.06.06 0 0 1 .01-.073l.645-.645.512.512zm-2.803-.459l1.172-1.172.879.878-1.979.426a.074.074 0 0 1-.085-.039.072.072 0 0 1 .013-.093zm-3.646 6.058a.076.076 0 0 1-.069-.083.077.077 0 0 1 .022-.046h.002l.946-.946 1.222 1.222-2.123-.147zm2.425-1.256a.228.228 0 0 0-.117.256l.203.865a.125.125 0 0 1-.211.117h-.003l-.934-.934-.294-.295 3.762-3.758 1.82-.393.874.874c-1.255 1.102-2.971 2.201-5.1 3.268zm5.279-3.428h-.002l-.839-.839 4.699-4.125a.952.952 0 0 0 .119-.127c-.148 1.345-2.029 3.245-3.977 5.091zm3.657-6.46l-.003-.002a1.822 1.822 0 0 1 2.459-2.684l-1.61 1.613a.119.119 0 0 0 0 .169l1.247 1.247a1.817 1.817 0 0 1-2.093-.343zm2.578 0a1.714 1.714 0 0 1-.271.218h-.001l-1.207-1.207 1.533-1.533c.661.72.637 1.832-.054 2.522zM18.855 6.05a.143.143 0 0 0-.053.157.416.416 0 0 1-.053.45.14.14 0 0 0 .023.197.141.141 0 0 0 .084.03.14.14 0 0 0 .106-.05.691.691 0 0 0 .087-.751.138.138 0 0 0-.194-.033z"
-											></path>
-										</svg>
-										<span class="font-mono"
-											>Postman API</span
-										>
+										<div class="flex items-center gap-3">
+											<svg
+												class="w-4 h-4 text-orange-500/80 group-hover:text-orange-400 transition-colors flex-shrink-0"
+												viewBox="0 0 24 24"
+												fill="currentColor"
+											>
+												<path
+													d="M13.527.099C6.955-.744.942 3.9.099 10.473c-.843 6.572 3.8 12.584 10.373 13.428 6.573.843 12.587-3.801 13.428-10.374C24.744 6.955 20.101.943 13.527.099zm2.471 7.485a.855.855 0 0 0-.593.25l-4.453 4.453-.307-.307-.643-.643c4.389-4.376 5.18-4.418 5.996-3.753zm-4.863 4.861l4.44-4.44a.62.62 0 1 1 .847.903l-4.699 4.125-.588-.588zm.33.694l-1.1.238a.06.06 0 0 1-.067-.032.06.06 0 0 1 .01-.073l.645-.645.512.512zm-2.803-.459l1.172-1.172.879.878-1.979.426a.074.074 0 0 1-.085-.039.072.072 0 0 1 .013-.093zm-3.646 6.058a.076.076 0 0 1-.069-.083.077.077 0 0 1 .022-.046h.002l.946-.946 1.222 1.222-2.123-.147zm2.425-1.256a.228.228 0 0 0-.117.256l.203.865a.125.125 0 0 1-.211.117h-.003l-.934-.934-.294-.295 3.762-3.758 1.82-.393.874.874c-1.255 1.102-2.971 2.201-5.1 3.268zm5.279-3.428h-.002l-.839-.839 4.699-4.125a.952.952 0 0 0 .119-.127c-.148 1.345-2.029 3.245-3.977 5.091zm3.657-6.46l-.003-.002a1.822 1.822 0 0 1 2.459-2.684l-1.61 1.613a.119.119 0 0 0 0 .169l1.247 1.247a1.817 1.817 0 0 1-2.093-.343zm2.578 0a1.714 1.714 0 0 1-.271.218h-.001l-1.207-1.207 1.533-1.533c.661.72.637 1.832-.054 2.522zM18.855 6.05a.143.143 0 0 0-.053.157.416.416 0 0 1-.053.45.14.14 0 0 0 .023.197.141.141 0 0 0 .084.03.14.14 0 0 0 .106-.05.691.691 0 0 0 .087-.751.138.138 0 0 0-.194-.033z"
+												></path>
+											</svg>
+											<div>
+												<div class="font-mono font-semibold text-neutral-200">Postman API</div>
+												<div class="text-[10px] text-neutral-500 font-mono">REST Contract & Payload Auditing</div>
+											</div>
+										</div>
+										<span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-neutral-950/60 border border-neutral-800 text-neutral-400">API_TEST</span>
 									</div>
 								</div>
 							</div>
@@ -675,42 +803,74 @@ import IntroSection from "../components/sections/IntroSection.astro";
 
 					<section
 						id="projects"
-						class="flex flex-col gap-4 scroll-mt-16"
+						class="border border-neutral-800 bg-neutral-900/30 rounded-xl p-6 sm:p-8 backdrop-blur-sm scroll-mt-16 overflow-hidden rigid-card system-card flex flex-col gap-5"
 					>
-						<span
-							class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest"
-							>// The Evidence</span
+						<div
+							class="flex items-center justify-between -mx-6 sm:-mx-8 -mt-6 sm:-mt-8 px-6 sm:px-8 pt-4 pb-3 mb-1 bg-neutral-950/65 [.light_&]:bg-[#EBE7DC]/80 backdrop-blur-md border-b border-neutral-800/60 font-mono text-[10px] text-neutral-400"
 						>
-						<h2
-							class="text-xl font-bold tracking-tight mb-2 text-neutral-200"
-						>
-							Projects Area
-						</h2>
+							<div class="flex items-center gap-1.5">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="11"
+									height="11"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="text-amber-500"
+									><path d="m7.5 4.27 9 5.15"></path><path
+										d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"
+									></path><path d="m3.3 7 8.7 5 8.7-5"
+									></path><path d="M12 22V12"></path></svg
+								>
+								<span class="terminal-path"
+									>~/deployments/projects_area.dir</span
+								>
+							</div>
+							<span class="px-1.5 py-0.5 rounded bg-neutral-900/70 border border-neutral-800/80 text-[9px] text-amber-400">[3_MODULES_LOADED]</span>
+						</div>
+
+						<div>
+							<span
+								class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest"
+								>// The Evidence</span
+							>
+							<h2
+								class="text-2xl font-bold tracking-tight mt-1 text-neutral-100"
+							>
+								Projects Area
+							</h2>
+						</div>
 
 						<!-- Project Tabs Selector -->
 						<div
-							class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-2"
+							class="grid grid-cols-1 md:grid-cols-3 gap-3"
 							id="project-tabs"
 						>
 							<button
 								data-tab="ecommerce"
-								class="project-tab-btn flex flex-col items-start text-left border border-neutral-800 bg-neutral-900/10 hover:bg-neutral-900/30 text-neutral-400 hover:text-neutral-200 transition-all duration-200 rounded-xl p-4 cursor-pointer select-none group"
+								class="project-tab-btn flex flex-col items-start text-left border border-neutral-200 bg-neutral-200 text-neutral-950 transition-all duration-200 rounded-xl p-4 cursor-pointer select-none group"
 							>
+								<div class="w-full flex items-center justify-between mb-1">
+									<span
+										class="text-[9px] font-mono text-neutral-600 transition-colors"
+										>// INTERACTIVE 3D PLATFORM</span
+									>
+									<span class="tab-status-dot h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+								</div>
 								<span
-									class="text-[9px] font-mono text-neutral-500 group-hover:text-neutral-400 mb-1 transition-colors"
-									>// INTERACTIVE 3D PLATFORM</span
-								>
-								<span
-									class="text-sm font-bold text-neutral-300 group-hover:text-neutral-100 transition-colors"
+									class="text-sm font-bold text-neutral-950 transition-colors"
 									>Spatial E-Commerce Engine</span
 								>
-								<div class="flex gap-1.5 mt-2">
+								<div class="flex gap-1.5 mt-2.5">
 									<span
-										class="px-2 py-0.5 bg-neutral-800 text-[9px] font-mono text-neutral-400 border border-neutral-700/60 rounded"
+										class="px-2 py-0.5 bg-neutral-800 text-[9px] font-mono text-neutral-300 border border-neutral-700/60 rounded"
 										>Vue.js</span
 									>
 									<span
-										class="px-2 py-0.5 bg-neutral-800 text-[9px] font-mono text-neutral-400 border border-neutral-700/60 rounded"
+										class="px-2 py-0.5 bg-neutral-800 text-[9px] font-mono text-neutral-300 border border-neutral-700/60 rounded"
 										>WebGL</span
 									>
 								</div>
@@ -718,17 +878,20 @@ import IntroSection from "../components/sections/IntroSection.astro";
 
 							<button
 								data-tab="intake"
-								class="project-tab-btn flex flex-col items-start text-left border border-neutral-800 bg-neutral-900/10 hover:bg-neutral-900/30 text-neutral-400 hover:text-neutral-200 transition-all duration-200 rounded-xl p-4 cursor-pointer select-none group"
+								class="project-tab-btn flex flex-col items-start text-left border border-neutral-800 bg-neutral-950/40 hover:bg-neutral-900/50 text-neutral-400 hover:text-neutral-200 transition-all duration-200 rounded-xl p-4 cursor-pointer select-none group"
 							>
-								<span
-									class="text-[9px] font-mono text-neutral-500 group-hover:text-neutral-400 mb-1 transition-colors"
-									>// RELATIONAL GIS MAPPING</span
-								>
+								<div class="w-full flex items-center justify-between mb-1">
+									<span
+										class="text-[9px] font-mono text-neutral-500 group-hover:text-neutral-400 transition-colors"
+										>// RELATIONAL GIS MAPPING</span
+									>
+									<span class="tab-status-dot h-1.5 w-1.5 rounded-full bg-neutral-700"></span>
+								</div>
 								<span
 									class="text-sm font-bold text-neutral-300 group-hover:text-neutral-100 transition-colors"
 									>Unified Intake & Spatial Mapping</span
 								>
-								<div class="flex gap-1.5 mt-2">
+								<div class="flex gap-1.5 mt-2.5">
 									<span
 										class="px-2 py-0.5 bg-neutral-800 text-[9px] font-mono text-neutral-400 border border-neutral-700/60 rounded"
 										>Leaflet.js</span
@@ -742,17 +905,20 @@ import IntroSection from "../components/sections/IntroSection.astro";
 
 							<button
 								data-tab="ongoing"
-								class="project-tab-btn flex flex-col items-start text-left border border-neutral-800 bg-neutral-900/10 hover:bg-neutral-900/30 text-neutral-400 hover:text-neutral-200 transition-all duration-200 rounded-xl p-4 cursor-pointer select-none group"
+								class="project-tab-btn flex flex-col items-start text-left border border-neutral-800 bg-neutral-950/40 hover:bg-neutral-900/50 text-neutral-400 hover:text-neutral-200 transition-all duration-200 rounded-xl p-4 cursor-pointer select-none group"
 							>
-								<span
-									class="text-[9px] font-mono text-neutral-500 group-hover:text-neutral-400 mb-1 transition-colors"
-									>// WORKSPACE SANDBOX</span
-								>
+								<div class="w-full flex items-center justify-between mb-1">
+									<span
+										class="text-[9px] font-mono text-neutral-500 group-hover:text-neutral-400 transition-colors"
+										>// WORKSPACE SANDBOX</span
+									>
+									<span class="tab-status-dot h-1.5 w-1.5 rounded-full bg-amber-500/70"></span>
+								</div>
 								<span
 									class="text-sm font-bold text-neutral-300 group-hover:text-neutral-100 transition-colors"
 									>Ongoing Project Sandbox</span
 								>
-								<div class="flex gap-1.5 mt-2">
+								<div class="flex gap-1.5 mt-2.5">
 									<span
 										class="px-2 py-0.5 bg-neutral-800 [.light_&]:bg-[#dfd7be] text-[9px] font-mono text-amber-400 [.light_&]:text-[#7c2d12] border border-neutral-700/60 [.light_&]:border-[#b45309]/40 rounded font-bold"
 										>Staged WIP</span
@@ -768,7 +934,7 @@ import IntroSection from "../components/sections/IntroSection.astro";
 						<!-- Placeholder Panel (when no project is selected) -->
 						<div
 							id="project-placeholder-panel"
-							class="border border-dashed border-neutral-800 bg-neutral-950/20 rounded-xl p-8 text-center flex flex-col items-center justify-center min-h-[260px]"
+							class="hidden border border-dashed border-neutral-800 bg-neutral-950/20 rounded-xl p-8 text-center flex flex-col items-center justify-center min-h-[220px]"
 						>
 							<div
 								class="h-12 w-12 rounded-full border border-neutral-800/80 bg-neutral-900/40 flex items-center justify-center mb-3 text-neutral-400"
@@ -813,7 +979,7 @@ import IntroSection from "../components/sections/IntroSection.astro";
 						<!-- Capstone Project Card: Spatial E-Commerce Engine -->
 						<div
 							id="project-panel-ecommerce"
-							class="project-panel hidden border border-neutral-800 bg-neutral-900/10 rounded-xl p-6 system-card project-card w-full"
+							class="project-panel border border-neutral-800/80 bg-neutral-950/40 rounded-xl p-5 sm:p-6 project-card w-full animate-fade-in"
 						>
 							<div
 								class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-neutral-800/60 pb-4"
@@ -1057,7 +1223,7 @@ import IntroSection from "../components/sections/IntroSection.astro";
 						<!-- Project 2 Card: Unified Intake & Spatial Mapping -->
 						<div
 							id="project-panel-intake"
-							class="project-panel hidden border border-neutral-800 bg-neutral-900/10 rounded-xl p-6 system-card w-full"
+							class="project-panel hidden border border-neutral-800/80 bg-neutral-950/40 rounded-xl p-5 sm:p-6 w-full"
 						>
 							<div
 								class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-neutral-800/60 pb-4"
@@ -1201,7 +1367,7 @@ import IntroSection from "../components/sections/IntroSection.astro";
 						<!-- Project 3 Card: Ongoing Project Sandbox -->
 						<div
 							id="project-panel-ongoing"
-							class="project-panel hidden border border-neutral-800 bg-neutral-900/10 rounded-xl p-6 system-card w-full"
+							class="project-panel hidden border border-neutral-800/80 bg-neutral-950/40 rounded-xl p-5 sm:p-6 w-full"
 						>
 							<div
 								class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-neutral-800/60 pb-4"
@@ -1280,65 +1446,76 @@ import IntroSection from "../components/sections/IntroSection.astro";
 					</section>
 				</div>
 
-				<!-- RIGHT COLUMN: Fills that plain empty whitespace void (Spans 4 of 12 columns) -->
+				<!-- RIGHT COLUMN: Sticky System Telemetry & Architecture Specs (Spans 4 of 12 columns) -->
 				<aside
 					id="engine-metrics-card"
-					class="lg:col-span-4 border border-neutral-800 bg-neutral-900/10 rounded-xl p-5 font-mono text-[11px] flex flex-col gap-4 rigid-card lg:sticky lg:top-16 backdrop-blur-sm cursor-pointer select-none system-card"
+					class="lg:col-span-4 border border-neutral-800 bg-neutral-900/30 rounded-xl p-6 font-mono text-[11px] flex flex-col gap-4 overflow-hidden rigid-card lg:sticky lg:top-14 backdrop-blur-sm cursor-pointer select-none system-card"
 				>
 					<div
-						class="flex items-center justify-between border-b border-neutral-800/60 pb-2 text-neutral-400"
+						class="flex items-center justify-between -mx-6 -mt-6 px-6 pt-4 pb-3 mb-1 bg-neutral-950/65 [.light_&]:bg-[#EBE7DC]/80 backdrop-blur-md border-b border-neutral-800/60 text-neutral-400"
 					>
-						<span>// ENGINE_METRICS</span>
-						<span class="h-2 w-2 engine-status-active"></span>
+						<span class="font-bold tracking-tight">// ENGINE_METRICS</span>
+						<div class="flex items-center gap-2">
+							<span class="text-[9px] text-emerald-400 [.light_&]:text-emerald-700 font-bold">ONLINE</span>
+							<span class="h-2 w-2 engine-status-active"></span>
+						</div>
 					</div>
 
 					<div class="flex flex-col gap-2">
-						<div class="flex justify-between text-neutral-500">
-							<span>ENVIRONMENT:</span><span
-								class="text-neutral-300">PRODUCTION</span
-							>
+						<div class="flex justify-between items-center text-neutral-500">
+							<span>ENVIRONMENT:</span>
+							<span class="px-1.5 py-0.5 rounded bg-neutral-950/50 border border-neutral-800/70 text-neutral-300 text-[10px]">PRODUCTION</span>
 						</div>
-						<div class="flex justify-between text-neutral-500">
-							<span>STACK:</span><span class="text-neutral-300"
-								>ASTRO_VANILLA_JS</span
-							>
+						<div class="flex justify-between items-center text-neutral-500">
+							<span>STACK:</span>
+							<span class="px-1.5 py-0.5 rounded bg-neutral-950/50 border border-neutral-800/70 text-neutral-300 text-[10px]">ASTRO_VANILLA_JS</span>
 						</div>
-						<div class="flex justify-between text-neutral-500">
-							<span>COMPILER_TARGET:</span><span
-								class="text-neutral-300">ESNEXT</span
-							>
+						<div class="flex justify-between items-center text-neutral-500">
+							<span>COMPILER_TARGET:</span>
+							<span class="px-1.5 py-0.5 rounded bg-neutral-950/50 border border-neutral-800/70 text-neutral-300 text-[10px]">ESNEXT</span>
 						</div>
 					</div>
 
 					<hr class="border-neutral-800/60" />
 
-					<div class="flex flex-col gap-1">
+					<div class="flex flex-col gap-1.5">
 						<span
 							class="text-neutral-500 font-bold uppercase text-[9px] tracking-wider"
 							>// PLATFORM SOLUTIONS SPEC</span
 						>
 						<div
-							class="bg-neutral-950/40 border border-neutral-800/80 rounded px-2.5 py-2 mt-1 flex flex-col gap-1.5 text-neutral-400"
+							class="bg-neutral-950/40 border border-neutral-800/80 rounded-lg px-3 py-2.5 flex flex-col gap-1.5 text-neutral-300"
 						>
-							<div class="flex items-center gap-2">
-								<span class="text-emerald-500">✓</span>
-								<span
+							<div class="flex items-start gap-2">
+								<span class="text-emerald-500 font-bold mt-0.5">✓</span>
+								<span class="leading-snug"
 									>Freshservice Advanced Product Certification</span
 								>
 							</div>
 						</div>
 					</div>
 
+					<!-- Explicit Architecture Spec Toggle Button -->
+					<div class="flex items-center justify-between pt-1">
+						<span class="text-[9px] text-neutral-500 uppercase tracking-wider">// BUILD_INSPECTOR</span>
+						<span
+							id="walkthrough-toggle-badge"
+							class="px-2 py-0.5 rounded border border-neutral-700/80 bg-neutral-950/50 text-[9px] text-amber-400 hover:border-amber-500/50 transition-colors"
+						>
+							[ + ARCHITECTURE_SPEC ]
+						</span>
+					</div>
+
 					<div
 						id="walkthrough-console"
-						class="hidden border-t border-neutral-800/60 pt-4 mt-2 flex flex-col gap-3"
+						class="hidden border-t border-neutral-800/60 pt-3 flex flex-col gap-2.5"
 					>
 						<span
 							class="text-neutral-500 font-bold uppercase text-[9px] tracking-wider"
 							>// SYSTEM_WALKTHROUGH</span
 						>
 						<div
-							class="bg-neutral-950 border border-neutral-900 p-3 rounded font-mono text-[10px] flex flex-col gap-2.5 leading-relaxed text-neutral-400"
+							class="bg-neutral-950/70 border border-neutral-800/80 p-3.5 rounded-lg font-mono text-[10px] flex flex-col gap-2.5 leading-relaxed text-neutral-400"
 						>
 							<div class="flex items-start gap-1.5">
 								<span class="text-emerald-500 font-bold"
@@ -1376,7 +1553,7 @@ import IntroSection from "../components/sections/IntroSection.astro";
 								</div>
 							</div>
 							<div
-								class="text-[9px] text-neutral-500 border-t border-neutral-900/60 pt-1.5 mt-1"
+								class="text-[9px] text-neutral-500 border-t border-neutral-800/60 pt-1.5 mt-1"
 							>
 								Target: ESNEXT | Mode: Static Build
 							</div>
@@ -1386,10 +1563,10 @@ import IntroSection from "../components/sections/IntroSection.astro";
 					<!-- Live Telemetry Terminal Widget -->
 					<div
 						id="telemetry-widget"
-						class="border border-neutral-800/80 rounded-lg p-4 bg-neutral-950/60 text-stone-200 font-mono text-[11px] leading-relaxed shadow-inner mt-4"
+						class="border border-neutral-800/80 rounded-lg p-4 bg-neutral-950/60 text-stone-200 font-mono text-[11px] leading-relaxed shadow-inner mt-1 cursor-default"
 					>
 						<div
-							class="flex items-center justify-between text-neutral-500 border-b border-neutral-900/60 pb-2 mb-2"
+							class="flex items-center justify-between text-neutral-500 border-b border-neutral-800/60 pb-2 mb-2.5"
 						>
 							<span>// EVENT_TELEMETRY_LOGS</span>
 							<span
@@ -1401,7 +1578,7 @@ import IntroSection from "../components/sections/IntroSection.astro";
 						<!-- Target container where our client script will stream logs -->
 						<div
 							id="telemetry-log-stream"
-							class="space-y-1 min-h-[140px]"
+							class="space-y-1.5 min-h-[140px]"
 						>
 							<!-- Baseline placeholder lines if JavaScript is initializing -->
 							<div class="text-neutral-500">
@@ -1410,7 +1587,8 @@ import IntroSection from "../components/sections/IntroSection.astro";
 						</div>
 					</div>
 				</aside>
-			</main>
+				</main>
+			</div>
 		</div>
 
 		<script
@@ -1598,9 +1776,11 @@ import IntroSection from "../components/sections/IntroSection.astro";
 					});
 				}
 
-				// Theme Toggle Logic
+				// Theme Toggle Logic with Crisp SVG Icons
 				const themeToggleBtns =
 					document.querySelectorAll(".theme-toggle-btn");
+				const sunSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`;
+				const moonSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`;
 
 				function updateThemeUI(isLight) {
 					themeToggleBtns.forEach((btn) => {
@@ -1608,13 +1788,13 @@ import IntroSection from "../components/sections/IntroSection.astro";
 						if (isLight) {
 							document.documentElement.classList.add("light");
 							btn.innerHTML = textSpan
-								? `<span>THEME: BEIGE_MODE</span><span id="theme-icon">☾</span>`
-								: "☾";
+								? `<span class="truncate">THEME: BEIGE_MODE</span><span id="theme-icon" class="flex-shrink-0 flex items-center justify-center">${moonSvg}</span>`
+								: moonSvg;
 						} else {
 							document.documentElement.classList.remove("light");
 							btn.innerHTML = textSpan
-								? `<span>THEME: DEFAULT (DARK)</span><span id="theme-icon">☼</span>`
-								: "☼";
+								? `<span class="truncate">THEME: DEFAULT (DARK)</span><span id="theme-icon" class="flex-shrink-0 flex items-center justify-center">${sunSvg}</span>`
+								: sunSvg;
 						}
 					});
 				}
@@ -1635,6 +1815,38 @@ import IntroSection from "../components/sections/IntroSection.astro";
 						updateThemeUI(isLight);
 					});
 				});
+
+				// Sidebar Scroll-Spy Active Section Highlighting
+				const sidebarLinks = document.querySelectorAll(".sidebar-nav-link");
+				const trackedSections = ["readme", "manifesto", "capabilities", "projects"]
+					.map((id) => document.getElementById(id))
+					.filter(Boolean);
+
+				function setActiveSidebarLink(sectionId) {
+					sidebarLinks.forEach((link) => {
+						const isMatch = link.getAttribute("data-section") === sectionId;
+						link.classList.toggle("is-active", isMatch);
+						const dot = link.querySelector(".nav-dot");
+						if (dot) {
+							dot.classList.toggle("opacity-100", isMatch);
+							dot.classList.toggle("opacity-0", !isMatch);
+						}
+					});
+				}
+
+				if (trackedSections.length && "IntersectionObserver" in window) {
+					const observer = new IntersectionObserver(
+						(entries) => {
+							entries.forEach((entry) => {
+								if (entry.isIntersecting) {
+									setActiveSidebarLink(entry.target.id);
+								}
+							});
+						},
+						{ rootMargin: "-20% 0px -60% 0px", threshold: 0.05 },
+					);
+					trackedSections.forEach((sec) => observer.observe(sec));
+				}
 
 				// Mobile Menu Toggle Logic
 				const menuToggle = document.getElementById("menu-toggle");
@@ -1679,14 +1891,19 @@ import IntroSection from "../components/sections/IntroSection.astro";
 				const walkthroughConsole = document.getElementById(
 					"walkthrough-console",
 				);
+				const walkthroughBadge = document.getElementById(
+					"walkthrough-toggle-badge",
+				);
 
 				if (engineCard && walkthroughConsole) {
 					engineCard.addEventListener("click", () => {
-						walkthroughConsole.classList.toggle("hidden");
+						const isHidden = walkthroughConsole.classList.toggle("hidden");
 						walkthroughConsole.classList.toggle("animate-fade-in");
-						console.log(
-							"System Walkthrough Initialized: Astro + Vanilla JS Target ESNEXT.",
-						);
+						if (walkthroughBadge) {
+							walkthroughBadge.textContent = isHidden
+								? "[ + ARCHITECTURE_SPEC ]"
+								: "[ - HIDE_SPEC ]";
+						}
 					});
 
 					// Prevent clicks inside the walkthrough console from closing it
@@ -2200,16 +2417,20 @@ import IntroSection from "../components/sections/IntroSection.astro";
 							);
 							btn.classList.add(
 								"border-neutral-800",
-								"bg-neutral-900/10",
+								"bg-neutral-950/40",
 								"text-neutral-400",
 								"hover:text-neutral-200",
-								"hover:border-neutral-700",
+								"hover:bg-neutral-900/50",
 							);
-							const labelSpan =
-								btn.querySelector("span:nth-child(2)");
-							if (labelSpan) {
-								labelSpan.classList.remove("text-neutral-950");
-								labelSpan.classList.add("text-neutral-300");
+							const titleSpan = btn.querySelector(".text-sm.font-bold");
+							if (titleSpan) {
+								titleSpan.classList.remove("text-neutral-950");
+								titleSpan.classList.add("text-neutral-300");
+							}
+							const dotSpan = btn.querySelector(".tab-status-dot");
+							if (dotSpan && btn.getAttribute("data-tab") !== "ongoing") {
+								dotSpan.classList.remove("bg-emerald-500");
+								dotSpan.classList.add("bg-neutral-700");
 							}
 						});
 
@@ -2220,7 +2441,7 @@ import IntroSection from "../components/sections/IntroSection.astro";
 						});
 
 						if (isActive) {
-							// If active was clicked, collapse it so both are closed
+							// If active was clicked, collapse it so placeholder shows
 							if (placeholderPanel) {
 								placeholderPanel.classList.remove("hidden");
 								placeholderPanel.classList.add("animate-fade-in");
@@ -2229,21 +2450,25 @@ import IntroSection from "../components/sections/IntroSection.astro";
 							// Style the clicked button as active
 							tabBtn.classList.remove(
 								"border-neutral-800",
-								"bg-neutral-900/10",
+								"bg-neutral-950/40",
 								"text-neutral-400",
 								"hover:text-neutral-200",
-								"hover:border-neutral-700",
+								"hover:bg-neutral-900/50",
 							);
 							tabBtn.classList.add(
 								"bg-neutral-200",
 								"text-neutral-950",
 								"border-neutral-200",
 							);
-							const labelSpan =
-								tabBtn.querySelector("span:nth-child(2)");
-							if (labelSpan) {
-								labelSpan.classList.remove("text-neutral-300");
-								labelSpan.classList.add("text-neutral-950");
+							const titleSpan = tabBtn.querySelector(".text-sm.font-bold");
+							if (titleSpan) {
+								titleSpan.classList.remove("text-neutral-300");
+								titleSpan.classList.add("text-neutral-950");
+							}
+							const dotSpan = tabBtn.querySelector(".tab-status-dot");
+							if (dotSpan && selectedTab !== "ongoing") {
+								dotSpan.classList.remove("bg-neutral-700");
+								dotSpan.classList.add("bg-emerald-500");
 							}
 
 							// Reveal selected panel
@@ -2284,7 +2509,7 @@ import IntroSection from "../components/sections/IntroSection.astro";
 			class="fixed inset-0 z-[100] hidden bg-neutral-950/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 md:p-10 opacity-0 transition-opacity duration-300"
 		>
 			<div
-				class="relative w-full max-w-5xl h-[85vh] bg-neutral-900/90 border border-neutral-800 rounded-2xl p-6 flex flex-col justify-between shadow-2xl font-mono text-[10px] text-neutral-400"
+				class="relative w-full max-w-5xl h-[85dvh] bg-neutral-900/90 border border-neutral-800 rounded-2xl p-6 flex flex-col justify-between shadow-2xl font-mono text-[10px] text-neutral-400"
 			>
 				<!-- Modal Header -->
 				<div
